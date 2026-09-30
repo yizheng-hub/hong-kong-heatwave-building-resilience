@@ -1,0 +1,12 @@
+{
+  "prototype_count": 5,
+  "events": ["HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"],
+  "treatment_levels": {
+    "roof_top_exposure": ["top"],
+    "thermal_mass": ["x0.850", "x1.150"],
+    "nominal_cooling_capacity": ["x0.850", "x1.150"],
+    "AC_operating_time": ["-1h", "+1h"]
+  },
+  "strict_pair_count": 105,
+  "source": "result/figure_source_data/Figure6_controlled_pair_effects.csv"
+}

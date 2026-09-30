@@ -1,0 +1,15 @@
+{
+  "conditions": {
+    "CF_UNL": "Recent-reference weather with unconstrained cooling demand",
+    "HW_UNL": "Heatwave weather with unconstrained cooling demand",
+    "HW_RATED": "Heatwave weather with rated cooling capacity",
+    "HW_C70": "Heatwave weather with 70% of rated total cooling capacity",
+    "HW_O24_SYNC": "Heatwave weather with a synchronized 24-hour grid interruption"
+  },
+  "synchronized_interruption_clock": {
+    "selection_rule": "For each event, select the heatwave-period interval with the highest outdoor temperature in the common event weather series.",
+    "schedule_dependency": "none",
+    "application": "The selected event-specific clock is applied to every design and is not tailored to prototype schedules or building outcomes.",
+    "duration_hours": 24
+  }
+}

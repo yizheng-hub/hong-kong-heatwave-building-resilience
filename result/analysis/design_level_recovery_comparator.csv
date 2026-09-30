@@ -1,0 +1,17 @@
+﻿event_id,sector,design_groups,outage_right_censored,rated_right_censored,outage_median_lower_h,rated_median_lower_h
+HKO_LI_0049,Commercial,189,10,0,1.25,0.0
+HKO_LI_0049,Residential,108,72,57,24.0,24.0
+HKO_LI_0052,Commercial,189,9,1,0.75,0.0
+HKO_LI_0052,Residential,108,54,53,17.5,10.875
+HKO_LI_0054,Commercial,189,10,0,0.75,0.0
+HKO_LI_0054,Residential,108,53,52,11.0,10.625
+HKO_LI_0058,Commercial,189,7,0,0.75,0.0
+HKO_LI_0058,Residential,108,54,53,17.0,9.5
+HKO_LI_0066,Commercial,189,7,0,0.5,0.0
+HKO_LI_0066,Residential,108,51,43,10.25,10.25
+HKO_LI_0068,Commercial,189,16,1,0.75,0.0
+HKO_LI_0068,Residential,108,54,53,17.5,10.5
+HKO_LI_0085,Commercial,189,17,0,1.5,0.0
+HKO_LI_0085,Residential,108,77,60,24.0,24.0
+HKO_LI_0090,Commercial,189,17,1,1.25,0.0
+HKO_LI_0090,Residential,108,66,57,24.0,24.0

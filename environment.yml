@@ -1,0 +1,15 @@
+name: hk-heatwave
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas>=2.2
+  - numpy>=2.0
+  - matplotlib>=3.9
+  - geopandas>=1.0
+  - shapely>=2.0
+  - pyarrow>=23
+  - jupyter
+  - nbconvert
+  - nbformat
+  - ipykernel

@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "Please cite the associated study and this repository when using the code or derived data."
+title: "Hong Kong heatwave building resilience"
+type: software
+authors:
+  - name: "Hong Kong heatwave building resilience project team"
+license: MIT

@@ -1,0 +1,10 @@
+pandas>=2.2
+numpy>=2.0
+matplotlib>=3.9
+geopandas>=1.0
+shapely>=2.0
+pyarrow>=23
+jupyter>=1.1
+nbconvert>=7.16
+nbformat>=5.10
+ipykernel>=6.29

@@ -1,0 +1,922 @@
+path,column,data_type,unit,description
+data/SOURCE_MANIFEST.csv,source_id,object,,Source id.
+data/SOURCE_MANIFEST.csv,source_group,object,,Source group.
+data/SOURCE_MANIFEST.csv,provider,object,,Provider.
+data/SOURCE_MANIFEST.csv,dataset,object,,Dataset.
+data/SOURCE_MANIFEST.csv,repository_path,object,,Repository path.
+data/SOURCE_MANIFEST.csv,distribution_status,object,,Distribution status.
+data/SOURCE_MANIFEST.csv,expected_provider_file,object,,Expected provider file.
+data/SOURCE_MANIFEST.csv,role,object,,Role.
+data/SOURCE_MANIFEST.csv,landing_page,object,,Landing page.
+data/SOURCE_MANIFEST.csv,notes,object,,Notes.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,timestamp_hkt,"timestamp[ns, tz=Asia/Hong_Kong]",h,Interval-ending timestamp in Hong Kong time (UTC+08:00).
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,power_kw_hw,double,kW,Power kw hw.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,scenario_id_hw,string,h,Scenario id hw.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,power_kw_cf,double,kW,Power kw cf.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,scenario_id_cf,string,degC,Scenario id cf.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,event_id,string,,Stable identifier for a heatwave event.
+intermediate/city_trajectories/HKO_LI_0052_city_15min.parquet,delta_kw,double,kW,Delta kw.
+intermediate/prepared_stock/building_component_map.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+intermediate/prepared_stock/building_component_map.parquet,component,string,,Component.
+intermediate/prepared_stock/building_component_map.parquet,prototype_id,string,,Prototype id.
+intermediate/prepared_stock/building_component_map.parquet,floor_position,string,,Floor position.
+intermediate/prepared_stock/building_component_map.parquet,component_area_m2,double,m2,Component area m2.
+intermediate/prepared_stock/building_component_map.parquet,component_fraction_within_sector,double,fraction,Component fraction within sector.
+intermediate/prepared_stock/building_component_map.parquet,population_reference_2021,double,,Population reference 2021.
+intermediate/prepared_stock/building_spatial_links.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+intermediate/prepared_stock/building_spatial_links.parquet,ZONE_LABEL,string,,Zone label.
+intermediate/prepared_stock/building_spatial_links.parquet,centroid_x,double,,Centroid x.
+intermediate/prepared_stock/building_spatial_links.parquet,centroid_y,double,,Centroid y.
+intermediate/prepared_stock/building_spatial_links.parquet,study_region,string,,Study region.
+intermediate/spatial/boundaries/housing_market_areas.geoparquet,hma,string,,Hma.
+intermediate/spatial/boundaries/housing_market_areas.geoparquet,hma_eng,string,,Hma eng.
+intermediate/spatial/boundaries/housing_market_areas.geoparquet,hma_chi,string,degC,Hma chi.
+intermediate/spatial/boundaries/housing_market_areas.geoparquet,geometry,binary,,Building or boundary geometry encoded by the source format.
+result/analysis/building_event_class_outcomes.csv,event_id,object,,Stable identifier for a heatwave event.
+result/analysis/building_event_class_outcomes.csv,main_class,object,degC,Broad building-use class used for stock summaries.
+result/analysis/building_event_class_outcomes.csv,buildings,object,,Buildings.
+result/analysis/building_event_class_outcomes.csv,net_delta_gwh,object,GW,Net delta gwh.
+result/analysis/building_event_class_outcomes.csv,median_relative_net_delta_pct,object,%,Median relative net delta pct.
+result/analysis/building_event_class_outcomes.csv,median_shortfall_fraction_pct,object,%,Median shortfall fraction pct.
+result/analysis/building_event_class_outcomes.csv,p90_shortfall_fraction_pct,object,%,P90 shortfall fraction pct.
+result/analysis/building_event_class_outcomes.csv,buildings_shortfall_gt0,object,,Buildings shortfall gt0.
+result/analysis/building_event_class_outcomes.csv,buildings_dh32_gt0,object,,Buildings dh32 gt0.
+result/analysis/building_event_class_outcomes.csv,median_absolute_dh32_Kh,object,K h,Median absolute dh32 kh.
+result/analysis/building_event_class_outcomes.csv,p90_absolute_dh32_Kh,object,K h,P90 absolute dh32 kh.
+result/analysis/building_event_class_outcomes.csv,right_censored_recovery,object,degC,Right censored recovery.
+result/analysis/building_event_class_outcomes.csv,population_in_buildings_dh32_gt0,object,,Population in buildings dh32 gt0.
+result/analysis/building_event_class_outcomes.csv,population_degree_hours,object,person K h,Population degree hours.
+result/analysis/city_event_energy_and_peak_definitions.csv,event_id,object,,Stable identifier for a heatwave event.
+result/analysis/city_event_energy_and_peak_definitions.csv,E_HW_kwh,object,kWh,E hw kwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,E_CF_kwh,object,kWh,E cf kwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,net_delta_kwh,object,kWh,Net delta kwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,positive_timestep_delta_kwh,object,kWh,Positive timestep delta kwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,negative_timestep_delta_kwh,object,kWh,Negative timestep delta kwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,simultaneous_HW_peak_kw,object,kW,Simultaneous hw peak kw.
+result/analysis/city_event_energy_and_peak_definitions.csv,simultaneous_CF_peak_kw,object,kW,Simultaneous cf peak kw.
+result/analysis/city_event_energy_and_peak_definitions.csv,HW_peak_time_hkt,object,h,Hw peak time hkt.
+result/analysis/city_event_energy_and_peak_definitions.csv,paired_difference_at_HW_peak_kw,object,kW,Paired difference at hw peak kw.
+result/analysis/city_event_energy_and_peak_definitions.csv,difference_of_separate_maxima_kw,object,kW,Difference of separate maxima kw.
+result/analysis/city_event_energy_and_peak_definitions.csv,same_time_difference_at_hw_peak_kw,object,kW,Same time difference at hw peak kw.
+result/analysis/city_event_energy_and_peak_definitions.csv,same_time_difference_pct_of_same_time_cf,object,degC,Same time difference pct of same time cf.
+result/analysis/city_event_energy_and_peak_definitions.csv,same_time_difference_pct_of_cf_absolute_peak,object,degC,Same time difference pct of cf absolute peak.
+result/analysis/city_event_energy_and_peak_definitions.csv,net_delta_gwh,object,GW,Net delta gwh.
+result/analysis/city_event_energy_and_peak_definitions.csv,hw_absolute_peak_gw,object,GW,Hw absolute peak gw.
+result/analysis/city_event_energy_and_peak_definitions.csv,difference_of_separate_maxima_gw,object,GW,Difference of separate maxima gw.
+result/analysis/city_event_energy_and_peak_definitions.csv,same_time_difference_at_hw_peak_gw,object,GW,Same time difference at hw peak gw.
+result/analysis/design_level_recovery_comparator.csv,event_id,object,,Stable identifier for a heatwave event.
+result/analysis/design_level_recovery_comparator.csv,sector,object,,Sector.
+result/analysis/design_level_recovery_comparator.csv,design_groups,object,,Design groups.
+result/analysis/design_level_recovery_comparator.csv,outage_right_censored,object,degC,Outage right censored.
+result/analysis/design_level_recovery_comparator.csv,rated_right_censored,object,degC,Rated right censored.
+result/analysis/design_level_recovery_comparator.csv,outage_median_lower_h,object,h,Outage median lower h.
+result/analysis/design_level_recovery_comparator.csv,rated_median_lower_h,object,h,Rated median lower h.
+result/analysis/first_look_rank_summary.csv,method,object,,Method.
+result/analysis/first_look_rank_summary.csv,outcome,object,,Outcome.
+result/analysis/first_look_rank_summary.csv,comparisons,object,,Comparisons.
+result/analysis/first_look_rank_summary.csv,median_spearman,object,,Median spearman.
+result/analysis/first_look_rank_summary.csv,min_spearman,object,,Min spearman.
+result/analysis/first_look_rank_summary.csv,max_spearman,object,,Max spearman.
+result/analysis/first_look_top10_capture_summary.csv,method,object,,Method.
+result/analysis/first_look_top10_capture_summary.csv,outcome,object,,Outcome.
+result/analysis/first_look_top10_capture_summary.csv,comparisons,object,,Comparisons.
+result/analysis/first_look_top10_capture_summary.csv,median_capture,object,degC,Median capture.
+result/analysis/first_look_top10_capture_summary.csv,min_capture,object,degC,Min capture.
+result/analysis/first_look_top10_capture_summary.csv,max_capture,object,degC,Max capture.
+result/analysis/loeo8_lower_rank_summary.csv,method,object,,Method.
+result/analysis/loeo8_lower_rank_summary.csv,outcome,object,,Outcome.
+result/analysis/loeo8_lower_rank_summary.csv,folds,object,,Folds.
+result/analysis/loeo8_lower_rank_summary.csv,median_spearman,object,,Median spearman.
+result/analysis/loeo8_lower_rank_summary.csv,min_spearman,object,,Min spearman.
+result/analysis/loeo8_lower_rank_summary.csv,max_spearman,object,,Max spearman.
+result/analysis/loeo8_lower_rank_summary.csv,median_kendall_tau_b,object,,Median kendall tau b.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,mechanism_id,object,,Mechanism id.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,prototype_id,object,,Prototype id.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,factor,object,,Factor.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,level,object,,Level.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,event_id,object,,Stable identifier for a heatwave event.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_net_delta_kwh,object,kWh,Reference net delta kwh.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_net_delta_kwh,object,kWh,Treatment net delta kwh.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_net_delta_kwh,object,kWh,Effect net delta kwh.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_net_delta_kwh_lower,object,kWh,Effect net delta kwh lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_net_delta_kwh_upper,object,kWh,Effect net delta kwh upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_net_delta_kwh_unit,object,kWh,Effect net delta kwh unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_relative_delta,object,,Reference relative delta.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_relative_delta,object,,Treatment relative delta.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_relative_delta,object,,Effect relative delta.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_relative_delta_lower,object,,Effect relative delta lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_relative_delta_upper,object,,Effect relative delta upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_relative_delta_unit,object,,Effect relative delta unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_prototype_peak_difference_kw,object,kW,Reference prototype peak difference kw.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_prototype_peak_difference_kw,object,kW,Treatment prototype peak difference kw.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_prototype_peak_difference_kw,object,kW,Effect prototype peak difference kw.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_prototype_peak_difference_kw_lower,object,kW,Effect prototype peak difference kw lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_prototype_peak_difference_kw_upper,object,kW,Effect prototype peak difference kw upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_prototype_peak_difference_kw_unit,object,kW,Effect prototype peak difference kw unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_shortfall_ref_kwh_thermal,object,kWh_th,Reference shortfall ref kwh thermal.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_shortfall_ref_kwh_thermal,object,kWh_th,Treatment shortfall ref kwh thermal.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal,object,kWh_th,Effect shortfall ref kwh thermal.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_lower,object,kWh_th,Effect shortfall ref kwh thermal lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_upper,object,kWh_th,Effect shortfall ref kwh thermal upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_unit,object,kWh_th,Effect shortfall ref kwh thermal unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_absolute_occupied_degree_hours_above_32c,object,K h,Reference absolute occupied degree hours above 32c.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_absolute_occupied_degree_hours_above_32c,object,K h,Treatment absolute occupied degree hours above 32c.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c,object,K h,Effect absolute occupied degree hours above 32c.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_lower,object,K h,Effect absolute occupied degree hours above 32c lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_upper,object,K h,Effect absolute occupied degree hours above 32c upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_unit,object,K h,Effect absolute occupied degree hours above 32c unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Reference positive extra occupied degree hours above 26c vs rated.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Treatment positive extra occupied degree hours above 26c vs rated.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Effect positive extra occupied degree hours above 26c vs rated.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_lower,object,K h,Effect positive extra occupied degree hours above 26c vs rated lower.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_upper,object,K h,Effect positive extra occupied degree hours above 26c vs rated upper.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_unit,object,K h,Effect positive extra occupied degree hours above 26c vs rated unit.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_first_crossing_lower_h,object,degC,Reference first crossing lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_first_crossing_lower_h,object,degC,Treatment first crossing lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_first_crossing_lower_h,object,degC,Effect first crossing lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_first_crossing_upper_h,object,degC,Reference first crossing upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_first_crossing_upper_h,object,degC,Treatment first crossing upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_first_crossing_upper_h,object,degC,Effect first crossing upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_recovery_lower_h,object,h,Reference recovery lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_recovery_lower_h,object,h,Treatment recovery lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_recovery_lower_h,object,h,Effect recovery lower h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,reference_recovery_upper_h,object,h,Reference recovery upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,treatment_recovery_upper_h,object,h,Treatment recovery upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_recovery_upper_h,object,h,Effect recovery upper h.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_recovery_bound_semantics,object,,Effect recovery bound semantics.
+result/analysis/mechanism_analysis/controlled_pair_effects.csv,effect_first_crossing_bound_semantics,object,degC,Effect first crossing bound semantics.
+result/building_event_outcomes/HKO_LI_0049.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0049.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0049.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0049.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0049.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0049.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0049.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0049.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0049.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0049.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0049.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0049.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0049.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0049.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0049.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0049.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0049.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0049.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0049.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0049.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0049.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0049.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0049.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0049.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0049.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0049.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0049.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0049.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0049.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0049.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0049.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0049.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0049.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0049.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0049.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0052.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0052.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0052.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0052.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0052.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0052.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0052.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0052.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0052.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0052.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0052.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0052.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0052.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0052.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0052.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0052.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0052.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0052.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0052.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0052.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0052.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0052.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0052.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0052.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0052.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0052.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0052.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0052.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0052.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0052.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0052.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0052.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0052.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0052.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0052.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0054.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0054.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0054.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0054.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0054.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0054.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0054.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0054.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0054.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0054.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0054.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0054.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0054.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0054.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0054.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0054.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0054.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0054.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0054.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0054.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0054.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0054.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0054.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0054.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0054.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0054.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0054.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0054.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0054.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0054.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0054.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0054.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0054.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0054.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0054.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0058.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0058.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0058.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0058.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0058.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0058.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0058.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0058.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0058.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0058.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0058.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0058.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0058.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0058.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0058.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0058.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0058.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0058.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0058.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0058.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0058.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0058.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0058.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0058.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0058.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0058.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0058.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0058.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0058.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0058.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0058.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0058.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0058.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0058.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0058.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0066.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0066.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0066.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0066.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0066.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0066.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0066.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0066.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0066.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0066.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0066.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0066.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0066.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0066.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0066.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0066.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0066.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0066.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0066.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0066.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0066.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0066.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0066.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0066.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0066.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0066.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0066.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0066.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0066.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0066.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0066.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0066.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0066.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0066.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0066.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0068.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0068.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0068.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0068.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0068.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0068.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0068.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0068.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0068.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0068.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0068.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0068.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0068.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0068.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0068.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0068.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0068.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0068.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0068.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0068.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0068.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0068.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0068.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0068.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0068.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0068.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0068.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0068.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0068.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0068.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0068.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0068.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0068.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0068.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0068.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0085.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0085.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0085.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0085.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0085.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0085.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0085.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0085.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0085.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0085.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0085.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0085.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0085.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0085.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0085.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0085.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0085.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0085.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0085.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0085.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0085.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0085.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0085.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0085.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0085.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0085.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0085.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0085.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0085.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0085.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0085.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0085.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0085.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0085.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0085.parquet,score_R_upper,double,,Score r upper.
+result/building_event_outcomes/HKO_LI_0090.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/building_event_outcomes/HKO_LI_0090.parquet,main_class,string,degC,Broad building-use class used for stock summaries.
+result/building_event_outcomes/HKO_LI_0090.parquet,sub_class,string,degC,Sub class.
+result/building_event_outcomes/HKO_LI_0090.parquet,gfa_value_m2,double,,Gfa value m2.
+result/building_event_outcomes/HKO_LI_0090.parquet,construction_year_value,double,,Construction year value.
+result/building_event_outcomes/HKO_LI_0090.parquet,population_reference_2021,double,,Population reference 2021.
+result/building_event_outcomes/HKO_LI_0090.parquet,wrf_south_north,int64,,Wrf south north.
+result/building_event_outcomes/HKO_LI_0090.parquet,wrf_west_east,int64,,Wrf west east.
+result/building_event_outcomes/HKO_LI_0090.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/building_event_outcomes/HKO_LI_0090.parquet,component_rows,int64,,Component rows.
+result/building_event_outcomes/HKO_LI_0090.parquet,mapping_complete,bool,degC,Mapping complete.
+result/building_event_outcomes/HKO_LI_0090.parquet,prototype_floor_signature,string,,Prototype floor signature.
+result/building_event_outcomes/HKO_LI_0090.parquet,evaluation_status,string,,Evaluation status.
+result/building_event_outcomes/HKO_LI_0090.parquet,NA_reason,string,,Na reason.
+result/building_event_outcomes/HKO_LI_0090.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/building_event_outcomes/HKO_LI_0090.parquet,E_CF_kwh,double,kWh,E cf kwh.
+result/building_event_outcomes/HKO_LI_0090.parquet,net_delta_kwh,double,kWh,Net delta kwh.
+result/building_event_outcomes/HKO_LI_0090.parquet,sum_positive_timestep_delta_kwh,double,kWh,Sum positive timestep delta kwh.
+result/building_event_outcomes/HKO_LI_0090.parquet,required_ref_kwh_thermal,double,kWh_th,Required ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0090.parquet,delivered_raw_kwh_thermal,double,kWh_th,Delivered raw kwh thermal.
+result/building_event_outcomes/HKO_LI_0090.parquet,shortfall_ref_kwh_thermal,double,kWh_th,Shortfall ref kwh thermal.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_capacity_stepwise,double,degC,Score capacity stepwise.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_C_lower,double,degC,Score c lower.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_N_lower,double,,Score n lower.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_O_lower,double,,Score o lower.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_C_upper,double,degC,Score c upper.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_N_upper,double,,Score n upper.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_O_upper,double,,Score o upper.
+result/building_event_outcomes/HKO_LI_0090.parquet,cooling_shortfall_kwh,double,kWh,Cooling shortfall kwh.
+result/building_event_outcomes/HKO_LI_0090.parquet,absolute_dh32,double,,Absolute dh32.
+result/building_event_outcomes/HKO_LI_0090.parquet,worst_component_absolute_dh32,double,degC,Worst component absolute dh32.
+result/building_event_outcomes/HKO_LI_0090.parquet,extra_dh26,double,,Extra dh26.
+result/building_event_outcomes/HKO_LI_0090.parquet,worst_component_extra_dh26,double,degC,Worst component extra dh26.
+result/building_event_outcomes/HKO_LI_0090.parquet,crossing_lower_h,double,h,Crossing lower h.
+result/building_event_outcomes/HKO_LI_0090.parquet,crossing_upper_h,double,h,Crossing upper h.
+result/building_event_outcomes/HKO_LI_0090.parquet,effective_monitoring_hours,double,h,Effective monitoring hours.
+result/building_event_outcomes/HKO_LI_0090.parquet,population_degree_hours,double,person K h,Population degree hours.
+result/building_event_outcomes/HKO_LI_0090.parquet,recovery_hours,double,h,Recovery hours.
+result/building_event_outcomes/HKO_LI_0090.parquet,recovery_status,string,,Recovery status.
+result/building_event_outcomes/HKO_LI_0090.parquet,recovery_lower_h,double,h,Recovery lower h.
+result/building_event_outcomes/HKO_LI_0090.parquet,recovery_upper_h,double,h,Recovery upper h.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_R_lower,double,,Score r lower.
+result/building_event_outcomes/HKO_LI_0090.parquet,score_R_upper,double,,Score r upper.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,station_code,object,degC,Station code.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,event_id,object,,Stable identifier for a heatwave event.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,start_date,object,,Start date.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,end_date,object,,End date.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,start_year,object,,Start year.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,duration_days,object,,Duration days.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,qualifying_hot_days,object,h,Qualifying hot days.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,mean_intensity_c,object,degC,Mean intensity c.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,cumulative_intensity_c_days,object,degC d,Cumulative intensity c days.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,input_year_complete,object,degC,Input year complete.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,parent_event_id,object,,Parent event id.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,assessment_role,object,,Public assessment role for the event; blank for non-selected catalogue events.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,start_month,object,,Start month.
+result/figure_source_data/Figure1a_heatwave_catalog.csv,selected,object,,Whether the heatwave was selected for building assessment.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,station_code,object,degC,Station code.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,year,object,,Year.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_event_span_days,object,,Li event span days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_qualifying_hot_days,object,h,Li qualifying hot days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_event_count,object,degC,Li event count.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_mean_event_duration_days,object,,Li mean event duration days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_cumulative_intensity_c_days,object,degC d,Li cumulative intensity c days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,li_mean_event_cumulative_intensity_c_days,object,degC d,Li mean event cumulative intensity c days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_very_hot_days,object,h,Hko very hot days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_extremely_hot_days,object,h,Hko extremely hot days.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_hot_nights,object,h,Hko hot nights.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_very_hot_days_may_sep,object,h,Hko very hot days may sep.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_extremely_hot_days_may_sep,object,h,Hko extremely hot days may sep.
+result/figure_source_data/Figure1b_HKO_annual_heat_metrics.csv,hko_hot_nights_may_sep,object,h,Hko hot nights may sep.
+result/figure_source_data/Figure1c_future_climate_background.csv,experiment_id,object,,Experiment id.
+result/figure_source_data/Figure1c_future_climate_background.csv,future_period,object,,Future period.
+result/figure_source_data/Figure1c_future_climate_background.csv,metric,object,,Metric.
+result/figure_source_data/Figure1c_future_climate_background.csv,models,object,,Models.
+result/figure_source_data/Figure1c_future_climate_background.csv,ensemble_p10,object,,Ensemble p10.
+result/figure_source_data/Figure1c_future_climate_background.csv,ensemble_p50,object,,Ensemble p50.
+result/figure_source_data/Figure1c_future_climate_background.csv,ensemble_p90,object,,Ensemble p90.
+result/figure_source_data/Figure1c_future_climate_background.csv,ensemble_minimum,object,,Ensemble minimum.
+result/figure_source_data/Figure1c_future_climate_background.csv,ensemble_maximum,object,,Ensemble maximum.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,station_code,object,degC,Station code.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,month,object,,Month.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,pairs,object,,Pairs.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,raw_quantile_mae_c,object,degC,Raw quantile mae c.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,corrected_quantile_mae_c,object,degC,Corrected quantile mae c.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,raw_p95_error_c,object,degC,Raw p95 error c.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,corrected_p95_error_c,object,degC,Corrected p95 error c.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,observed_threshold_fraction,object,fraction,Observed threshold fraction.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,raw_threshold_fraction,object,fraction,Raw threshold fraction.
+result/figure_source_data/Figure1d_Tmax_holdout.csv,corrected_threshold_fraction,object,fraction,Corrected threshold fraction.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,station_code,object,degC,Station code.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,month,object,,Month.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,pairs,object,,Pairs.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,raw_quantile_mae_c,object,degC,Raw quantile mae c.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,corrected_quantile_mae_c,object,degC,Corrected quantile mae c.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,raw_p95_error_c,object,degC,Raw p95 error c.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,corrected_p95_error_c,object,degC,Corrected p95 error c.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,observed_threshold_fraction,object,fraction,Observed threshold fraction.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,raw_threshold_fraction,object,fraction,Raw threshold fraction.
+result/figure_source_data/Figure1e_Tmin_holdout.csv,corrected_threshold_fraction,object,fraction,Corrected threshold fraction.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,wrf_south_north,object,,Wrf south north.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,wrf_west_east,object,,Wrf west east.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,wrf_grid_latitude,object,,Wrf grid latitude.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,wrf_grid_longitude,object,,Wrf grid longitude.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,building_count,object,degC,Building count.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,mean_building_distance_km,object,km,Mean building distance km.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,maximum_building_distance_km,object,km,Maximum building distance km.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,buildings_within_2km,object,,Buildings within 2km.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_mean_c,object,degC,Bias corrected tmax mean c.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_p95_c,object,degC,Bias corrected tmax p95 c.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_threshold_days_per_summer,object,degC,Bias corrected tmax threshold days per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_events_per_summer,object,degC,Bias corrected tmax events per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_event_days_per_summer,object,degC,Bias corrected tmax event days per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmax_maximum_duration_days,object,degC,Bias corrected tmax maximum duration days.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_mean_c,object,degC,Bias corrected tmin mean c.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_p95_c,object,degC,Bias corrected tmin p95 c.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_threshold_days_per_summer,object,degC,Bias corrected tmin threshold days per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_events_per_summer,object,degC,Bias corrected tmin events per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_event_days_per_summer,object,degC,Bias corrected tmin event days per summer.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,bias_corrected_tmin_maximum_duration_days,object,degC,Bias corrected tmin maximum duration days.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,hazard_spatial_resolution_m,object,,Hazard spatial resolution m.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,hazard_spatial_method,object,,Hazard spatial method.
+result/figure_source_data/Figure1f_spatial_hazard_grid.csv,hazard_validation_status,object,,Hazard validation status.
+result/figure_source_data/Figure2_annual_energy.csv,calibration_group,object,,Calibration group.
+result/figure_source_data/Figure2_annual_energy.csv,calibrated_cooling_kwh,object,kWh,Calibrated cooling kwh.
+result/figure_source_data/Figure2_annual_energy.csv,calibrated_non_cooling_kwh,object,kWh,Calibrated non cooling kwh.
+result/figure_source_data/Figure2_annual_energy.csv,official_total_kwh,object,kWh,Official total kwh.
+result/figure_source_data/Figure2_annual_energy.csv,official_cooling_kwh,object,kWh,Official cooling kwh.
+result/figure_source_data/Figure2_annual_energy.csv,official_non_cooling_kwh,object,kWh,Official non cooling kwh.
+result/figure_source_data/Figure2_annual_energy.csv,component_gfa_m2,object,m2,Component gfa m2.
+result/figure_source_data/Figure2_annual_energy.csv,calibrated_total_kwh,object,kWh,Calibrated total kwh.
+result/figure_source_data/Figure2_annual_energy.csv,total_relative_error,object,,Total relative error.
+result/figure_source_data/Figure2_annual_energy.csv,cooling_relative_error,object,,Cooling relative error.
+result/figure_source_data/Figure2_BCA_EUI.csv,prototype_id,object,,Prototype id.
+result/figure_source_data/Figure2_BCA_EUI.csv,bca_building_type,object,,Bca building type.
+result/figure_source_data/Figure2_BCA_EUI.csv,modeled_calibrated_eui_kwh_m2_year,object,kWh m-2 yr-1,Modeled calibrated eui kwh m2 year.
+result/figure_source_data/Figure2_BCA_EUI.csv,bca_buildings,object,,Bca buildings.
+result/figure_source_data/Figure2_BCA_EUI.csv,bca_median_eui,object,,Bca median eui.
+result/figure_source_data/Figure2_BCA_EUI.csv,bca_p05_eui,object,,Bca p05 eui.
+result/figure_source_data/Figure2_BCA_EUI.csv,bca_p95_eui,object,,Bca p95 eui.
+result/figure_source_data/Figure2_BCA_EUI.csv,inside_bca_p05_p95,object,,Inside bca p05 p95.
+result/figure_source_data/Figure2_estate_population.csv,mhe_code,object,degC,Mhe code.
+result/figure_source_data/Figure2_estate_population.csv,official_population,object,,Official population.
+result/figure_source_data/Figure2_estate_population.csv,allocated_population__ssug_landuse_residential_gfa,object,,Allocated population  ssug landuse residential gfa.
+result/figure_source_data/Figure2_estate_population.csv,allocated_population__ssug_stpug_tenure_household_capacity,object,degC,Allocated population  ssug stpug tenure household capacity.
+result/figure_source_data/Figure2_estate_population.csv,allocated_population__ssug_constrained_housing_capacity,object,degC,Allocated population  ssug constrained housing capacity.
+result/figure_source_data/Figure2_estate_population.csv,allocated_population__ssug_all_residential_gfa,object,,Allocated population  ssug all residential gfa.
+result/figure_source_data/Figure2_estate_population.csv,allocated_population__ssug_landuse_residential_volume,object,,Allocated population  ssug landuse residential volume.
+result/figure_source_data/Figure2_heat_sensitivity.csv,dataset,object,,Dataset.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_scope,object,,Observed scope.
+result/figure_source_data/Figure2_heat_sensitivity.csv,balance_point_c,object,degC,Balance point c.
+result/figure_source_data/Figure2_heat_sensitivity.csv,estimator,object,,Estimator.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_buildings,object,,Observed buildings.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_slope_p05,object,,Observed slope p05.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_slope_median,object,,Observed slope median.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_slope_p95,object,,Observed slope p95.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_prototypes,object,,Model prototypes.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_prototype_ids,object,,Model prototype ids.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_slope_min,object,,Model slope min.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_slope_median,object,,Model slope median.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_slope_max,object,,Model slope max.
+result/figure_source_data/Figure2_heat_sensitivity.csv,comparison_tolerance,object,,Comparison tolerance.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_and_model_ranges_overlap,object,,Observed and model ranges overlap.
+result/figure_source_data/Figure2_heat_sensitivity.csv,observed_median_inside_model_type_range,object,,Observed median inside model type range.
+result/figure_source_data/Figure2_heat_sensitivity.csv,model_median_inside_observed_p05_p95,object,,Model median inside observed p05 p95.
+result/figure_source_data/Figure2_heat_sensitivity.csv,used_to_fit_event_dynamics,object,,Used to fit event dynamics.
+result/figure_source_data/Figure2_heat_sensitivity.csv,comparison_pass,object,,Comparison pass.
+result/figure_source_data/Figure2_monthly_shape.csv,month,object,,Month.
+result/figure_source_data/Figure2_monthly_shape.csv,domestic_electricity_gwh,object,GW,Domestic electricity gwh.
+result/figure_source_data/Figure2_monthly_shape.csv,modeled_domestic_kwh,object,kWh,Modeled domestic kwh.
+result/figure_source_data/Figure2_monthly_shape.csv,official_domestic_kwh,object,kWh,Official domestic kwh.
+result/figure_source_data/Figure2_monthly_shape.csv,modeled_share,object,,Modeled share.
+result/figure_source_data/Figure2_monthly_shape.csv,official_share,object,,Official share.
+result/figure_source_data/Figure2_monthly_shape.csv,share_error,object,,Share error.
+result/figure_source_data/Figure2_registry.csv,validation_layer,object,,Validation layer.
+result/figure_source_data/Figure2_registry.csv,dataset,object,,Dataset.
+result/figure_source_data/Figure2_registry.csv,role,object,,Role.
+result/figure_source_data/Figure2_registry.csv,status,object,,Status.
+result/figure_source_data/Figure2_registry.csv,primary_metric,object,,Primary metric.
+result/figure_source_data/Figure2_registry.csv,value,object,,Value.
+result/figure_source_data/Figure2_registry.csv,claim_boundary,object,,Claim boundary.
+result/figure_source_data/Figure2_registry.csv,repository_artifact,object,,Repository artifact.
+result/figure_source_data/Figure2_registry.csv,data_access,object,,Data access.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,main_class,object,degC,Broad building-use class used for stock summaries.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,detailed_type,object,,Detailed building-use category.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,E_HW_kwh,object,kWh,E hw kwh.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,absolute_dh32,object,,Absolute dh32.
+result/figure_source_data/Figure3_2022_territory_buildings.csv,population_degree_hours,object,person K h,Population degree hours.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,study_region,object,,Study region.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,building_power_w,object,W,Building power w.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,modeled_component_area_m2,object,m2,Modeled component area m2.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,load_map_timestamp_hkt,object,h,Load map timestamp hkt.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,load_intensity_w_m2,object,W m-2,Load intensity w m2.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,warmest_eligible_temperature_c,object,degC,Warmest eligible temperature c.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,thermal_support_state,object,,Completeness state for the building thermal comparison.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,required_component_rows,object,degC,Required component rows.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,complete_component_rows,object,degC,Complete component rows.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,partial_component_rows,object,degC,Partial component rows.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,no_eligible_component_rows,object,degC,No eligible component rows.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,missing_component_rows,object,degC,Missing component rows.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,thermal_evaluable,object,,Thermal evaluable.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,thermal_margin_to_32c,object,,Thermal margin to 32c.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,thermal_map_timestamp_hkt,object,h,Thermal map timestamp hkt.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,scenario_id,object,,Identifier for the weather and cooling-supply condition.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,BERI_lower,object,,Beri lower.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,BERI_upper,object,,Beri upper.
+result/figure_source_data/Figure4_Ho_Man_Tin_dynamic_buildings.csv,NA_reason,object,,Na reason.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,study_region,object,,Study region.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,building_power_w,object,W,Building power w.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,modeled_component_area_m2,object,m2,Modeled component area m2.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,load_map_timestamp_hkt,object,h,Load map timestamp hkt.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,load_intensity_w_m2,object,W m-2,Load intensity w m2.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,warmest_eligible_temperature_c,object,degC,Warmest eligible temperature c.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,thermal_support_state,object,,Completeness state for the building thermal comparison.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,required_component_rows,object,degC,Required component rows.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,complete_component_rows,object,degC,Complete component rows.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,partial_component_rows,object,degC,Partial component rows.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,no_eligible_component_rows,object,degC,No eligible component rows.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,missing_component_rows,object,degC,Missing component rows.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,thermal_evaluable,object,,Thermal evaluable.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,thermal_margin_to_32c,object,,Thermal margin to 32c.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,thermal_map_timestamp_hkt,object,h,Thermal map timestamp hkt.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,scenario_id,object,,Identifier for the weather and cooling-supply condition.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,BERI_lower,object,,Beri lower.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,BERI_upper,object,,Beri upper.
+result/figure_source_data/Figure4_Mong_Kok_dynamic_buildings.csv,NA_reason,object,,Na reason.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,study_region,object,,Study region.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,timestamp_hkt,object,h,Interval-ending timestamp in Hong Kong time (UTC+08:00).
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,regional_power_w,object,W,Regional power w.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,fixed_component_area_m2,object,m2,Fixed component area m2.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,area_weighted_load_intensity_w_m2,object,W m-2,Area weighted load intensity w m2.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,scenario_id,object,,Identifier for the weather and cooling-supply condition.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,time_support,object,,Time support.
+result/figure_source_data/Figure4_regional_load_intensity_15min.csv,electricity_basis,object,,Electricity basis.
+result/figure_source_data/Figure4_regional_map_times.csv,study_region,object,,Study region.
+result/figure_source_data/Figure4_regional_map_times.csv,load_map_timestamp_hkt,object,h,Load map timestamp hkt.
+result/figure_source_data/Figure4_regional_map_times.csv,regional_peak_intensity_w_m2,object,W m-2,Regional peak intensity w m2.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,study_region,object,,Study region.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,building_power_w,object,W,Building power w.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,modeled_component_area_m2,object,m2,Modeled component area m2.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,load_map_timestamp_hkt,object,h,Load map timestamp hkt.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,load_intensity_w_m2,object,W m-2,Load intensity w m2.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,warmest_eligible_temperature_c,object,degC,Warmest eligible temperature c.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,thermal_support_state,object,,Completeness state for the building thermal comparison.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,required_component_rows,object,degC,Required component rows.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,complete_component_rows,object,degC,Complete component rows.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,partial_component_rows,object,degC,Partial component rows.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,no_eligible_component_rows,object,degC,No eligible component rows.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,missing_component_rows,object,degC,Missing component rows.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,thermal_evaluable,object,,Thermal evaluable.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,thermal_margin_to_32c,object,,Thermal margin to 32c.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,thermal_map_timestamp_hkt,object,h,Thermal map timestamp hkt.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,scenario_id,object,,Identifier for the weather and cooling-supply condition.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,BERI_lower,object,,Beri lower.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,BERI_upper,object,,Beri upper.
+result/figure_source_data/Figure4_Tsim_Sha_Tsui_dynamic_buildings.csv,NA_reason,object,,Na reason.
+result/figure_source_data/Figure5_capture.csv,method,object,,Method.
+result/figure_source_data/Figure5_capture.csv,outcome,object,,Outcome.
+result/figure_source_data/Figure5_capture.csv,folds,object,,Folds.
+result/figure_source_data/Figure5_capture.csv,median_top10_capture,object,degC,Median top10 capture.
+result/figure_source_data/Figure5_capture.csv,min_top10_capture,object,degC,Min top10 capture.
+result/figure_source_data/Figure5_capture.csv,max_top10_capture,object,degC,Max top10 capture.
+result/figure_source_data/Figure5_city.csv,event_id,object,,Stable identifier for a heatwave event.
+result/figure_source_data/Figure5_city.csv,E_HW_kwh,object,kWh,E hw kwh.
+result/figure_source_data/Figure5_city.csv,E_CF_kwh,object,kWh,E cf kwh.
+result/figure_source_data/Figure5_city.csv,net_delta_kwh,object,kWh,Net delta kwh.
+result/figure_source_data/Figure5_city.csv,positive_timestep_delta_kwh,object,kWh,Positive timestep delta kwh.
+result/figure_source_data/Figure5_city.csv,negative_timestep_delta_kwh,object,kWh,Negative timestep delta kwh.
+result/figure_source_data/Figure5_city.csv,simultaneous_HW_peak_kw,object,kW,Simultaneous hw peak kw.
+result/figure_source_data/Figure5_city.csv,simultaneous_CF_peak_kw,object,kW,Simultaneous cf peak kw.
+result/figure_source_data/Figure5_city.csv,HW_peak_time_hkt,object,h,Hw peak time hkt.
+result/figure_source_data/Figure5_city.csv,paired_difference_at_HW_peak_kw,object,kW,Paired difference at hw peak kw.
+result/figure_source_data/Figure5_city.csv,difference_of_separate_maxima_kw,object,kW,Difference of separate maxima kw.
+result/figure_source_data/Figure5_city.csv,same_time_difference_at_hw_peak_kw,object,kW,Same time difference at hw peak kw.
+result/figure_source_data/Figure5_city.csv,same_time_difference_pct_of_same_time_cf,object,degC,Same time difference pct of same time cf.
+result/figure_source_data/Figure5_city.csv,same_time_difference_pct_of_cf_absolute_peak,object,degC,Same time difference pct of cf absolute peak.
+result/figure_source_data/Figure5_city.csv,net_delta_gwh,object,GW,Net delta gwh.
+result/figure_source_data/Figure5_city.csv,hw_absolute_peak_gw,object,GW,Hw absolute peak gw.
+result/figure_source_data/Figure5_city.csv,difference_of_separate_maxima_gw,object,GW,Difference of separate maxima gw.
+result/figure_source_data/Figure5_city.csv,same_time_difference_at_hw_peak_gw,object,GW,Same time difference at hw peak gw.
+result/figure_source_data/Figure5_city.csv,year,object,,Year.
+result/figure_source_data/Figure5_class.csv,event_id,object,,Stable identifier for a heatwave event.
+result/figure_source_data/Figure5_class.csv,main_class,object,degC,Broad building-use class used for stock summaries.
+result/figure_source_data/Figure5_class.csv,buildings,object,,Buildings.
+result/figure_source_data/Figure5_class.csv,net_delta_gwh,object,GW,Net delta gwh.
+result/figure_source_data/Figure5_class.csv,median_relative_net_delta_pct,object,%,Median relative net delta pct.
+result/figure_source_data/Figure5_class.csv,median_shortfall_fraction_pct,object,%,Median shortfall fraction pct.
+result/figure_source_data/Figure5_class.csv,p90_shortfall_fraction_pct,object,%,P90 shortfall fraction pct.
+result/figure_source_data/Figure5_class.csv,buildings_shortfall_gt0,object,,Buildings shortfall gt0.
+result/figure_source_data/Figure5_class.csv,buildings_dh32_gt0,object,,Buildings dh32 gt0.
+result/figure_source_data/Figure5_class.csv,median_absolute_dh32_Kh,object,K h,Median absolute dh32 kh.
+result/figure_source_data/Figure5_class.csv,p90_absolute_dh32_Kh,object,K h,P90 absolute dh32 kh.
+result/figure_source_data/Figure5_class.csv,right_censored_recovery,object,degC,Right censored recovery.
+result/figure_source_data/Figure5_class.csv,population_in_buildings_dh32_gt0,object,,Population in buildings dh32 gt0.
+result/figure_source_data/Figure5_class.csv,population_degree_hours,object,person K h,Population degree hours.
+result/figure_source_data/Figure5_class.csv,year,object,,Year.
+result/figure_source_data/Figure5_rank.csv,method,object,,Method.
+result/figure_source_data/Figure5_rank.csv,outcome,object,,Outcome.
+result/figure_source_data/Figure5_rank.csv,folds,object,,Folds.
+result/figure_source_data/Figure5_rank.csv,median_spearman,object,,Median spearman.
+result/figure_source_data/Figure5_rank.csv,min_spearman,object,,Min spearman.
+result/figure_source_data/Figure5_rank.csv,max_spearman,object,,Max spearman.
+result/figure_source_data/Figure5_rank.csv,median_kendall_tau_b,object,,Median kendall tau b.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,mechanism_id,object,,Mechanism id.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,prototype_id,object,,Prototype id.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,factor,object,,Factor.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,level,object,,Level.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,event_id,object,,Stable identifier for a heatwave event.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_net_delta_kwh,object,kWh,Reference net delta kwh.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_net_delta_kwh,object,kWh,Treatment net delta kwh.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_net_delta_kwh,object,kWh,Effect net delta kwh.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_net_delta_kwh_lower,object,kWh,Effect net delta kwh lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_net_delta_kwh_upper,object,kWh,Effect net delta kwh upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_net_delta_kwh_unit,object,kWh,Effect net delta kwh unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_relative_delta,object,,Reference relative delta.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_relative_delta,object,,Treatment relative delta.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_relative_delta,object,,Effect relative delta.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_relative_delta_lower,object,,Effect relative delta lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_relative_delta_upper,object,,Effect relative delta upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_relative_delta_unit,object,,Effect relative delta unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_prototype_peak_difference_kw,object,kW,Reference prototype peak difference kw.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_prototype_peak_difference_kw,object,kW,Treatment prototype peak difference kw.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_prototype_peak_difference_kw,object,kW,Effect prototype peak difference kw.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_prototype_peak_difference_kw_lower,object,kW,Effect prototype peak difference kw lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_prototype_peak_difference_kw_upper,object,kW,Effect prototype peak difference kw upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_prototype_peak_difference_kw_unit,object,kW,Effect prototype peak difference kw unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_shortfall_ref_kwh_thermal,object,kWh_th,Reference shortfall ref kwh thermal.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_shortfall_ref_kwh_thermal,object,kWh_th,Treatment shortfall ref kwh thermal.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal,object,kWh_th,Effect shortfall ref kwh thermal.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_lower,object,kWh_th,Effect shortfall ref kwh thermal lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_upper,object,kWh_th,Effect shortfall ref kwh thermal upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_shortfall_ref_kwh_thermal_unit,object,kWh_th,Effect shortfall ref kwh thermal unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_absolute_occupied_degree_hours_above_32c,object,K h,Reference absolute occupied degree hours above 32c.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_absolute_occupied_degree_hours_above_32c,object,K h,Treatment absolute occupied degree hours above 32c.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c,object,K h,Effect absolute occupied degree hours above 32c.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_lower,object,K h,Effect absolute occupied degree hours above 32c lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_upper,object,K h,Effect absolute occupied degree hours above 32c upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_absolute_occupied_degree_hours_above_32c_unit,object,K h,Effect absolute occupied degree hours above 32c unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Reference positive extra occupied degree hours above 26c vs rated.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Treatment positive extra occupied degree hours above 26c vs rated.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated,object,K h,Effect positive extra occupied degree hours above 26c vs rated.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_lower,object,K h,Effect positive extra occupied degree hours above 26c vs rated lower.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_upper,object,K h,Effect positive extra occupied degree hours above 26c vs rated upper.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_positive_extra_occupied_degree_hours_above_26c_vs_rated_unit,object,K h,Effect positive extra occupied degree hours above 26c vs rated unit.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_first_crossing_lower_h,object,degC,Reference first crossing lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_first_crossing_lower_h,object,degC,Treatment first crossing lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_first_crossing_lower_h,object,degC,Effect first crossing lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_first_crossing_upper_h,object,degC,Reference first crossing upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_first_crossing_upper_h,object,degC,Treatment first crossing upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_first_crossing_upper_h,object,degC,Effect first crossing upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_recovery_lower_h,object,h,Reference recovery lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_recovery_lower_h,object,h,Treatment recovery lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_recovery_lower_h,object,h,Effect recovery lower h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,reference_recovery_upper_h,object,h,Reference recovery upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,treatment_recovery_upper_h,object,h,Treatment recovery upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_recovery_upper_h,object,h,Effect recovery upper h.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_recovery_bound_semantics,object,,Effect recovery bound semantics.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,effect_first_crossing_bound_semantics,object,degC,Effect first crossing bound semantics.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,year,object,,Year.
+result/figure_source_data/Figure6_controlled_pair_effects.csv,display,object,,Display.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,timestamp_hkt,object,h,Interval-ending timestamp in Hong Kong time (UTC+08:00).
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,power_kw_hw,object,kW,Power kw hw.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,scenario_id_hw,object,h,Scenario id hw.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,power_kw_cf,object,kW,Power kw cf.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,scenario_id_cf,object,degC,Scenario id cf.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,event_id,object,,Stable identifier for a heatwave event.
+result/figure_source_data/Figure6a_2009_city_trajectory.csv,delta_kw,object,kW,Delta kw.
+result/figure_source_data/Figure6c_2022_recovery_trajectories.csv,timestamp_hkt,object,h,Interval-ending timestamp in Hong Kong time (UTC+08:00).
+result/figure_source_data/Figure6c_2022_recovery_trajectories.csv,prototype_id,object,,Prototype id.
+result/figure_source_data/Figure6c_2022_recovery_trajectories.csv,floor_position,object,,Floor position.
+result/figure_source_data/Figure6c_2022_recovery_trajectories.csv,temperature_c,object,degC,Temperature c.
+result/figure_source_data/Figure_building_geometry.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/figure_source_data/Figure_building_geometry.parquet,geometry,binary,,Building or boundary geometry encoded by the source format.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,outcome,object,,Outcome.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,fraction,object,fraction,Fraction.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,method,object,,Method.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,median,object,,Median.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,min,object,,Min.
+result/figure_source_data/Supplementary_Figure_S16_LOEO8_lower_fraction_sensitivity.csv,max,object,,Max.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,BUILDINGSTRUCTUREID,int64,,Stable building-structure identifier used for joins.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,centroid_x,double,,Centroid x.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,centroid_y,double,,Centroid y.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,E_HW_kwh,double,kWh,E hw kwh.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,event_id,string,,Stable identifier for a heatwave event.
+result/figure_source_data/Supplementary_Figure_S3_eight_event_complete_electricity.parquet,year,int64,,Year.
+result/figure_source_data/Supplementary_Figure_S7_recurrence_status_source.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/figure_source_data/Supplementary_Figure_S7_recurrence_status_source.csv,dh32_events,object,,Dh32 events.
+result/figure_source_data/Supplementary_Figure_S7_recurrence_status_source.csv,not_recovered_events,object,,Not recovered events.
+result/validation/day_night_humid_recovery.csv,event_id,object,,Stable identifier for a heatwave event.
+result/validation/day_night_humid_recovery.csv,base_case_id,object,degC,Base case id.
+result/validation/day_night_humid_recovery.csv,prototype_id,object,,Prototype id.
+result/validation/day_night_humid_recovery.csv,floor_position,object,,Floor position.
+result/validation/day_night_humid_recovery.csv,period_id,object,,Period id.
+result/validation/day_night_humid_recovery.csv,eligible_zone_intervals,object,,Eligible zone intervals.
+result/validation/day_night_humid_recovery.csv,effective_monitoring_hours,object,h,Effective monitoring hours.
+result/validation/day_night_humid_recovery.csv,temperature_mean_c,object,degC,Temperature mean c.
+result/validation/day_night_humid_recovery.csv,temperature_max_c,object,degC,Temperature max c.
+result/validation/day_night_humid_recovery.csv,relative_humidity_mean_pct,object,%,Relative humidity mean pct.
+result/validation/day_night_humid_recovery.csv,same_zone_heat_index_mean_c,object,degC,Same zone heat index mean c.
+result/validation/day_night_humid_recovery.csv,heat_index_supported_hours,object,h,Heat index supported hours.
+result/validation/day_night_humid_recovery.csv,absolute_dh32_k_h,object,h,Absolute dh32 k h.
+result/validation/day_night_humid_recovery.csv,sustained_recovery_26_2c_1h,object,,Sustained recovery 26 2c 1h.
+result/validation/day_night_humid_recovery.csv,recovery_support_status,object,,Recovery support status.
+result/validation/day_night_humid_recovery.csv,unit,object,,Unit.
+result/validation/day_night_humid_recovery.csv,time_window,object,,Time window.
+result/validation/day_night_humid_recovery.csv,eligibility_denominator,object,,Eligibility denominator.
+result/validation/day_night_humid_recovery.csv,NA_reason,object,,Na reason.
+result/validation/day_night_humid_recovery.csv,source,object,,Source.
+result/validation/event_holdout_screening_capture.csv,fold_id,object,,Fold id.
+result/validation/event_holdout_screening_capture.csv,test_event,object,,Test event.
+result/validation/event_holdout_screening_capture.csv,method,object,,Method.
+result/validation/event_holdout_screening_capture.csv,outcome,object,,Outcome.
+result/validation/event_holdout_screening_capture.csv,fraction,object,fraction,Fraction.
+result/validation/event_holdout_screening_capture.csv,evaluable,object,,Evaluable.
+result/validation/event_holdout_screening_capture.csv,expected_burden_capture,object,degC,Expected burden capture.
+result/validation/event_holdout_screening_capture.csv,NA_reason,object,,Na reason.
+result/validation/event_holdout_screening_capture.csv,score_endpoint_scenario,object,,Score endpoint scenario.
+result/validation/full_event_reference_rating.csv,BUILDINGSTRUCTUREID,object,,Stable building-structure identifier used for joins.
+result/validation/full_event_reference_rating.csv,training_events,object,,Training events.
+result/validation/full_event_reference_rating.csv,effective_events,object,,Effective events.
+result/validation/full_event_reference_rating.csv,required_events,object,,Required events.
+result/validation/full_event_reference_rating.csv,score_N_lower,object,,Score n lower.
+result/validation/full_event_reference_rating.csv,score_N_upper,object,,Score n upper.
+result/validation/full_event_reference_rating.csv,score_C_lower,object,degC,Score c lower.
+result/validation/full_event_reference_rating.csv,score_C_upper,object,degC,Score c upper.
+result/validation/full_event_reference_rating.csv,score_O_lower,object,,Score o lower.
+result/validation/full_event_reference_rating.csv,score_O_upper,object,,Score o upper.
+result/validation/full_event_reference_rating.csv,score_R_lower,object,,Score r lower.
+result/validation/full_event_reference_rating.csv,score_R_upper,object,,Score r upper.
+result/validation/full_event_reference_rating.csv,NA_reason,object,,Na reason.
+result/validation/full_event_reference_rating.csv,BERI_lower,object,,Beri lower.
+result/validation/full_event_reference_rating.csv,BERI_upper,object,,Beri upper.
+result/validation/full_event_reference_rating.csv,BERI_point_identified,object,,Beri point identified.
+result/validation/sensitivity_beri_weights.csv,weight_scenario,object,,Weight scenario.
+result/validation/sensitivity_beri_weights.csv,weights_json,object,,Weights json.
+result/validation/sensitivity_beri_weights.csv,buildings,object,,Buildings.
+result/validation/sensitivity_beri_weights.csv,evaluable,object,,Evaluable.
+result/validation/sensitivity_beri_weights.csv,median_BERI_lower,object,,Median beri lower.
+result/validation/sensitivity_temperature_thresholds.csv,event_id,object,,Stable identifier for a heatwave event.
+result/validation/sensitivity_temperature_thresholds.csv,base_case_id,object,degC,Base case id.
+result/validation/sensitivity_temperature_thresholds.csv,prototype_id,object,,Prototype id.
+result/validation/sensitivity_temperature_thresholds.csv,floor_position,object,,Floor position.
+result/validation/sensitivity_temperature_thresholds.csv,threshold_c,object,degC,Threshold c.
+result/validation/sensitivity_temperature_thresholds.csv,degree_hours,object,K h,Degree hours.
+result/validation/sensitivity_temperature_thresholds.csv,crossing_lower_h,object,h,Crossing lower h.
+result/validation/sensitivity_temperature_thresholds.csv,crossing_upper_h,object,h,Crossing upper h.
+result/validation/sensitivity_temperature_thresholds.csv,observation_status,object,,Observation status.
+result/validation/sensitivity_temperature_thresholds.csv,monitoring_complete,object,degC,Monitoring complete.
+result/validation/sensitivity_temperature_thresholds.csv,monitoring_object_count,object,degC,Monitoring object count.
+result/validation/sensitivity_temperature_thresholds.csv,NA_reason,object,,Na reason.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,station_code,object,degC,Station code.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,month,object,,Month.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,pairs,object,,Pairs.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,raw_quantile_mae_c,object,degC,Raw quantile mae c.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,corrected_quantile_mae_c,object,degC,Corrected quantile mae c.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,raw_p95_error_c,object,degC,Raw p95 error c.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,corrected_p95_error_c,object,degC,Corrected p95 error c.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,observed_threshold_fraction,object,fraction,Observed threshold fraction.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,raw_threshold_fraction,object,fraction,Raw threshold fraction.
+result/validation/wrf_tmax_distributional_spatiotemporal_holdout.csv,corrected_threshold_fraction,object,fraction,Corrected threshold fraction.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,station_code,object,degC,Station code.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,month,object,,Month.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,pairs,object,,Pairs.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,raw_quantile_mae_c,object,degC,Raw quantile mae c.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,corrected_quantile_mae_c,object,degC,Corrected quantile mae c.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,raw_p95_error_c,object,degC,Raw p95 error c.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,corrected_p95_error_c,object,degC,Corrected p95 error c.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,observed_threshold_fraction,object,fraction,Observed threshold fraction.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,raw_threshold_fraction,object,fraction,Raw threshold fraction.
+result/validation/wrf_tmin_distributional_spatiotemporal_holdout.csv,corrected_threshold_fraction,object,fraction,Corrected threshold fraction.

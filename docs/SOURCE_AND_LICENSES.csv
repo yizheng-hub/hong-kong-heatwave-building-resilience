@@ -1,0 +1,13 @@
+source_category,provider_or_dataset,repository_use,distributed_here,license_or_access_note,landing_page
+building stock,HK-BFETD,building geometry and use mapping,access note and derived subsets only,Original dataset terms apply,https://zenodo.org/records/20710499
+weather observations,Hong Kong Observatory,heatwave catalogue and station evaluation,access note and derived summaries only,HKO data terms apply,https://www.hko.gov.hk/
+meteorological reanalysis/downscaling,WRF-derived gridded fields,spatial heat-hazard evaluation,derived grids only,Underlying input and model terms apply,https://www.mmm.ucar.edu/models/wrf
+global meteorology,NASA POWER,weather construction support,no,Provider terms apply,https://power.larc.nasa.gov/
+future climate,CMIP6 and ScenarioMIP,five-model climate background,derived ensemble summaries only,Model-provider and ESGF terms apply,https://esgf-node.llnl.gov/projects/cmip6/
+population,Hong Kong Census and Statistics Department,SSUG and estate population allocation,derived comparisons only,Government data terms apply,https://www.censtatd.gov.hk/
+energy,Hong Kong Electrical and Mechanical Services Department,annual end-use constraints,derived calibration totals only,Government publication terms apply,https://www.emsd.gov.hk/energyland/en/energy-statistics/
+roads,Hong Kong Transport Department / CSDI,map context,prepared layer only,Source terms and attribution apply,https://portal.csdi.gov.hk/
+commercial benchmark,Singapore Building and Construction Authority,hot-humid EUI plausibility,derived comparison only,Provider terms apply,https://www1.bca.gov.sg/
+campus observations,PolyU and HKUST,relative-load and heat-sensitivity comparisons,access notes and summary metrics only,PolyU is restricted; HKUST is retained at Dryad because of archive size,https://doi.org/10.5061/dryad.k3j9kd5h6
+external dynamic benchmark,CU-BEMS,commercial response-structure comparison,no,Original dataset terms apply,
+external dynamic benchmark,NIST NZERTF,residential response-structure comparison,no,NIST source terms apply,https://www.nist.gov/el/net-zero-energy-residential-test-facility

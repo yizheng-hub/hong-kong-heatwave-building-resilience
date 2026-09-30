@@ -1,0 +1,16 @@
+{
+  "time_step_hours": 0.25,
+  "thermal_thresholds_c": {
+    "absolute_overheating": 32.0,
+    "added_heat_reference": 26.0,
+    "recovery": 26.0
+  },
+  "thermal_eligibility": {
+    "reference_condition": "HW_RATED",
+    "minimum_occupancy_fraction": 0.15,
+    "threshold_identity": "prespecified engineering eligibility threshold"
+  },
+  "recovery_observation_hours": 24,
+  "screening_fractions": [0.05, 0.10, 0.20],
+  "temperature_sensitivity_thresholds_c": [30.0, 32.0, 34.0]
+}

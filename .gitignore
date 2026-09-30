@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+intermediate/plot.executed.ipynb
+output/figures/*.pdf
+data/validation/hkust/All_Data.zip
+data/validation/polyu/*
+!data/validation/polyu/README.md
+*.log

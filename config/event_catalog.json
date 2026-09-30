@@ -1,0 +1,14 @@
+{
+  "timezone": "Asia/Hong_Kong",
+  "assessment_events": [
+    {"event_id": "HKO_LI_0049", "start_date": "2005-07-18", "end_date": "2005-07-20", "duration_days": 3},
+    {"event_id": "HKO_LI_0052", "start_date": "2009-08-30", "end_date": "2009-09-08", "duration_days": 10},
+    {"event_id": "HKO_LI_0054", "start_date": "2012-05-02", "end_date": "2012-05-04", "duration_days": 3},
+    {"event_id": "HKO_LI_0058", "start_date": "2014-09-28", "end_date": "2014-09-30", "duration_days": 3},
+    {"event_id": "HKO_LI_0066", "start_date": "2017-08-18", "end_date": "2017-08-22", "duration_days": 5},
+    {"event_id": "HKO_LI_0068", "start_date": "2018-05-14", "end_date": "2018-06-02", "duration_days": 20},
+    {"event_id": "HKO_LI_0085", "start_date": "2022-07-19", "end_date": "2022-08-02", "duration_days": 15},
+    {"event_id": "HKO_LI_0090", "start_date": "2023-07-22", "end_date": "2023-07-28", "duration_days": 7}
+  ],
+  "catalogue_source": "result/figure_source_data/Figure1a_heatwave_catalog.csv"
+}
