@@ -1,0 +1,15 @@
+{
+  "required": 465,
+  "unique_physics": 465,
+  "units": 10,
+  "dispositions": {
+    "new": 465
+  },
+  "energyplus_calls": 0,
+  "effective_actions": {
+    "new": 410,
+    "skip_complete": 55
+  },
+  "manual_start_confirmed": false,
+  "version_lock_sha256": "ddb361a18004055513b901ebd21f78fdb4284836eebc76607fc29a6787b16f95"
+}

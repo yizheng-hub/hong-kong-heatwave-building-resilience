@@ -1,0 +1,24 @@
+{
+  "lock_version": "e8-open6-reviewed-v1.4.1-consolidated-root",
+  "purpose": "Current-root execution lock; the original accepted production lock is retained under docs/audit/production_protocol.",
+  "files": {
+    "src/utils/g4a_local_execution.py": "2afe5c828949b6b758410bc0f08434d46570d55d32b6369605c525a9e0130f9b",
+    "src/utils/e8_open6_execution.py": "bb86e33aa84d7dfa91711acd8ec60e8eefa1d1838e5ef4e2548f169307f6c7b6",
+    "src/utils/e8_open6_prepare.py": "92b0210b50b569f00a867d2dcf4ac2c0438414af9871416bbaaf69c04d733414",
+    "src/utils/e8_open6_analysis.py": "71d735a081fc6da5c3248f2e15aa8cf941992a1aae2482ad9ef6f1a6564b7285",
+    "src/utils/e8_g3_runner.py": "74e208d41482f402d03b3cb7284a7be636244caf2540742a5d69bae471913261",
+    "src/utils/e8_g3_postprocess.py": "94f1f55a74fb76cb8ae0b2258467ab05b587dd836ba16eba2ef99d15b3dec836",
+    "src/workflows/repair_c70_capacity.py": "26ba12a92acd0dcd43697e70e03f5af22e068afdedfa2a87538291174bb75a34",
+    "src/utils/simulation_metrics.py": "7522cabf5212700ea2c880dcaa4de796e9b7a00569e00554f471c550fbbdbb40",
+    "src/workflows/stages/build_building_response_and_exposure.py": "e1476208b8772c82386bcb1b986252c07cce7c766f8c54b173ad7bc336a4edb5",
+    "config/foundation_analysis.json": "a6aa8ec626a5d4a8a92e30c9612454ada59fbc528c3b650ecbe578c6e0c23cca",
+    "config/contracts/core_scenario_contract.csv": "1e223973ffce76a339a5777427411a6fa08cfddf53553ec08b99de61ec6de44f",
+    "config/contracts/estimand_and_field_contract.csv": "73e2d162a03ba6ea67b0fd3ffb1e1c50fb54aba5813870f6e895743f3f27075e",
+    "config/contracts/output_schema.json": "34465377b99d19502ec4a91c10735d8528c318ffed89bc4517d0c0fbdc619576",
+    "config/contracts/thermal_monitoring_contract.csv": "cdf45f863e50add1e5c6f5a5d840363a4fab0c1615a4ae88365ff988b9cf5693",
+    "intermediate/simulation_outputs/upstream/01_inputs/E8_event_assignment.csv": "0ca3b1b046979f31cd6176c21356e38bf2267c201996c7421d58a0cdd6b69f74"
+  },
+  "prototype_parameter_table_sha256": "a887abb2cfc0bb2ecd2905eefb3fc552e2510c0d00d6e0a453dfe75eb8c8ffa8",
+  "physics_manifest_sha256": "7b3262723358cdb4debef01b933b5a55d51cae316e79dbad9e99b7eaa0f33c81",
+  "scope": "Six non-lockbox events with the accepted targeted C70 replacements; paths are relative to the consolidated repository root."
+}

@@ -1,0 +1,46 @@
+{
+  "status": "WAITING_FOR_UPSTREAM",
+  "energyplus_calls": 0,
+  "upstream": {
+    "status": "WAITING_FOR_UPSTREAM",
+    "numerical_complete": false,
+    "issues": [
+      "upstream version-lock hash differs or is missing"
+    ],
+    "workorder_lock_held": false,
+    "workorder_lock_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\workorder.lock",
+    "active_events": [],
+    "source_tables": {
+      "energy": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 1782,
+        "valid": false
+      },
+      "thermal": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 1782,
+        "valid": false
+      },
+      "scores": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 7128,
+        "valid": false
+      },
+      "source_index": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 8910,
+        "valid": false
+      }
+    }
+  },
+  "workspace": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace",
+  "results_root": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results",
+  "free_disk_bytes": 49087098880,
+  "estimated_required_bytes": 17179869184,
+  "module_imports_isolated": true,
+  "approval_proposal": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\completion_approval.proposed.json"
+}

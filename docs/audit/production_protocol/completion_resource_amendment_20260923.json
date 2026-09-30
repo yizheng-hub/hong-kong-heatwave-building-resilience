@@ -1,0 +1,23 @@
+{
+  "record_type": "resource_only_and_parent_handoff_amendment",
+  "approved_at": "2026-09-23T19:06:41.0435094+08:00",
+  "approval_basis": "local user explicitly approved 65-hour cumulative lockbox and 85-hour cumulative completion limits plus the parent handoff code-lock update",
+  "batch_id": "E8_completion_v1",
+  "child_batch_id": "E8_completion_v1_lockbox",
+  "prior_lockbox_wall_seconds": 108000,
+  "new_lockbox_wall_seconds": 234000,
+  "prior_completion_wall_seconds": 144000,
+  "new_completion_wall_seconds": 306000,
+  "max_calls_unchanged": 3830,
+  "max_retries_unchanged": 200,
+  "lockbox_max_bytes_unchanged": 32212254720,
+  "completion_max_bytes_unchanged": 42949672960,
+  "min_free_bytes_unchanged": 10737418240,
+  "scientific_contract_changed": false,
+  "physical_manifest_changed": false,
+  "lockbox_prediction_receipt_changed": false,
+  "existing_child_initial_ceiling_preserved": true,
+  "prior_completion_code_lock_sha256": "32045984e6187e8d58b9879a1dd6f95ca91c128bc94e3268570f0869059f4416",
+  "superseded_parent_handoff_code_lock_sha256": "15435211209e3fdcbbeee7ad90a817ab0024ef8f5dfb393c489a415feef57de1",
+  "new_completion_code_lock_sha256": "8f0e4f084ea4d227180d0058b4a64556b29605efe08e895d6afc0a381717056f"
+}

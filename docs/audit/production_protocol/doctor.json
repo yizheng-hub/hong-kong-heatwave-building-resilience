@@ -1,0 +1,213 @@
+{
+  "status": "CODE_COMPLETE_WAITING_FOR_USER_APPROVAL",
+  "energyplus_calls": 0,
+  "upstream": {
+    "status": "QUALIFIED",
+    "numerical_complete": true,
+    "issues": [],
+    "actual_version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+    "candidate_version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+    "workorder_lock_held": false,
+    "workorder_lock_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\workorder.lock",
+    "active_events": [],
+    "source_tables": {
+      "energy": {
+        "exists": true,
+        "rows": 1782,
+        "expected_rows": 1782,
+        "valid": true
+      },
+      "thermal": {
+        "exists": true,
+        "rows": 1782,
+        "expected_rows": 1782,
+        "valid": true
+      },
+      "scores": {
+        "exists": true,
+        "rows": 7128,
+        "expected_rows": 7128,
+        "valid": true
+      },
+      "source_index": {
+        "exists": true,
+        "rows": 8910,
+        "expected_rows": 8910,
+        "valid": true
+      }
+    }
+  },
+  "accepted_version_and_supersession": {
+    "migration": "reviewed_targeted_C70_total_capacity_supersessions",
+    "evidence_complete": true,
+    "scientific_acceptance": "pending_user_confirmation",
+    "candidate_version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+    "replacement_count": 4,
+    "replacements": [
+      {
+        "run_id": "e8open6_61614cc9859314651cdf",
+        "event_id": "HKO_LI_0068",
+        "base_case_id": "B0206",
+        "prototype_id": "com_education",
+        "floor_position": "bottom",
+        "scenario_id": "HW_C70",
+        "supersedes_physics_hash": "7e972bccdf8d7f833fc7ff811c82efe90ca0fd7ac0b6cb0af5f4006081154806",
+        "replacement_physics_hash": "6680b46d0f25184e65bdc8eecea9076bb7c361cff6777a0124dc4159f81ce959",
+        "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_61614cc9859314651cdf\\7e972bccdf8d7f833fc7ff811c82efe90ca0fd7ac0b6cb0af5f4006081154806",
+        "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_61614cc9859314651cdf",
+        "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+      },
+      {
+        "run_id": "e8open6_6c9df7f683dda75daf9c",
+        "event_id": "HKO_LI_0068",
+        "base_case_id": "B0213",
+        "prototype_id": "com_education",
+        "floor_position": "bottom",
+        "scenario_id": "HW_C70",
+        "supersedes_physics_hash": "ec8fcd4302f85b4bef96a0c7f6f284f04722c7bede1b12798f4d36a2ccb2121e",
+        "replacement_physics_hash": "2dd57fb432b2ba369ce6f6aea15ffb0901670f0f9a22db8b125a0294a4ee8588",
+        "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_6c9df7f683dda75daf9c\\ec8fcd4302f85b4bef96a0c7f6f284f04722c7bede1b12798f4d36a2ccb2121e",
+        "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_6c9df7f683dda75daf9c",
+        "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+      },
+      {
+        "run_id": "e8open6_bcd514a4a737dbc413d7",
+        "event_id": "HKO_LI_0068",
+        "base_case_id": "B0260",
+        "prototype_id": "com_mixed_use_component",
+        "floor_position": "single",
+        "scenario_id": "HW_C70",
+        "supersedes_physics_hash": "ed15e1e6b0ace96db34cdfd1bb68f021ada35ef5d5eb616be30d8b3ec51bc521",
+        "replacement_physics_hash": "6185456966c4737e4fafaf853288e03efa7b7b86c9e0c64f6e02a173e4b6dd49",
+        "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_bcd514a4a737dbc413d7\\ed15e1e6b0ace96db34cdfd1bb68f021ada35ef5d5eb616be30d8b3ec51bc521",
+        "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_bcd514a4a737dbc413d7",
+        "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+      },
+      {
+        "run_id": "e8open6_df5207eb7cbdd80bfae8",
+        "event_id": "HKO_LI_0049",
+        "base_case_id": "B0127",
+        "prototype_id": "com_office",
+        "floor_position": "top",
+        "scenario_id": "HW_C70",
+        "supersedes_physics_hash": "256fb9b5c305b7b95b28c2edb944b430994e0223db10a893fc9f195a91d73591",
+        "replacement_physics_hash": "f1a4358aa2579c0bb4f4fc2f7a7591de9552786b40c474f50cb960dd7204b930",
+        "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_df5207eb7cbdd80bfae8\\256fb9b5c305b7b95b28c2edb944b430994e0223db10a893fc9f195a91d73591",
+        "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0049\\02_runs\\g3_results\\e8open6_df5207eb7cbdd80bfae8",
+        "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+      }
+    ],
+    "crosswalk_sha256": "15cda944936bf3c2b4235a5a7420539b43052b6a08db5a97162fae20da207c68",
+    "replacement_registry_sha256": "b5fe45df3c219cdd52f9127fc2f97428f1fa85fe01bde5f616c9a65df706c700",
+    "issues": [],
+    "rows": 88,
+    "does_not_modify_upstream": true
+  },
+  "code_functionality": {
+    "five_required_analysis_functions": "IMPLEMENTED",
+    "paper_only": true,
+    "animation": false,
+    "production_test_record": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace\\test-results"
+  },
+  "analysis_contracts_and_sources": {
+    "status": "FORMAL_SCHEMA_APPROVED",
+    "decision_hash": "535b0fb62be37afa30d6cbe01f5088258267b8b9c952204ce355b4c8f92ad0f2",
+    "issues": []
+  },
+  "paper_panels": {
+    "registered_rows": 29,
+    "unique_source_tables": 19,
+    "missing_until_production": [],
+    "registry_sha256": "0863ad8f8687020ac01f5fca17bf8174195e7b29f94ebca829a55ab2db5639c4"
+  },
+  "approvals": {
+    "mechanism_levels": "recommended_not_approved",
+    "lockbox_release": "pending_prediction_freeze",
+    "targeted_c70_migration": "pending_user_confirmation"
+  },
+  "physical_manifest_and_resources": {
+    "lockbox_logical_runs": 2970,
+    "mechanism_logical_runs_before_physical_dedup": 825,
+    "mechanism_pair_comparison_rows": 660,
+    "mechanism_unique_physics_upper_before_core_cache_reuse": 600,
+    "conservative_unique_new_upper_bound_before_physical_dedup": 3570,
+    "approved_retry_allowance": 200,
+    "conservative_call_budget_needed": 3770,
+    "configured_max_calls": 3830,
+    "budget_shortfall_before_actual_dedup": 0,
+    "final_unique_manifest_status": "WAITING_FOR_APPROVAL_AND_COMPILE",
+    "measured_open6_basis": {
+      "completed_event_summaries": [
+        {
+          "event_id": "HKO_LI_0049",
+          "actual_calls": 1206,
+          "active_seconds": 11042.063000000082,
+          "bytes_on_disk": 2629052979,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0049\\resource_usage.json",
+          "source_sha256": "ea418499f2b4c7289882c51b47a4e7940ccf700b7f966ffd9df1ffbd94d6c75f"
+        },
+        {
+          "event_id": "HKO_LI_0052",
+          "actual_calls": 1485,
+          "active_seconds": 8939.046999999904,
+          "bytes_on_disk": 4233606670,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0052\\resource_usage.json",
+          "source_sha256": "6a87f154b0c528bc513baf0532707c41278bd6f245f1ffff5e098455fa4f9ad4"
+        },
+        {
+          "event_id": "HKO_LI_0058",
+          "actual_calls": 1485,
+          "active_seconds": 7657.015000000014,
+          "bytes_on_disk": 3198507988,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0058\\resource_usage.json",
+          "source_sha256": "a8921abf364dbd0ef73d912e21339981891b186e6283580c3ee66fe40e8d83b2"
+        },
+        {
+          "event_id": "HKO_LI_0068",
+          "actual_calls": 1483,
+          "active_seconds": 8817.860999999917,
+          "bytes_on_disk": 5709969953,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\resource_usage.json",
+          "source_sha256": "90bcf3b4fea75a20af565ac8606c53730d1f470342619dfaa3ca02e8aac1665a"
+        },
+        {
+          "event_id": "HKO_LI_0085",
+          "actual_calls": 1485,
+          "active_seconds": 6565.1879999999655,
+          "bytes_on_disk": 4966205372,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0085\\resource_usage.json",
+          "source_sha256": "e2451904ef38f5581871a5d6bc11a4553504b242769c9375d12bfd99002ab1d5"
+        },
+        {
+          "event_id": "HKO_LI_0090",
+          "actual_calls": 1485,
+          "active_seconds": 6778.0,
+          "bytes_on_disk": 3790131985,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0090\\resource_usage.json",
+          "source_sha256": "03d07b7c03050e6a0fdb87fccf89220edf2cc8de0e05f45bdd65f88e87cbfe84"
+        }
+      ],
+      "measured_calls": 8629,
+      "weighted_active_seconds_per_call": 5.771140804264675,
+      "maximum_event_bytes_per_call": 3850283.178017532,
+      "identity": "provisional planning basis from completed Open6 summaries; final free space is rechecked at execution"
+    },
+    "estimated_solver_bytes_before_dedup": 13745510945,
+    "analysis_and_source_data_margin_bytes": 4294967296,
+    "estimated_total_bytes_before_dedup": 18040478241,
+    "configured_max_bytes": 42949672960,
+    "execution_free_space_gate_bytes": 53687091200,
+    "storage_budget_shortfall_before_actual_dedup": 0
+  },
+  "unresolved_items": [
+    "targeted C70 scientific migration acceptance pending",
+    "lockbox release pending",
+    "residential mechanism levels pending"
+  ],
+  "workspace": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace",
+  "results_root": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results",
+  "free_disk_bytes": 198188195840,
+  "estimated_required_bytes": 42949672960,
+  "module_imports_isolated": true,
+  "approval_proposal": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\completion_approval.proposed.json"
+}

@@ -1,0 +1,5 @@
+﻿factor,residential_prototypes,proposed_levels,events,scenarios,unique_solver_runs,existing_strict_pairs,approval_status
+roof_top_exposure,5,middle|top,HKO_LI_0068|HKO_LI_0085|HKO_LI_0090,CF_UNL|HW_UNL|HW_RATED|HW_C70|HW_O24_SYNC,150,1,pending_scientific_approval
+thermal_mass,5,150.0|180.0|200.0,HKO_LI_0068|HKO_LI_0085|HKO_LI_0090,CF_UNL|HW_UNL|HW_RATED|HW_C70|HW_O24_SYNC,225,0,pending_scientific_approval
+nominal_cooling_capacity,5,145.0|150.0|160.0,HKO_LI_0068|HKO_LI_0085|HKO_LI_0090,HW_RATED|HW_C70|HW_O24_SYNC,135,0,pending_scientific_approval
+AC_operating_time,5,-1|1,HKO_LI_0068|HKO_LI_0085|HKO_LI_0090,CF_UNL|HW_UNL|HW_RATED|HW_C70|HW_O24_SYNC,150,0,pending_scientific_approval

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import argparse
 import sys
 from zoneinfo import ZoneInfo
 
@@ -17,9 +18,14 @@ from analysis.metrics import (
 from data_preparation.paths import project_paths
 from simulation.conditions import EVENT_IDS
 from validation.checks import require_columns, require_files
+from validation.project import validate_unified_project
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate manuscript-aligned project inputs and results.")
+    parser.add_argument("--full-local", action="store_true", help="Also verify the complete local raw/runtime inventory")
+    parser.add_argument("--report", help="Optional JSON report path, relative to the project root")
+    args = parser.parse_args()
     paths = project_paths()
     figure_data = paths.figure_source_data
     event_directory = paths.result / "building_event_outcomes"
@@ -100,6 +106,11 @@ def main() -> int:
     if labels != expected_labels:
         raise ValueError(f"Notebook figure cells are out of order: {labels}")
     checks["figure_cells"] = len(labels)
+    checks["unified_project"] = validate_unified_project(paths.root, full_local=args.full_local)
+    if args.report:
+        report_path = paths.root / args.report
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(json.dumps(checks, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(checks, indent=2))
     return 0
 

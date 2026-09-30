@@ -1,0 +1,22 @@
+{
+  "lock_version": "e8-open6-reviewed-v1.4.1-automatic-targeted-c70-correction",
+  "created_at": 1789953000.0,
+  "files": {
+    "utils/g4a_local_execution.py": "6d2f99bcb5f873125eebe9b9e13d0328b9af23ed7fe38bf2d250662fd7badc52",
+    "utils/e8_open6_execution.py": "562c05cd7a2ed30b24198d6949113c7d7630e593cf682e8a4386a6df7196481b",
+    "utils/e8_open6_prepare.py": "2342dfeba488304923b33f62287f71e70d54fcd1bc220a6e4dcb5e1d82189596",
+    "utils/e8_open6_analysis.py": "71d735a081fc6da5c3248f2e15aa8cf941992a1aae2482ad9ef6f1a6564b7285",
+    "utils/e8_g3_runner.py": "191783517ac1240284e0e964209b3a11953d46589999e0ff96a5d0e96f5795a5",
+    "utils/e8_g3_postprocess.py": "9e9d8f10b3fb39940ce74e73c06fd2b972050f94139f52dae050f0d87f8c7c59",
+    "scripts/repair_c70_capacity.py": "9e57949ac123621de116eaf65da81cc801ef1a0cddf2864029d13e45876d6d68",
+    "utils/e8_g3_metrics_v2.py": "4cce5736fe4ac02e207c58faf494e930922a131cd3bbc315fdca972aa687c8c3",
+    "intermediate/simulation_outputs/upstream/00_protocol/core_scenario_contract.csv": "1e223973ffce76a339a5777427411a6fa08cfddf53553ec08b99de61ec6de44f",
+    "intermediate/simulation_outputs/upstream/00_protocol/estimand_and_field_contract.csv": "73e2d162a03ba6ea67b0fd3ffb1e1c50fb54aba5813870f6e895743f3f27075e",
+    "intermediate/simulation_outputs/upstream/00_protocol/output_schema.json": "34465377b99d19502ec4a91c10735d8528c318ffed89bc4517d0c0fbdc619576",
+    "intermediate/simulation_outputs/upstream/G3_metrics_v2_closure/thermal_monitoring_contract.csv": "cdf45f863e50add1e5c6f5a5d840363a4fab0c1615a4ae88365ff988b9cf5693",
+    "intermediate/simulation_outputs/upstream/01_inputs/E8_event_assignment.csv": "0ca3b1b046979f31cd6176c21356e38bf2267c201996c7421d58a0cdd6b69f74"
+  },
+  "prototype_parameter_table_sha256": "a887abb2cfc0bb2ecd2905eefb3fc552e2510c0d00d6e0a453dfe75eb8c8ffa8",
+  "physics_manifest_sha256": "7b3262723358cdb4debef01b933b5a55d51cae316e79dbad9e99b7eaa0f33c81",
+  "scope": "six non-lockbox E8 core; frozen logical manifest retained; targeted run x zone C70 physical replacements require explicit supersession receipts"
+}

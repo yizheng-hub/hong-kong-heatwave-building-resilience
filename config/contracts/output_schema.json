@@ -1,0 +1,134 @@
+{
+  "version": "e8-zone-native-output-v2",
+  "matching_rule": "complete variable name + key + unit + frequency; no substring aggregation",
+  "missing_required_field": "raise error",
+  "structural_zero": "permitted only when schema explicitly declares equipment absent",
+  "native_timestep_minutes_expected": 15,
+  "hourly_energy": "sum native interval energies",
+  "hourly_average_power": "duration-weighted native power, or energy divided by covered duration",
+  "variables": [
+    {
+      "field_id": "zone_air_temperature",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Mean Air Temperature",
+      "key": "*",
+      "unit": "C",
+      "frequency": "Timestep",
+      "temporal_semantics": "state/end-of-zone-timestep",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "zone_relative_humidity",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Air Relative Humidity",
+      "key": "*",
+      "unit": "%",
+      "frequency": "Timestep",
+      "temporal_semantics": "state/end-of-zone-timestep",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "zone_occupants",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone People Occupant Count",
+      "key": "*",
+      "unit": "",
+      "frequency": "Timestep",
+      "temporal_semantics": "state",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "ideal_supply_sensible_cooling_energy",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Ideal Loads Supply Air Sensible Cooling Energy",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy/supply-air boundary",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "ideal_supply_total_cooling_energy",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Ideal Loads Supply Air Total Cooling Energy",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy/supply-air boundary",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "ideal_supply_total_cooling_rate",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Ideal Loads Supply Air Total Cooling Rate",
+      "key": "*",
+      "unit": "W",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval-average rate/supply-air boundary",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "electricity_facility",
+      "output_kind": "meter",
+      "energyplus_variable": "Electricity:Facility",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "lights_electricity",
+      "output_kind": "variable",
+      "energyplus_variable": "Lights Electricity Energy",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "equipment_electricity",
+      "output_kind": "variable",
+      "energyplus_variable": "Electric Equipment Electricity Energy",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "equipment_convective_gain",
+      "output_kind": "variable",
+      "energyplus_variable": "Electric Equipment Convective Heating Energy",
+      "key": "*",
+      "unit": "J",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval energy",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    },
+    {
+      "field_id": "cooling_unmet_time",
+      "output_kind": "variable",
+      "energyplus_variable": "Zone Cooling Setpoint Not Met Time",
+      "key": "*",
+      "unit": "hr",
+      "frequency": "Timestep",
+      "temporal_semantics": "interval duration",
+      "required": true,
+      "verification_status": "pending_G3_RDD_MDD_check"
+    }
+  ],
+  "engine_dictionary_gate": "every requested variable and meter must be confirmed against the actual EnergyPlus 26.1.0 RDD/MDD before G3 outputs are accepted",
+  "output_schema_hash": "0b5c1f1ff3d0a8f4b597d864324348259bcba9072b6ff46cccd9b8657c06806e"
+}

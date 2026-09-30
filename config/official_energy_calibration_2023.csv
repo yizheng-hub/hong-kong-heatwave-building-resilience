@@ -1,0 +1,13 @@
+sector,official_segment,electricity_tj,air_conditioning_tj,source,source_page,source_table
+residential,public_housing,11672,4767,EMSD Hong Kong Energy End-use Data 2025,42,23
+residential,private_housing,22839,9032,EMSD Hong Kong Energy End-use Data 2025,42,24
+residential,subsidised_sale,6161,2629,EMSD Hong Kong Energy End-use Data 2025,43,25
+residential,other_housing,3654,1433,EMSD Hong Kong Energy End-use Data 2025,43,26
+commercial,restaurant,10288,2786,EMSD Hong Kong Energy End-use Data 2025,53,37
+commercial,retail,11437,3654,EMSD Hong Kong Energy End-use Data 2025,53,38
+commercial,office,17264,7866,EMSD Hong Kong Energy End-use Data 2025,54,39
+commercial,accommodation,6295,3519,EMSD Hong Kong Energy End-use Data 2025,54,40
+commercial,human_health,5378,3423,EMSD Hong Kong Energy End-use Data 2025,55,41
+commercial,education,4340,2497,EMSD Hong Kong Energy End-use Data 2025,55,42
+commercial,data_centre,7073,2653,EMSD Hong Kong Energy End-use Data 2025,56,43
+commercial,other_commercial,46448,3280,EMSD Hong Kong Energy End-use Data 2025,56,44

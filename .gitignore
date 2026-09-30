@@ -6,7 +6,30 @@ __pycache__/
 Thumbs.db
 intermediate/plot.executed.ipynb
 output/figures/*.pdf
-data/validation/hkust/All_Data.zip
-data/validation/polyu/*
-!data/validation/polyu/README.md
 *.log
+
+# Provider/source inputs retained in the complete local project. They are not
+# committed because several datasets are large or provider-controlled. Tracked
+# README files, source registries and checksums remain available on GitHub.
+data/**/*
+!data/README.md
+!data/SOURCE_MANIFEST.csv
+!data/**/README.md
+!data/**/README_*.md
+!data/**/SOURCE_*.csv
+
+# Full accepted outputs and simulator working records retained locally. The
+# compact accepted-results archive and manuscript panel data remain tracked.
+result/accepted/
+result/production_run/
+intermediate/compiled_simulation_inputs/
+intermediate/simulation_outputs/
+intermediate/source_derived/
+
+# The pinned EnergyPlus installation is retained locally; redistribution is
+# governed by the upstream software licence.
+software/energyplus/
+
+# Local extraction/check workspaces.
+intermediate/extracted_acceptance_archive/
+output/logs/

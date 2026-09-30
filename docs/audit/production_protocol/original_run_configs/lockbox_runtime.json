@@ -1,0 +1,59 @@
+{
+  "project_root": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility",
+  "input_root": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility",
+  "code_root": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace",
+  "batch_id": "E8_completion_v1_lockbox",
+  "output_dir": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\runtime\\lockbox",
+  "development_dir": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\dry_runs\\lockbox",
+  "approved_output_roots": [
+    "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results"
+  ],
+  "manifest": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\lockbox_manifests\\lockbox_run_manifest.csv",
+  "manifest_sha256": "cb89f62dc7e3713cdd35195b2649a95967b7592891913740a7d941b8c82ac4b0",
+  "cache_root": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work",
+  "energyplus": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\runtime\\EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64\\energyplus.exe",
+  "version_lock": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace\\config\\lockbox_version_lock.json",
+  "expected_environment": "hk-heatwave-repro",
+  "expected_python": "3.11",
+  "paper_only": true,
+  "concurrency": 4,
+  "max_calls": 3120,
+  "max_retries": 150,
+  "wall_seconds": 234000,
+  "max_bytes": 32212254720,
+  "min_free_bytes": 10737418240,
+  "grace_seconds": 30,
+  "run_timeout_seconds": 900,
+  "progress_seconds": 15,
+  "max_worker_rss_bytes": 2147483648,
+  "count_hardlinks_once": true,
+  "delegated_workorder_start": true,
+  "scope": {
+    "expected_runs": 2970,
+    "expected_unique_physics": 2970,
+    "expected_groups": 594,
+    "events": [
+      "HKO_LI_0054",
+      "HKO_LI_0066"
+    ],
+    "prehistory_days": 14,
+    "expected_dispositions": {
+      "new": 2970
+    },
+    "label": "lockbox",
+    "report_prefix": "lockbox",
+    "solver_only": false,
+    "event_isolated_groups": true,
+    "review_archive": "lockbox_review.zip",
+    "confirmation_scope": "approved E8 completion only",
+    "owner_registry": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\runtime\\owners\\E8_completion_v1_lockbox_owner.json",
+    "initial_ceiling": {
+      "max_calls": 3120,
+      "max_retries": 150,
+      "wall_seconds": 36000,
+      "max_bytes": 10737418240,
+      "min_free_bytes": 10737418240
+    }
+  },
+  "analysis_version": "E8-completion-closure-v1"
+}

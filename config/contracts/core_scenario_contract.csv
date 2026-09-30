@@ -1,0 +1,6 @@
+﻿scenario_id,weather,cooling_limit,grid_state,operation,scientific_role,control_interval,prehistory_capacity,recovery_capacity,grid_dependent_lights_plugs_process_mechvent,outage_clock_version,score_definition_version,requires_energyplus
+CF_UNL,matched_counterfactual,NoLimit,available,normal_schedule,demand_increment_reference,complete counterfactual event,NoLimit,NoLimit,on,common-first-outdoor-tmax-24h-v1,beri-e8-four-stage-v1,True
+HW_UNL,heatwave,NoLimit,available,normal_schedule,normal_supply_response_and_S_N,complete heatwave event,NoLimit,NoLimit,on,common-first-outdoor-tmax-24h-v1,beri-e8-four-stage-v1,True
+HW_RATED,heatwave,100pct_fixed_nominal,available,normal_schedule,rated_supply_thermal_reference,complete heatwave event,100pct nominal,100pct nominal,on,common-first-outdoor-tmax-24h-v1,beri-e8-four-stage-v1,True
+HW_C70,heatwave,70pct_same_nominal,available,normal_schedule,cooling_service_and_S_C,complete heatwave event; 100pct during true prehistory,100pct nominal,100pct nominal,on,common-first-outdoor-tmax-24h-v1,beri-e8-four-stage-v1,True
+HW_O24_SYNC,heatwave,100pct_before_after_zero_during,unavailable_for_24h,continuous_outage_recovery,S_O_S_R_and_thermal_consequences,24h from first common outdoor Tmax; continuous recovery follows,100pct nominal,100pct nominal,off only during outage,common-first-outdoor-tmax-24h-v1,beri-e8-four-stage-v1,True

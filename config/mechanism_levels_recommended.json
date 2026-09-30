@@ -1,0 +1,40 @@
+{
+  "version": "residential-mechanism-levels-recommended-v1",
+  "status": "recommended_not_approved",
+  "events": ["HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"],
+  "prototypes": ["res_public_rental", "res_subsidised_sale", "res_private_highrise", "res_old_lowrise_tenement", "res_village_house"],
+  "reference_design_ids": {
+    "res_public_rental": "B0001",
+    "res_subsidised_sale": "B0002",
+    "res_private_highrise": "B0003",
+    "res_old_lowrise_tenement": "B0004",
+    "res_village_house": "B0005"
+  },
+  "factors": {
+    "roof_top_exposure": {
+      "field": "floor_position",
+      "levels": ["middle", "top"],
+      "reference": "middle",
+      "basis": "frozen legal floor roles; top changes roof boundary while middle remains adiabatic"
+    },
+    "thermal_mass": {
+      "field": "thermal_capacitance_kj_m2k",
+      "multipliers_of_prototype_reference": [0.85, 1.0, 1.15],
+      "reference_multiplier": 1.0,
+      "basis": "engineering sensitivity around each actual prototype reference; InternalMass thickness changes while envelope U-values remain fixed"
+    },
+    "nominal_cooling_capacity": {
+      "field": "cooling_capacity_w_m2",
+      "multipliers_of_prototype_reference": [0.85, 1.0, 1.15],
+      "reference_multiplier": 1.0,
+      "basis": "engineering sensitivity around each actual 145/150/155/160 W m-2 reference; COP is unchanged"
+    },
+    "AC_operating_time": {
+      "field": "start_offset_h",
+      "levels_h": [-1, 0, 1],
+      "reference_h": 0,
+      "basis": "one-hour earlier/later AC availability; weather, outage clock, occupancy, lights and plugs unchanged"
+    }
+  },
+  "scientific_identity": "controlled model sensitivity, not an empirically calibrated intervention effect"
+}

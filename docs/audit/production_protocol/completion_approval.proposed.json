@@ -1,0 +1,44 @@
+{
+  "approval_status": "pending_user_confirmation",
+  "approved_by": "",
+  "approved_at": "",
+  "plan_sha256": "dfbc7d0af45b268a177ea095afaae0ff254714c52356a3551e9435ecad982c51",
+  "task_matrix_sha256": "5009ed1337f1c6729f3bdf27d2912fc85a70c8be3a3805907c18c9467ac7ba0f",
+  "analysis_contract_sha256": "fa96d4035c9d1fabf8041c60980d0b8ea52946d81212375062487a7123c1859c",
+  "mechanism_levels_sha256": "191af5bc5be45dea9681ec8e2441c2256a96209183985dd50738363a9727389f",
+  "upstream_manifest_sha256": "7b3262723358cdb4debef01b933b5a55d51cae316e79dbad9e99b7eaa0f33c81",
+  "upstream_version_lock_sha256": "1928f0954b92e2063dc301e2184331b7add7c9e7d238eb2d1ea3490d784f2d06",
+  "accepted_upstream_version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+  "lockbox_events": [
+    "HKO_LI_0054",
+    "HKO_LI_0066"
+  ],
+  "all_events": [
+    "HKO_LI_0049",
+    "HKO_LI_0052",
+    "HKO_LI_0054",
+    "HKO_LI_0058",
+    "HKO_LI_0066",
+    "HKO_LI_0068",
+    "HKO_LI_0085",
+    "HKO_LI_0090"
+  ],
+  "lockbox_release": "pending_prediction_freeze",
+  "mechanism_levels_status": "pending",
+  "future_building_results_decision": "pending_recommend_exclude_incompatible_old_thermal_results",
+  "results_root_confirmed": false,
+  "resources": {
+    "concurrency": 4,
+    "max_calls": 3830,
+    "max_retries": 200,
+    "wall_seconds": 306000,
+    "max_bytes": 42949672960,
+    "min_free_bytes": 10737418240,
+    "run_timeout_seconds": 900,
+    "grace_seconds": 60
+  },
+  "formal_readiness_matrix_sha256": "c027975e7bce0bc7e0d19d0ecbfaa7faf35d1797e75fb623807f2e818220f49d",
+  "completion_code_lock_sha256": "2af9f22323a9e512007ac18e8b5bce2c25491e27b116e3b4efd65072c912b12b",
+  "results_root": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results",
+  "generated_at": 1790421260.0487278
+}

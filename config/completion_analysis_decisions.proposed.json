@@ -1,0 +1,54 @@
+{
+  "proposal_status": "pending_user_confirmation",
+  "proposal_version": "e8-analysis-decisions-v2-proposed",
+  "not_a_production_approval": true,
+  "decision_parameters": {
+    "absolute_performance_thresholds": {
+      "approval_status": "pending_user_confirmation",
+      "version": "absolute-screening-v1",
+      "rules": [
+        {"rule_id": "N_relative_demand_ge_5pct", "stage": "N", "metric": "relative_delta", "operator": ">=", "threshold": 0.05, "unit": "fraction", "eligibility": "positive_reference_demand", "eligibility_field": "E_CF_kwh", "time_window": "complete mother event", "source": "engineering screening sensitivity; not an efficiency or health boundary"},
+        {"rule_id": "C_shortfall_ge_10pct", "stage": "C", "metric": "cooling_shortfall_fraction", "operator": ">=", "threshold": 0.10, "unit": "fraction of unlimited reference requirement", "eligibility": "positive_reference_demand", "eligibility_field": "required_ref_kwh_thermal", "time_window": "complete mother event", "source": "engineering service-shortfall screening sensitivity"},
+        {"rule_id": "O_any_DH32", "stage": "O", "metric": "absolute_dh32", "operator": ">", "threshold": 0.0, "unit": "K h", "eligibility": "valid_monitoring_support", "eligibility_field": "effective_monitoring_hours", "time_window": "24 h synchronized outage", "source": "32 C dry-bulb comparative screening boundary; not an individual medical threshold"},
+        {"rule_id": "R_not_recovered_24h", "stage": "R", "metric": "recovery_failed_within_24h", "operator": "==", "threshold": 1.0, "unit": "binary", "eligibility": "nonmissing_metric", "time_window": "restore to restore plus 24 h", "source": "frozen first return to 26 C rule with censoring retained"}
+      ]
+    },
+    "multi_stage_threshold_set": {
+      "approval_status": "pending_user_confirmation",
+      "version": "multi-stage-screening-v1",
+      "sets": [
+        {"set_id": "any_stage", "rule_ids": ["N_relative_demand_ge_5pct", "C_shortfall_ge_10pct", "O_any_DH32", "R_not_recovered_24h"], "minimum_failed": 1, "time_window": "stage-specific windows"},
+        {"set_id": "two_or_more_stages", "rule_ids": ["N_relative_demand_ge_5pct", "C_shortfall_ge_10pct", "O_any_DH32", "R_not_recovered_24h"], "minimum_failed": 2, "time_window": "stage-specific windows"},
+        {"set_id": "thermal_service_two_of_COR", "rule_ids": ["C_shortfall_ge_10pct", "O_any_DH32", "R_not_recovered_24h"], "minimum_failed": 2, "time_window": "stage-specific windows"}
+      ]
+    },
+    "day_night_windows": {
+      "approval_status": "pending_user_confirmation",
+      "version": "day-night-humidity-v1",
+      "periods": [
+        {"period_id": "day", "start_hour_hkt": 8, "end_hour_hkt": 19},
+        {"period_id": "night", "start_hour_hkt": 20, "end_hour_hkt": 7}
+      ],
+      "humidity_metric": {"name": "same_zone_heat_index_c", "applicability": "T at least 26.7 C and RH at least 40%; otherwise NA", "role": "continuous sensitivity only"},
+      "sustained_recovery": {"threshold_c": 26.2, "support_hours": 1.0, "role": "diagnostic_only"}
+    },
+    "region_snapshot_times_hkt": {
+      "approval_status": "pending_user_confirmation",
+      "version": "regional-static-snapshots-v1",
+      "regions": ["Hong Kong total", "Ho Man Tin", "Mong Kok", "Tsim Sha Tsui"],
+      "snapshot_roles": ["event_start", "hw_peak", "outage_start", "restore", "restore_plus_6h", "restore_plus_24h"],
+      "timestamp_matching": "exact stored HKT interval-end timestamp; event start uses +15 min and outage/restore roles use the first complete 15-min interval after the transition; missing support remains NA",
+      "static_only": true
+    },
+    "construction_year_provenance": {
+      "approval_status": "pending_user_confirmation",
+      "version": "construction-provenance-v1",
+      "year_field": "construction_year_value",
+      "source_class_field": "construction_year_source_class",
+      "allowed_source_classes": ["direct", "inferred", "unknown"],
+      "unknown_source_policy": "retain_unknown",
+      "same_year_policy": "unknown_with_start_end_sensitivity",
+      "source_description": "per-building source class only when explicitly present; never inferred from aggregate coverage"
+    }
+  }
+}

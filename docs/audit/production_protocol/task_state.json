@@ -1,0 +1,245 @@
+{
+  "batch_id": "E8_completion_v1",
+  "created_at": 1790029765.3294523,
+  "updated_at": 1790425859.407986,
+  "status": "CODE_COMPLETE_WAITING_FOR_USER_APPROVAL",
+  "tasks": {
+    "T00_upstream_guard": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {
+        "receipt": "aff25a3cb8e33aa02e4ef1301167e4caeed2552b58991f4385e7693a3ba31bbf"
+      },
+      "error": null,
+      "updated_at": 1790029765.779391
+    },
+    "T01_open6_import": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\open6_energy.csv": "b5dfd7a6e19116f433831c7a0d024d919cb70d1fd9144d2e13e58cbddb40eaa8",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\open6_thermal.csv": "1be48f778b89be75b8d7e6c5ae3bb7c8fcf06a59660b42850848fbfad2abe162",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\open6_scores.csv": "0e3b4e5671612693baa48e8f6519462ae72176e552d5285361d1e27ad135ee7d",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\open6_source_index.csv": "e1baf259523cd22984a92de3c30767c906fa310b7ec273a5ef253ab30f4132ab"
+        }
+      },
+      "error": null,
+      "updated_at": 1790029765.831321
+    },
+    "T02_open6_stock_freeze": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\open6_prediction_stock.parquet": "aee96165e46f1e6c7699fda0c0cea7d860fd697e6b6bdef6850f4de6087cb4d2",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\open6_prediction_targets.parquet": "8656c42a86e5b9f32ba2bb50605f60db1deaee095bf82d43b13e2a9d858b9349"
+        }
+      },
+      "error": null,
+      "updated_at": 1790032661.508675
+    },
+    "T03_lockbox_predictions": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {
+        "receipt": "e6f91131bce00ca182753089c61802a2e73ab46cc53cb6eced7ac10fec19c055"
+      },
+      "error": null,
+      "updated_at": 1790032761.597088
+    },
+    "T04_lockbox_compile": {
+      "status": "complete",
+      "attempts": 13,
+      "dependency_hash": null,
+      "outputs": {
+        "manifest": "cb89f62dc7e3713cdd35195b2649a95967b7592891913740a7d941b8c82ac4b0"
+      },
+      "error": null,
+      "updated_at": 1790422275.3333807,
+      "spent_seconds": 12573.951606035233
+    },
+    "T05_lockbox_run": {
+      "status": "complete",
+      "attempts": 13,
+      "dependency_hash": null,
+      "outputs": {
+        "current_child_verification_checked_at": 1790299714.5035086,
+        "current_child_verification_status": "COMPLETE",
+        "actual_calls": 2970
+      },
+      "error": null,
+      "updated_at": 1790423512.763652,
+      "spent_seconds": 249151.33528831473
+    },
+    "T06_lockbox_first_look": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {},
+      "error": null,
+      "updated_at": 1790424475.4098878
+    },
+    "T07_mechanism_compile": {
+      "status": "complete",
+      "attempts": 11,
+      "dependency_hash": null,
+      "outputs": {
+        "physical_manifest": "f2af6623489dc44a9d4d9d7ff74f7965bac6c0e6d5ee4f836ae2ff369e3bfd90"
+      },
+      "error": null,
+      "updated_at": 1790423993.867865,
+      "spent_seconds": 4152.210741519928
+    },
+    "T08_mechanism_run": {
+      "status": "complete",
+      "attempts": 10,
+      "dependency_hash": null,
+      "outputs": {},
+      "error": null,
+      "updated_at": 1790424127.879277,
+      "spent_seconds": 4348.581191070378
+    },
+    "T09_core_e8_integrate": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {},
+      "error": null,
+      "updated_at": 1790424411.6777036
+    },
+    "T10_stock_e8": {
+      "status": "complete",
+      "attempts": 1,
+      "dependency_hash": null,
+      "outputs": {
+        "buildings": 330761,
+        "component_rows": 837968,
+        "events": 8,
+        "all_event_rows": 2646088,
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0049.parquet": "4200388a9efa084e0a256ab348d5da314832e6da62e6c045270473d48ab4d10c",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0052.parquet": "d9b969007856caf16ed266906774c5b6719ca04f8b9f95be65ffe8ad4f17bdda",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0054.parquet": "8aa242f9367352a8cf2a200e05330e3a8da92c180347ab31f4b6504a3ea03a26",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0058.parquet": "e12bef90e0b2b48457418e9453b1b0112d9a66c62583572a5a91bd7f35dc4369",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0066.parquet": "a522e7adac80a4b4fcb046602c3863e6fb7e032675fcbdfcd5402cf28e4d42e0",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0068.parquet": "b87d2179c52f3e8eef8c9a4ca2d165a06f81272bea1152d3c81a35736a2999bd",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0085.parquet": "45dbccf5cce022bf9bee86be97dbf0a657ede2e282d3cebfc3c16d76e77971c1",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\events\\HKO_LI_0090.parquet": "8d6dc7bbe6b5b4606ce7ac7d2ab27ae9639b6b251b9e5a42a4f32145bb3c9166",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\stock_event_coverage.csv": "1d8be85b479328a4022bddd2daa102af03d5de61578a6253aa5ebe6e1a814ef7",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\city_event_energy_peak.csv": "bc668e5ce277a238519948ab6d501238ea07fffe28c72a8f43819d761150060b",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\simultaneous_recovery_coverage.csv": "d48853e5c5e748e00f56a2c47e88284218f47e844a9cc0603bc8687e7f11dd21",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\sensitivity_temperature_thresholds.csv": "a5129408ce283f3be135c04b92241e8080b6872133126aeaccce5bca842b5706"
+        }
+      },
+      "error": null,
+      "updated_at": 1790342803.9815657,
+      "spent_seconds": 4849.206473350525
+    },
+    "T11_evaluation": {
+      "status": "complete",
+      "attempts": 1,
+      "dependency_hash": null,
+      "outputs": {
+        "folds": 11,
+        "endpoint_scenarios": 2,
+        "full_ratings": 330761,
+        "rank_rows": 880,
+        "capture_rows": 2640,
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\event_holdout_rank_metrics.csv": "8235e5040cbedd1a43480f91500dcfc72deedd59c172e2c72bcf43d84ec0d5d5",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\event_holdout_screening_capture.csv": "34a78a32377ddcffef33e5443dd078d25b7c9bcc1c17faf89735da94c59b670e",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\full_e8_reference_rating.csv": "31382c8b976d49c87cfde3e5592937b1712c1d4a5a672339689e89081502313e",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\screening_queue_overlap.csv": "6f07037e17f26ab3ec67a199ccbb30786288bc86829e9e10dbee0562fcee8ea1",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\sensitivity_beri_weights.csv": "752feba7219c4d3f7f90d3aa5f761d92f918b4292f704c84a8cdd212b8350bd1",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\cross_event_failure_frequency_severity.csv": "5e382af827910464172dd9c6122d0b9b0b319c513fdb56a69d170804aa3ac13b",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\sensitivity_design_event_range.csv": "3de2fe63ea00d1620c397a87c9a61b4ff17c944551a0e1ceafa2bbf557b0d669",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\building_reference_beri.parquet": "f3e5c1a98165fd7c1e1a406cd08b3e554e549c7152c78aae23006cb5e548a352"
+        }
+      },
+      "error": null,
+      "updated_at": 1790350920.5614598,
+      "spent_seconds": 7618.844574213028
+    },
+    "T12_sensitivity": {
+      "status": "complete",
+      "attempts": 6,
+      "dependency_hash": null,
+      "outputs": {
+        "dependency_hash": "535b0fb62be37afa30d6cbe01f5088258267b8b9c952204ce355b4c8f92ad0f2",
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\absolute_performance_thresholds.csv": "6cba328c1402979ca8b75bd035cec766d7099b654eac38812ce0e2861df46ca4",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\absolute_performance_thresholds_building_event.parquet": "2d44e56c9338dd30b4bd31e8f1ca70eec0b0326c206451991959229d795ae88d",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\multi_stage_threshold_sets.csv": "cff2466909665f18a2d46a182c4023470472c1691e7dfa76a87e6132d8659f80",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\multi_stage_threshold_sets_building_event.parquet": "89ca731eeaafbb015ed842f1aa3af0344e6d503e8a2864d6493a40dd799e60b8",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\day_night_humid_recovery.csv": "b5e54066feb32039931493c254f828a06f718fc5f15248086693b226c127a60e",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\region_hourly_snapshots.csv": "a7da28e4f37169b178ad5a7d37f270891a1919cbd068987becd6e43ad095fa6f",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\construction_year_provenance.csv": "58953e916816f5a1383b36569abb49dadf495dcce705dc6b87afe5a3de1a9502",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\historical_existence_sensitivity.parquet": "32f444db3fdbc7a218c573c4121b4674b9f8ecdc6a9c4d583d092533e1a4a88a",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\historical_existence_sensitivity_summary.csv": "d0c5d42ef18a251c4a8310e10c538d9e129a6cf128855ac5d84f1f0a62b0fe50"
+        },
+        "screening_fractions": "0.05|0.10|0.20",
+        "threshold_rows": 7128,
+        "thresholds_c": "30|32|34",
+        "endpoint_identity": "sensitivity_not_mathematical_bounds"
+      },
+      "error": null,
+      "updated_at": 1790420652.4492204,
+      "spent_seconds": 6563.318980932236
+    },
+    "T13_evidence_compatibility": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {
+        "sources": 15,
+        "missing_required_available_sources": [],
+        "registry_sha256": "9224dedfa9e0f9a3efb8c0096e7a02b4461daf5f6e72c9d40c625dade922c307",
+        "artifact_hashes": {
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\05_evidence\\external_source_compatibility.csv": "14db7bd19dad342d5fc006d2c8e341bf89277b89c118ffa5bdfac3f305f7cb3f",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\05_evidence\\validation_evidence_compatibility.csv": "eeade86455161029487f99e8a2251e6adcb57fcbcc1a67f681abf2175912a3f3",
+          "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\05_evidence\\future_compatibility.csv": "d2293829a28fa3a4d9ae51c7dff7ab4cb0b16533877de1af779d64fb8e93f29f"
+        }
+      },
+      "error": null,
+      "updated_at": 1790424476.0935845
+    },
+    "T14_source_data": {
+      "status": "complete",
+      "attempts": 0,
+      "dependency_hash": null,
+      "outputs": {},
+      "error": null,
+      "updated_at": 1790424477.2248783
+    },
+    "T15_release": {
+      "status": "complete",
+      "attempts": 1,
+      "dependency_hash": null,
+      "outputs": {
+        "final_verification": "d4116811243c6238890f85ca7fd30b7ac229aabec4c96b28e3a2f6770b531eb4"
+      },
+      "error": null,
+      "updated_at": 1790424697.7333248,
+      "spent_seconds": 220.0474078655243
+    }
+  },
+  "solver_calls": 0,
+  "retry_calls": 0,
+  "active_seconds": 0.0,
+  "completion_label": "READY_FOR_FIGURES_AND_MANUSCRIPT",
+  "last_error": null,
+  "resource_usage": {
+    "task_seconds": 289257.4623906972,
+    "bytes_on_disk": 38526308105,
+    "solver_calls": 3435,
+    "retry_calls": 0,
+    "remaining_approved_bytes": 4423364855,
+    "checked_phase": "release",
+    "checked_at": 1790424511.2843783
+  }
+}

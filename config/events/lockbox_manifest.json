@@ -1,0 +1,10 @@
+{
+  "status": "proposed_pending_approval",
+  "event_ids": [
+    "HKO_LI_0054",
+    "HKO_LI_0066"
+  ],
+  "selection_rule": "most distant pair within frozen five-event composite feature space",
+  "scientific_outputs_must_remain_unopened_until": "model, scoring, analysis rules and calibration are frozen",
+  "manifest_hash": "6bb889cd80c28806cb712e3ef74d3f5cc6f791d6d849c50f1e4b7493bbe8597a"
+}

@@ -1,0 +1,947 @@
+{
+  "schema_version": 1,
+  "output_root": "intermediate/foundation_pipeline",
+  "random_seed": 417,
+  "study_scope": {
+    "primary_question": "How do extreme heatwaves change electricity demand, cooling-service adequacy and indoor thermal safety across Hong Kong's residential, commercial and mixed-use building stock, and which pre-event building characteristics define persistent energy resilience?",
+    "modeled_main_classes": [
+      "Residential",
+      "Commercial",
+      "Mixed-use"
+    ],
+    "context_only_main_classes": [
+      "Industrial",
+      "Non-assessed"
+    ],
+    "published_inventory_counts": {
+      "all_buildings": 341153,
+      "Residential": 251901,
+      "Commercial": 49129,
+      "Mixed-use": 31395,
+      "Industrial": 3355,
+      "Non-assessed": 5373
+    },
+    "mixed_use_policy": "retain_one_building_footprint_and_simulate_residential_and_commercial_gfa_components_separately",
+    "simulation_timestep_minutes": 15,
+    "weather_input_timestep_minutes": 60
+  },
+  "hazard": {
+    "warm_months": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "hko_very_hot_day_c": 33.0,
+    "hko_extremely_hot_day_c": 35.0,
+    "hko_hot_night_c": 28.0,
+    "li_percentile": 90.0,
+    "li_window_days": 15,
+    "li_minimum_consecutive_days": 3,
+    "li_merge_gap_days": 2,
+    "hko_cis_start_year": 1980,
+    "hko_cis_end_year": 2023,
+    "hko_observation_analysis_end_year": 2025,
+    "hko_daily_stations": [
+      "CCH",
+      "CWB",
+      "HKA",
+      "HKO",
+      "HKP",
+      "HKS",
+      "HPV",
+      "JKB",
+      "KLT",
+      "KP",
+      "KSC",
+      "KTG",
+      "LFS",
+      "NGP",
+      "PEN",
+      "PLC",
+      "SE1",
+      "SEK",
+      "SHA",
+      "SKG",
+      "SKW",
+      "SSH",
+      "SSP",
+      "STY",
+      "TC",
+      "TKL",
+      "TMS",
+      "TPO",
+      "TU1",
+      "TW",
+      "TWN",
+      "TY1",
+      "TYW",
+      "VP1",
+      "WGL",
+      "WLP",
+      "WTS",
+      "YCT",
+      "YLP"
+    ],
+    "output_grid_m": 100,
+    "morphology_buffer_radii_m": [
+      100,
+      200,
+      400,
+      500,
+      750,
+      1000,
+      1500,
+      2000,
+      3000
+    ],
+    "extra_trees_estimators": 300,
+    "paired_bootstrap_resamples": 5000,
+    "future_projection": {
+      "wrf_source_doi": "10.5281/zenodo.7206739",
+      "wrf_article_doi": "10.1175/JAMC-D-22-0201.1",
+      "wrf_driver_model": "MPI-ESM1-2-HR",
+      "wrf_horizontal_resolution_km": 1.0,
+      "wrf_baseline_period": [
+        2011,
+        2020
+      ],
+      "wrf_future_periods": {
+        "mid_century_2040_2049": [
+          2040,
+          2049
+        ],
+        "late_century_2090_2099": [
+          2090,
+          2099
+        ]
+      },
+      "wrf_scenarios": [
+        "ssp126",
+        "ssp245",
+        "ssp585"
+      ],
+      "wrf_months": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "multimodel_point_models": [
+        "ACCESS-CM2",
+        "BCC-CSM2-MR",
+        "GFDL-ESM4",
+        "MIROC6",
+        "MPI-ESM1-2-HR"
+      ],
+      "multimodel_scenarios": [
+        "ssp245",
+        "ssp585"
+      ],
+      "absolute_temperature_policy": "anchor_to_HKO_observations_and_use_WRF_as_spatial_change_signal_not_as_unadjusted_absolute_weather",
+      "hourly_weather_policy": "morph_HKO_constrained_observed_hourly_events_with_multimodel_temperature_and_compound_humidity_radiation_wind_change_factors",
+      "spatial_uncertainty_policy": "one_WRF_spatial_pattern_with_five_GCM_magnitude_members_for_ssp245_and_ssp585; ssp126_is_single_model_sensitivity"
+    }
+  },
+  "thermal": {
+    "reference_cell_area_m2": 20.0,
+    "reference_cell_height_m": 3.0,
+    "setpoint_scenarios_c": [
+      24.0,
+      25.0,
+      26.0
+    ],
+    "central_setpoint_c": 25.0,
+    "overheating_benchmark_c": 26.0,
+    "outage_safety_screen_c": 32.0,
+    "outage_safety_screen_source": "https://www.who.int/news-room/questions-and-answers/item/heatwaves-how-to-stay-cool",
+    "outage_safety_screen_role": "WHO_daytime_indoor_heat_safety_screen_not_a_Hong_Kong_comfort_setpoint",
+    "hours_of_safety_metric_source": "https://doi.org/10.1016/j.xcrp.2024.101986",
+    "outage_safety_assessment_hours": 24.0,
+    "recovery_assessment_hours": 24.0,
+    "ac_use_probability_scenarios": [
+      1.0
+    ],
+    "ac_availability_condition": "installed AC available in the primary experiment; operation is controlled by use-specific room and time schedules",
+    "start_offset_scenarios_h": [
+      -1,
+      0,
+      1
+    ],
+    "hko_1991_2020_soil_temperature_0_5m_c": [
+      19.05,
+      19.2,
+      21.3,
+      23.9,
+      26.8,
+      28.7,
+      29.75,
+      29.8,
+      29.45,
+      27.65,
+      24.75,
+      21.6
+    ],
+    "soil_temperature_source": "https://www.hko.gov.hk/en/cis/normal/1991_2020/normals.htm",
+    "residential_natural_ventilation_ach": 1.5,
+    "conditioned_relative_humidity_range_pct": [
+      40.0,
+      70.0
+    ],
+    "conditioned_relative_humidity_source": "https://www.iaq.gov.hk/wp-content/uploads/2021/04/gn_officeandpublicplace_eng-2019.pdf",
+    "commercial_outdoor_air_l_s_person": {
+      "com_office": 8.0,
+      "com_retail": 7.5,
+      "com_restaurant": 10.0,
+      "com_accommodation": 8.0,
+      "com_education": 8.0,
+      "com_human_health": 10.0,
+      "com_data_centre": 2.5,
+      "com_mixed_use_component": 8.0,
+      "com_other": 8.0
+    },
+    "commercial_outdoor_air_source": "Use-specific design priors informed by HKSAR ventilation requirements and EMSD Building Energy Code guidance; https://www.emsd.gov.hk/beeo/en/mibec_beeo_codtechguidelines.html",
+    "natural_ventilation_min_indoor_c": 26.0,
+    "natural_ventilation_min_indoor_outdoor_delta_c": 0.5,
+    "natural_ventilation_max_outdoor_c": 35.0,
+    "natural_ventilation_max_wind_m_s": 10.0,
+    "natural_ventilation_source": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/practice-notes-and-circular-letters/pnap/APP/APP130.pdf",
+    "max_base_cases": 297,
+    "max_events": 3
+  },
+  "prototypes": [
+    {
+      "prototype_id": "res_public_rental",
+      "sector": "residential",
+      "source_subclass": "Public Rental Housing",
+      "topology": "high_rise_multi_unit",
+      "occupancy_basis": "occupied_dwelling_units",
+      "primary_validation": "hong_kong_housing_authority_and_hkust_halls",
+      "parameter_source": "hong_kong_residential_stock_and_public_housing_literature"
+    },
+    {
+      "prototype_id": "res_subsidised_sale",
+      "sector": "residential",
+      "source_subclass": "Subsidised Sale Flats",
+      "topology": "high_rise_multi_unit",
+      "occupancy_basis": "occupied_dwelling_units",
+      "primary_validation": "hong_kong_census_and_major_housing_estates",
+      "parameter_source": "hong_kong_residential_stock_literature"
+    },
+    {
+      "prototype_id": "res_private_highrise",
+      "sector": "residential",
+      "source_subclass": "Private Housing",
+      "topology": "high_rise_multi_unit",
+      "occupancy_basis": "occupied_dwelling_units",
+      "primary_validation": "hong_kong_census_and_major_housing_estates",
+      "parameter_source": "hong_kong_residential_stock_and_post_occupancy_literature"
+    },
+    {
+      "prototype_id": "res_old_lowrise_tenement",
+      "sector": "residential",
+      "source_subclass": "Old Tenement / Low-rise Housing",
+      "topology": "low_to_mid_rise_multi_unit",
+      "occupancy_basis": "occupied_dwelling_units",
+      "primary_validation": "hong_kong_census_and_major_housing_estates",
+      "parameter_source": "hong_kong_residential_stock_literature"
+    },
+    {
+      "prototype_id": "res_village_house",
+      "sector": "residential",
+      "source_subclass": "Village House",
+      "topology": "low_rise_house",
+      "occupancy_basis": "occupied_dwelling_units",
+      "primary_validation": "hong_kong_census",
+      "parameter_source": "hong_kong_census_and_residential_stock_literature"
+    },
+    {
+      "prototype_id": "com_office",
+      "sector": "commercial",
+      "source_subclass": "Office",
+      "topology": "office",
+      "occupancy_basis": "employee_and_visitor_person_hours",
+      "primary_validation": "hkust_polyu_and_hong_kong_office_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    },
+    {
+      "prototype_id": "com_retail",
+      "sector": "commercial",
+      "source_subclass": "Retail",
+      "topology": "retail",
+      "occupancy_basis": "employee_and_visitor_person_hours",
+      "primary_validation": "hong_kong_end_use_and_singapore_bca_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    },
+    {
+      "prototype_id": "com_restaurant",
+      "sector": "commercial",
+      "source_subclass": "Restaurant",
+      "topology": "restaurant",
+      "occupancy_basis": "employee_and_visitor_person_hours",
+      "primary_validation": "hong_kong_end_use_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    },
+    {
+      "prototype_id": "com_accommodation",
+      "sector": "commercial",
+      "source_subclass": "Accommodation",
+      "topology": "hotel",
+      "occupancy_basis": "guest_employee_and_visitor_person_hours",
+      "primary_validation": "hong_kong_end_use_and_singapore_bca_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    },
+    {
+      "prototype_id": "com_education",
+      "sector": "commercial",
+      "source_subclass": "Education",
+      "topology": "education",
+      "occupancy_basis": "student_employee_and_visitor_person_hours",
+      "primary_validation": "hkust_polyu_and_hong_kong_end_use_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    },
+    {
+      "prototype_id": "com_human_health",
+      "sector": "commercial",
+      "source_subclass": "Human Health",
+      "topology": "healthcare",
+      "occupancy_basis": "patient_employee_and_visitor_person_hours",
+      "primary_validation": "hong_kong_end_use_benchmarks",
+      "parameter_source": "dedicated_healthcare_evidence_required",
+      "critical_service_model_required": true
+    },
+    {
+      "prototype_id": "com_data_centre",
+      "sector": "commercial",
+      "source_subclass": "Data Centre",
+      "topology": "data_centre",
+      "occupancy_basis": "employee_person_hours_and_it_service",
+      "primary_validation": "hong_kong_end_use_benchmarks",
+      "parameter_source": "dedicated_data_centre_evidence_required",
+      "critical_service_model_required": true
+    },
+    {
+      "prototype_id": "com_mixed_use_component",
+      "sector": "commercial",
+      "source_subclass": "Mixed-use non-residential component",
+      "topology": "mixed_use_nonresidential_component",
+      "occupancy_basis": "employee_and_visitor_person_hours",
+      "primary_validation": "hkust_polyu_and_hong_kong_end_use_benchmarks",
+      "parameter_source": "nonresidential_use_unresolved_in_hkbfetd",
+      "use_specific_simulation_allowed": false
+    },
+    {
+      "prototype_id": "com_other",
+      "sector": "commercial",
+      "source_subclass": "Other Commercial",
+      "topology": "other_commercial",
+      "occupancy_basis": "employee_and_visitor_person_hours",
+      "primary_validation": "hkust_polyu_and_hong_kong_end_use_benchmarks",
+      "parameter_source": "emsd_performance_based_building_energy_code"
+    }
+  ],
+  "prototype_physics": {
+    "field_order": [
+      "floor_area_m2",
+      "height_m",
+      "u_wall_w_m2k",
+      "u_roof_w_m2k",
+      "window_to_wall_ratio",
+      "window_shgc",
+      "window_u_w_m2k",
+      "infiltration_ach",
+      "thermal_capacitance_kj_m2k",
+      "baseline_ac_cop",
+      "people_per_m2",
+      "lighting_w_m2",
+      "equipment_w_m2",
+      "cooling_capacity_w_m2",
+      "equipment_radiant_fraction"
+    ],
+    "parameter_status": "hong_kong_envelope_priors_with_emsd_pb_bec_internal_loads_emsd_annual_mass_balance_and_polyu_hkust_temporal_validation",
+    "residential_evidence_bounds": {
+      "u_wall_w_m2k": [
+        2.6,
+        3.5
+      ],
+      "u_roof_w_m2k": [
+        0.3,
+        0.58
+      ],
+      "window_to_wall_ratio": [
+        0.18,
+        0.42
+      ],
+      "window_shgc": [
+        0.3,
+        0.97
+      ],
+      "window_u_w_m2k": [
+        4.2,
+        6.9
+      ],
+      "sources": [
+        "https://doi.org/10.3390/buildings12091414",
+        "https://doi.org/10.3390/en14164850",
+        "https://doi.org/10.3390/buildings15132266",
+        "https://doi.org/10.1016/j.buildenv.2019.02.019"
+      ]
+    },
+    "commercial_internal_load_reference_ranges": {
+      "com_office": {
+        "people_per_m2": [
+          0.076,
+          0.125
+        ],
+        "lighting_w_m2": [
+          17.0,
+          20.0
+        ],
+        "equipment_w_m2": [
+          10.0,
+          25.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      },
+      "com_retail": {
+        "people_per_m2": [
+          0.1,
+          0.4
+        ],
+        "lighting_w_m2": [
+          20.0,
+          30.0
+        ],
+        "equipment_w_m2": [
+          5.0,
+          30.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      },
+      "com_restaurant": {
+        "people_per_m2": [
+          0.2,
+          1.0
+        ],
+        "lighting_w_m2": [
+          25.0,
+          40.0
+        ],
+        "equipment_w_m2": [
+          4.0,
+          20.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      },
+      "com_accommodation": {
+        "people_per_m2": [
+          0.04,
+          0.08
+        ],
+        "lighting_w_m2": [
+          8.0,
+          18.0
+        ],
+        "equipment_w_m2": [
+          10.0,
+          20.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      },
+      "com_education": {
+        "people_per_m2": [
+          0.1,
+          0.5
+        ],
+        "lighting_w_m2": [
+          9.0,
+          17.0
+        ],
+        "equipment_w_m2": [
+          10.0,
+          10.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      },
+      "com_data_centre": {
+        "people_per_m2": [
+          0.067,
+          0.1
+        ],
+        "lighting_w_m2": [
+          4.0,
+          16.0
+        ],
+        "equipment_w_m2": [
+          500.0,
+          900.0
+        ],
+        "sources": [
+          "https://www.emsd.gov.hk/filemanager/en/content_725/PBBEC_Guidelines_2007.pdf"
+        ]
+      }
+    },
+    "values": {
+      "res_public_rental": [
+        45.0,
+        3.0,
+        3.1,
+        0.42,
+        0.22,
+        0.32,
+        5.75,
+        0.8,
+        180.0,
+        2.8,
+        0.088,
+        5.0,
+        8.0,
+        150.0,
+        0.3
+      ],
+      "res_subsidised_sale": [
+        55.0,
+        3.0,
+        2.9,
+        0.36,
+        0.28,
+        0.55,
+        4.6,
+        0.7,
+        165.0,
+        3.0,
+        0.06,
+        4.0,
+        5.0,
+        145.0,
+        0.3
+      ],
+      "res_private_highrise": [
+        65.0,
+        3.0,
+        2.6,
+        0.3,
+        0.35,
+        0.55,
+        4.6,
+        0.6,
+        150.0,
+        3.2,
+        0.05,
+        4.0,
+        6.0,
+        145.0,
+        0.3
+      ],
+      "res_old_lowrise_tenement": [
+        50.0,
+        3.0,
+        3.5,
+        0.58,
+        0.4,
+        0.75,
+        5.2,
+        1.2,
+        200.0,
+        2.6,
+        0.07,
+        4.0,
+        5.0,
+        160.0,
+        0.3
+      ],
+      "res_village_house": [
+        65.0,
+        3.0,
+        3.1,
+        0.42,
+        0.4,
+        0.6,
+        4.6,
+        1.0,
+        180.0,
+        2.8,
+        0.055,
+        4.0,
+        5.0,
+        155.0,
+        0.3
+      ],
+      "com_office": [
+        900.0,
+        3.0,
+        1.5,
+        1.2,
+        0.4,
+        0.45,
+        3.3,
+        0.35,
+        180.0,
+        3.5,
+        0.077,
+        20.0,
+        10.0,
+        150.0,
+        0.3
+      ],
+      "com_retail": [
+        900.0,
+        3.0,
+        1.7,
+        1.3,
+        0.55,
+        0.45,
+        5.7,
+        0.55,
+        150.0,
+        3.3,
+        0.1,
+        30.0,
+        17.5,
+        190.0,
+        0.3
+      ],
+      "com_restaurant": [
+        600.0,
+        3.0,
+        1.7,
+        1.3,
+        0.35,
+        0.5,
+        5.7,
+        0.8,
+        160.0,
+        3.1,
+        0.2,
+        40.0,
+        4.0,
+        240.0,
+        0.3
+      ],
+      "com_accommodation": [
+        900.0,
+        3.0,
+        1.5,
+        1.2,
+        0.4,
+        0.45,
+        3.3,
+        0.45,
+        180.0,
+        3.4,
+        0.04,
+        18.0,
+        18.0,
+        170.0,
+        0.3
+      ],
+      "com_education": [
+        900.0,
+        3.0,
+        1.7,
+        1.3,
+        0.35,
+        0.5,
+        5.7,
+        0.45,
+        180.0,
+        3.3,
+        0.12,
+        9.0,
+        10.0,
+        165.0,
+        0.3
+      ],
+      "com_human_health": [
+        900.0,
+        3.0,
+        1.5,
+        1.2,
+        0.3,
+        0.45,
+        3.3,
+        0.45,
+        200.0,
+        3.5,
+        0.1,
+        10.0,
+        18.0,
+        210.0,
+        0.3
+      ],
+      "com_data_centre": [
+        900.0,
+        3.0,
+        1.4,
+        1.1,
+        0.05,
+        0.4,
+        3.3,
+        0.2,
+        180.0,
+        3.8,
+        0.08,
+        16.0,
+        700.0,
+        1200.0,
+        0.0
+      ],
+      "com_mixed_use_component": [
+        900.0,
+        3.0,
+        1.7,
+        1.3,
+        0.35,
+        0.5,
+        5.7,
+        0.5,
+        170.0,
+        3.3,
+        0.1,
+        20.0,
+        12.0,
+        175.0,
+        0.3
+      ],
+      "com_other": [
+        900.0,
+        3.0,
+        1.7,
+        1.3,
+        0.35,
+        0.5,
+        5.7,
+        0.5,
+        170.0,
+        3.3,
+        0.077,
+        20.0,
+        10.0,
+        175.0,
+        0.3
+      ]
+    }
+  },
+  "population": {
+    "primary_allocation": "ssug_landuse_residential_gfa",
+    "candidate_capacity_allocations": [
+      "ssug_stpug_tenure_household_capacity",
+      "ssug_constrained_housing_capacity"
+    ],
+    "capacity_priority": [
+      "observed_building_dwelling_units",
+      "housing_authority_estate_flat_counts",
+      "occupied_quarters_by_housing_type",
+      "type_specific_residential_gfa_per_unit"
+    ],
+    "conservation_unit": "small_subunit_group",
+    "residents_assigned_to": "residential_component_only",
+    "commercial_presence_metric": "employee_and_visitor_person_hours",
+    "uncertainty_output": [
+      "median",
+      "p05",
+      "p95"
+    ],
+    "sensitivity_allocations": [
+      "ssug_all_residential_gfa",
+      "ssug_landuse_residential_volume"
+    ],
+    "residential_land_use_codes": [
+      1,
+      2,
+      3
+    ],
+    "published_mhe_benchmark_relative_mae_pct": 3.19,
+    "published_mhe_benchmark_relative_rmse_pct": 6.09
+  },
+  "dynamic_behaviour": {
+    "residential_dimensions": [
+      "weekday_weekend",
+      "hourly_at_home_profiles",
+      "housing_type",
+      "age_and_work_from_home_sensitivity",
+      "room_level_intermittent_ac",
+      "setpoint_preference",
+      "installed_ac_available_condition",
+      "start_time_sensitivity",
+      "floor_orientation_and_room",
+      "latent_dehumidification_load"
+    ],
+    "commercial_dimensions": [
+      "use_specific_weekday_weekend_schedule",
+      "opening_and_service_hours",
+      "employee_and_visitor_presence_proxy",
+      "cooling_setpoint_and_off_hours_shutdown",
+      "ventilation_and_latent_load",
+      "equipment_and_lighting_schedule",
+      "thermal_mass_and_envelope",
+      "precooling_schedule_offset",
+      "critical_service_continuity",
+      "post_outage_recovery"
+    ],
+    "counterfactual_pairing": "same_month_weekday_type_and_fixed_behaviour_specification_weather_only_replaced"
+  },
+  "validation": {
+    "reported_metrics": [
+      "NMBE",
+      "CVRMSE",
+      "MAE",
+      "peak_magnitude_error",
+      "peak_timing_error",
+      "temperature_load_lag",
+      "indoor_temperature_RMSE",
+      "daily_maximum_indoor_temperature_error",
+      "temperature_load_sensitivity"
+    ],
+    "ashrae_guideline_14_thresholds": {
+      "monthly_absolute_NMBE_pct": 5.0,
+      "monthly_CVRMSE_pct": 15.0,
+      "hourly_absolute_NMBE_pct": 10.0,
+      "hourly_CVRMSE_pct": 30.0
+    },
+    "holdout_policy": "hold_out_buildings_or_contiguous_time_blocks_not_random_adjacent_hours",
+    "evidence_roles": {
+      "hong_kong_local_calibration": [
+        "HKUST",
+        "PolyU_full_campus"
+      ],
+      "hot_humid_dynamic_structure": [
+        "CU_BEMS"
+      ],
+      "residential_dynamic_structure": [
+        "SMETER30",
+        "NIST_NZERTF"
+      ],
+      "commercial_annual_plausibility": [
+        "Hong_Kong_EMSD",
+        "Singapore_BCA"
+      ]
+    }
+  },
+  "resilience": {
+    "stages": [
+      "normal_supply",
+      "capacity_constrained",
+      "outage",
+      "recovery"
+    ],
+    "common_physical_indicators": [
+      "heatwave_incremental_energy_kwh",
+      "heatwave_relative_energy_increase",
+      "incremental_peak_kw",
+      "peak_amplification_ratio",
+      "overheating_degree_hours",
+      "nighttime_overheating_degree_hours",
+      "continuous_threshold_exceedance_hours",
+      "time_to_thermal_threshold_hours",
+      "unmet_cooling_hours",
+      "recovery_energy_kwh",
+      "recovery_time_hours"
+    ],
+    "residential_service_indicators": [
+      "population_weighted_overheating_person_hours",
+      "nighttime_population_weighted_overheating_person_hours"
+    ],
+    "commercial_service_indicators": [
+      "occupied_service_hours_lost",
+      "employee_visitor_weighted_overheating_person_hours",
+      "critical_service_continuity_hours"
+    ],
+    "outage_stress_test_durations_hours": [
+      6,
+      24
+    ],
+    "peak_outage_start_policy": "hottest_heatwave_hour_with_occupied_scheduled_cooling_service_else_scheduled_cooling_else_hottest_heatwave_hour",
+    "calculate_outage_probability": false,
+    "primary_composite_index": "pre_event_reference_BERI_equal_weight_geometric_mean",
+    "beri_components": [
+      "normal_supply_adaptation",
+      "cooling_service_adequacy",
+      "outage_thermal_safety",
+      "post_outage_recovery"
+    ],
+    "beri_weight_scenarios": {
+      "equal": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "thermal_safety_priority": [
+        0.15,
+        0.2,
+        0.45,
+        0.2
+      ],
+      "energy_adaptation_priority": [
+        0.45,
+        0.2,
+        0.2,
+        0.15
+      ],
+      "recovery_priority": [
+        0.15,
+        0.15,
+        0.25,
+        0.45
+      ]
+    },
+    "beri_role": "pre_event building energy resilience rating from a frozen multi-event reference stress suite; direct event consequences remain separately reported",
+    "beri_rating_vintage": "HK_BERI_2025_v1",
+    "beri_reference_event_ids": [
+      "HW_20180526_20180601",
+      "HW_20220722_20220729",
+      "HW_20230724_20230728"
+    ],
+    "beri_reference_event_aggregation": "componentwise_median_then_equal_weight_geometric_mean",
+    "event_conditioned_composite_name": "event_response_score"
+  },
+  "map_output_fields": {
+    "identity": [
+      "building_id",
+      "main_class",
+      "sub_class",
+      "prototype_id",
+      "residential_gfa_m2",
+      "commercial_gfa_m2"
+    ],
+    "energy": [
+      "baseline_energy_kwh",
+      "heatwave_energy_kwh",
+      "heatwave_incremental_energy_kwh",
+      "heatwave_relative_energy_increase",
+      "baseline_peak_kw",
+      "heatwave_peak_kw",
+      "incremental_peak_kw"
+    ],
+    "resilience": [
+      "overheating_degree_hours",
+      "safety_resistance_hours_to_32c",
+      "unmet_cooling_energy_kwh_th",
+      "recovery_time_hours",
+      "building_energy_resilience_index",
+      "occupied_service_hours_lost"
+    ],
+    "evidence": [
+      "calibration_dataset",
+      "validation_status",
+      "balanced_design_energy_p05_kwh",
+      "balanced_design_energy_p95_kwh"
+    ]
+  },
+  "risk": {
+    "top_fraction": 0.1,
+    "permutations": 500
+  }
+}

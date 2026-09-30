@@ -1,0 +1,36 @@
+{
+  "rating_events": [
+    "HKO_LI_0049",
+    "HKO_LI_0052",
+    "HKO_LI_0058",
+    "HKO_LI_0068",
+    "HKO_LI_0085",
+    "HKO_LI_0090"
+  ],
+  "selection_fractions": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "tie_policy": "exchangeable_expected_selection",
+  "component_order": [
+    "N",
+    "C",
+    "O",
+    "R"
+  ],
+  "recovery_composition": "simultaneous_all_components",
+  "baseline_methods": [
+    "building_type",
+    "detailed_use_floor",
+    "construction_era"
+  ],
+  "outcomes": [
+    "cooling_shortfall_kwh",
+    "absolute_dh32",
+    "extra_dh26",
+    "recovery_hours",
+    "population_degree_hours"
+  ],
+  "first_look_refit_forbidden": true
+}

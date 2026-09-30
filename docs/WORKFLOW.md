@@ -1,12 +1,37 @@
 # Workflow
 
-1. **Frozen definitions** — `config/` records the eight assessment events, five weather/supply conditions, thermal thresholds and controlled-mechanism levels.
-2. **Original source inputs** — `data/` is reserved for provider files or access manifests. It contains no generated analysis output.
-3. **Prepared mappings and trajectories** — `intermediate/` links buildings to components and spatial units, stores prepared map layers and retains the accepted city trajectory needed by the peak diagnostic.
-4. **Accepted building-event results** — `result/building_event_outcomes/` stores the final building-level outcomes for each assessment event. These files are inputs to the public analysis workflow, not newly simulated during a repository run.
-5. **Analysis and validation** — `result/analysis/`, `result/validation/` and `src/analysis/metrics.py` define the distributed summaries and reusable estimators, including normalized population errors and tie-aware screening capture.
-6. **Figures** — `plot/plot.ipynb` reads the included inputs and generates six main and seventeen supplementary PNG figures.
-7. **Audit artifacts** — the workflow refreshes the data dictionary and repository checksums.
+## Scientific data flow
+
+1. **Frozen definitions** — `config/` records the eight assessment events, five weather/supply conditions, thermal thresholds, controlled-mechanism levels, contracts and current-root code locks.
+2. **Original source inputs** — `data/` is reserved for provider files and source manifests. Generated tables are never written there.
+3. **Source-adjacent preparation** — `intermediate/source_derived/` contains generated census mappings, address mappings, boundaries and prepared weather series. The five semantic stage scripts are under `src/workflows/stages/`.
+4. **Compiled physical inputs** — `intermediate/compiled_simulation_inputs/` preserves the frozen lockbox and mechanism IDF/EPW/schedule inputs. Open-event compilation and retained upstream records are under `intermediate/simulation_outputs/upstream/`.
+5. **Physical outputs** — accepted solver records are under `intermediate/simulation_outputs/`. The complete local root retains these records; GitHub omits them because of size.
+6. **Accepted production outputs** — `result/accepted/` is the unpacked final completion tree verified against the original production receipt. `result/building_event_outcomes/`, `result/analysis/`, `result/validation/` and `result/figure_source_data/` are the compact manuscript-aligned analysis products.
+7. **Figures** — `plot/plot.ipynb` reads the compact included inputs and generates six main and seventeen supplementary PNG figures. Every figure is implemented in one complete notebook cell.
+8. **Audit artifacts** — validation checks result hashes, row counts, code locks, HKT formatting, figure-cell order and accepted PNG hashes. The full local mode also checks source, compiled-input, solver-output and runtime inventories.
+
+## Reproduction levels
+
+### Manuscript-aligned analysis and figures
+
+```bash
+python src/run_pipeline.py
+```
+
+This is the normal GitHub workflow. It invokes EnergyPlus zero times and regenerates all 23 PNG figures from accepted derived inputs.
+
+### Complete local-root verification
+
+```bash
+python src/run_pipeline.py --check-only --full-local --report docs/audit/UNIFIED_PROJECT_VALIDATION.json
+```
+
+This also invokes EnergyPlus zero times. It verifies the full local scientific record, including exact hashes from the final production receipt and minimum inventories for original inputs, compiled physical inputs, solver outputs, unpacked accepted results and the pinned runtime.
+
+### Physical rebuild
+
+The physical workflow is retained for auditability and future reruns. Source preparation is implemented by the five scripts in `src/workflows/stages/`; eight-event compilation/execution is implemented by `src/utils/e8_open6_prepare.py`, `src/workflows/run_g4a_local.py`, `src/workflows/run_e8_local.py` and `src/workflows/run_e8_completion.py`. These entry points have explicit resource and approval gates. Consult each command's `--help` before use. A physical rebuild is not part of the default figure workflow and was not invoked during repository consolidation.
 
 ## Synchronized interruption clock
 

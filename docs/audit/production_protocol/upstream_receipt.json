@@ -1,0 +1,53 @@
+{
+  "receipt_version": "open6-readonly-receipt-v1",
+  "created_at": 1790029765.338451,
+  "source_project_root": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility",
+  "target_manifest_sha256": "7b3262723358cdb4debef01b933b5a55d51cae316e79dbad9e99b7eaa0f33c81",
+  "version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+  "superseded_version_lock_sha256": "1928f0954b92e2063dc301e2184331b7add7c9e7d238eb2d1ea3490d784f2d06",
+  "source_tables": {
+    "energy": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\combined\\open6_design_event_energy_service.csv",
+      "exists": true,
+      "expected_rows": 1782,
+      "rows": 1782,
+      "sha256": "b5dfd7a6e19116f433831c7a0d024d919cb70d1fd9144d2e13e58cbddb40eaa8",
+      "valid": true
+    },
+    "thermal": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\combined\\open6_design_event_thermal_recovery.csv",
+      "exists": true,
+      "expected_rows": 1782,
+      "rows": 1782,
+      "sha256": "1be48f778b89be75b8d7e6c5ae3bb7c8fcf06a59660b42850848fbfad2abe162",
+      "valid": true
+    },
+    "scores": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\combined\\open6_stage_score_bounds.csv",
+      "exists": true,
+      "expected_rows": 7128,
+      "rows": 7128,
+      "sha256": "0e3b4e5671612693baa48e8f6519462ae72176e552d5285361d1e27ad135ee7d",
+      "valid": true
+    },
+    "source_index": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\combined\\open6_logical_physical_source_index.csv",
+      "exists": true,
+      "expected_rows": 8910,
+      "rows": 8910,
+      "sha256": "89bda14d94db1bb057ef95e407c7a7038a82a8a3576c449e2bc1c127c9989833",
+      "valid": true
+    }
+  },
+  "source_batch": "E8_open6_core_nonlockbox_v1",
+  "source_scope": [
+    "HKO_LI_0049",
+    "HKO_LI_0052",
+    "HKO_LI_0058",
+    "HKO_LI_0068",
+    "HKO_LI_0085",
+    "HKO_LI_0090"
+  ],
+  "no_upstream_write": true,
+  "receipt_sha256": "ae07b2fd4d1617b44dadfdd76816e4db2f9b96f9bcb4be018bd0e455dcfedf47"
+}

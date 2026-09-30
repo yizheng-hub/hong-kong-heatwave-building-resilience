@@ -1,0 +1,9 @@
+{
+  "status": "IMMUTABLE_FIRST_LOOK",
+  "created_at": 1790343301.6748877,
+  "prediction_receipt_sha256": "e6f91131bce00ca182753089c61802a2e73ab46cc53cb6eced7ac10fec19c055",
+  "rank_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_first_look_rank.csv",
+  "rank_sha256": "162631e2ebf3071ec19a2197e1c30ac51b23128b82a051bdc952fb9e88ed7d8f",
+  "capture_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_first_look_capture.csv",
+  "capture_sha256": "b853a5bca808daf33c97ca522016aa5ec13af698d7d5b5749d598638d7893c6d"
+}

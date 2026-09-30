@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E8 completion analysis decisions",
+  "type": "object",
+  "required": ["decision_parameters"],
+  "properties": {
+    "decision_parameters": {
+      "type": "object",
+      "required": ["absolute_performance_thresholds", "multi_stage_threshold_set", "day_night_windows", "region_snapshot_times_hkt", "construction_year_provenance"],
+      "additionalProperties": false
+    }
+  },
+  "runtime_validator": "utils.e8_completion_required_analyses.validate_analysis_decisions",
+  "note": "The runtime validator enforces the complete nested schema and explicit approval_status=approved."
+}

@@ -1,0 +1,8 @@
+﻿field,definition,source,time_semantics,use
+structural_conditioning_present,zone has an IdealLoads cooling system in the frozen IDF,IDF/conditioned_zones_json,static,required for main screen
+occupancy_schedule_fraction,uninterrupted-reference People schedule; 0.03/0.12 are background states,event_schedules.parquet,hourly repeated to interval ends,continuous exposure/internal-gain input
+occupied_for_screen,occupancy_schedule_fraction > 0.15,uninterrupted HW_RATED schedule,time varying,main thermal eligibility
+planned_service_required,uninterrupted-reference AC schedule > 0,HW_RATED schedule,time varying,service expectation diagnostic
+actual_hvac_on,scenario-specific AC schedule > 0,scenario schedule,time varying,state diagnostic; never selects outage monitor
+main_thermal_monitor,structural_conditioning_present AND occupied_for_screen,derived,time varying,primary DH32/first crossing
+all_zone_extreme,all zones including unconditioned Service,native zone output,time varying,separate diagnostic

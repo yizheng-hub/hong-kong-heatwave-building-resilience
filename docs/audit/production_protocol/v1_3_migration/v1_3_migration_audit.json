@@ -1,0 +1,25 @@
+{
+  "migration": "v1.2_to_v1.3_targeted_C70_total_capacity",
+  "evidence_complete": false,
+  "scientific_acceptance": "pending_user_confirmation",
+  "candidate_version_lock_sha256": "15f446e3e05c7c4dc74df686278fd5f4f316c2ae75bb984eece1ad3ed8a00757",
+  "replacement_plan_sha256": "a54751940ee7837742fafecca63a0fdcea3c7b21c4975b76feb505e81b49e67a",
+  "repair_report_sha256": "439f8e4485ae33ec5e117f67c79588fb0896b1837bc6b9e99c33e8b3d4e8a52a",
+  "issues": [
+    "candidate v1.3 version-lock hash is absent or different",
+    "v1.3_effective byte-level physics hash mismatch",
+    "v1.3 effective manifest does not declare the replacement physics hash",
+    "v1.3_effective evidence missing: inputs/model.idf",
+    "v1.3_effective evidence missing: inputs/weather.epw",
+    "v1.3_effective evidence missing: inputs/schedules.csv",
+    "v1.3_effective evidence missing: inputs/event_schedules.parquet",
+    "v1.3_effective evidence missing: raw/eplusout.csv",
+    "v1.3_effective evidence missing: raw/eplusout.err",
+    "v1.3_effective evidence missing: parsed/native_timestep_building.parquet",
+    "v1.3_effective evidence missing: parsed/native_timestep_zones.parquet",
+    "v1.3_effective evidence missing: parsed/parser_audit.json",
+    "affected B0127 dependency receipt does not use replacement physics"
+  ],
+  "rows": 23,
+  "does_not_modify_upstream": true
+}

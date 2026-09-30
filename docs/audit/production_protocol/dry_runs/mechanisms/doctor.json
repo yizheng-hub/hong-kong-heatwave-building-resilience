@@ -1,0 +1,30 @@
+{
+  "environment": {
+    "executable": "D:\\Applications\\anaconda3\\envs\\hk-heatwave-repro\\python.exe",
+    "python": "3.11.16 | packaged by conda-forge | (main, Sep  2 2026, 23:31:17) [MSC v.1944 64 bit (AMD64)]",
+    "prefix": "D:\\Applications\\anaconda3\\envs\\hk-heatwave-repro",
+    "dependencies": {
+      "numpy": "2.3.3",
+      "pandas": "2.3.3",
+      "pyarrow": "23.0.1",
+      "psutil": "7.2.2",
+      "scipy": "1.16.2",
+      "pytest": "9.1.1"
+    },
+    "energyplus": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\runtime\\EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64\\energyplus.exe",
+    "engine_sha256": "1085db7c1b00f8a021c9d06b9d15cb739be0eae597053772101fc1c752b770e7",
+    "engine_version_from_metadata": {
+      "product": "EnergyPlus",
+      "version": "26.1.0",
+      "build": "6f2e40d102",
+      "platform": "Windows-x86_64",
+      "official_release_url": "https://github.com/NatLabRockies/EnergyPlus/releases/tag/v26.1.0",
+      "official_archive_name": "EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64.zip",
+      "official_archive_sha256": "0bb6932d277eed62f996b625f37c533b8c35f9af0c53710d961d8442fc4e70b3",
+      "license": "EnergyPlus is distributed separately under its own license. The executable is not scientific input data."
+    },
+    "free_disk_bytes": 205432860672
+  },
+  "version_lock_sha256": "ddb361a18004055513b901ebd21f78fdb4284836eebc76607fc29a6787b16f95",
+  "energyplus_calls": 0
+}

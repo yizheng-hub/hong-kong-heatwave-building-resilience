@@ -1,0 +1,6 @@
+﻿prototype_id,thermal_capacitance_kj_m2k,cooling_capacity_w_m2,reference_start_offset_h,reference_design_ids,subsidised_sale_165_source,village_capacity_155_source,middle_floor_legal_in_frozen_design,mechanism_science_approval
+res_public_rental,180.0,150.0,0,B0001,not_applicable,not_applicable,True,pending; no mechanism runs authorized
+res_subsidised_sale,165.0,145.0,0,B0002,prototype_parameter_table baseline,not_applicable,True,pending; no mechanism runs authorized
+res_private_highrise,150.0,145.0,0,B0003,not_applicable,not_applicable,True,pending; no mechanism runs authorized
+res_old_lowrise_tenement,200.0,160.0,0,B0004,not_applicable,not_applicable,True,pending; no mechanism runs authorized
+res_village_house,180.0,155.0,0,B0005,not_applicable,prototype_parameter_table baseline,True,pending; no mechanism runs authorized

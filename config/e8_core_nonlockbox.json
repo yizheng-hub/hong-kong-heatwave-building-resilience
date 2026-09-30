@@ -1,0 +1,31 @@
+{
+  "project_root": "..",
+  "batch_id": "E8_open6_core_nonlockbox_v1",
+  "delivery_dir": "intermediate/simulation_outputs/upstream/open6_delivery",
+  "output_dir": "intermediate/simulation_outputs/upstream/E8_open6",
+  "energyplus": "software/energyplus/EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64/energyplus.exe",
+  "version_lock": "config/open_event_version_lock.json",
+  "expected_environment": "hk-heatwave-repro",
+  "expected_python": "3.11",
+  "analysis_version": "G3_metrics_v2_closure-g4a-group-adapter-v1",
+  "enabled_events": [
+    "HKO_LI_0049",
+    "HKO_LI_0052",
+    "HKO_LI_0058",
+    "HKO_LI_0068",
+    "HKO_LI_0085",
+    "HKO_LI_0090"
+  ],
+  "paper_only": true,
+  "allow_animation": false,
+  "concurrency": 4,
+  "max_calls": 8875,
+  "max_retries": 250,
+  "wall_seconds": 86400,
+  "max_bytes": 34359738368,
+  "min_free_bytes": 10737418240,
+  "grace_seconds": 60,
+  "run_timeout_seconds": 900,
+  "progress_seconds": 10,
+  "max_worker_rss_bytes": 2147483648
+}

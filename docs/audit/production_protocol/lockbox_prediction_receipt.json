@@ -1,0 +1,22 @@
+{
+  "status": "FROZEN_BEFORE_LOCKBOX",
+  "event_ids": [
+    "HKO_LI_0054",
+    "HKO_LI_0066"
+  ],
+  "created_at": 1790032760.2458804,
+  "prediction_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_predictions_frozen.csv",
+  "prediction_sha256": "b8188c468f3bc389142e73530e4867dd95e0fc3a237cbe3f50094db6d8f3e143",
+  "cohorts_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_cohorts_frozen.csv",
+  "cohorts_sha256": "421ab5ac224bf2b193779e8277d58a783726ffc0f6512a86d043e386b8e72151",
+  "baselines_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_baselines_frozen.csv",
+  "baselines_sha256": "c97e56da978e13f2cd4ae577b2f92ab5543ce32aa7ba20e59f1948d384c4f9bd",
+  "rules_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\lockbox_prediction_rules.json",
+  "rules_sha256": "45a93de48a9cbce3452d893d4e5eddc2f2277154839e9e123431a94dcf86ad35",
+  "upstream_receipt_path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\upstream_receipt.json",
+  "upstream_receipt_sha256": "aff25a3cb8e33aa02e4ef1301167e4caeed2552b58991f4385e7693a3ba31bbf",
+  "analysis_contract_sha256": "fa96d4035c9d1fabf8041c60980d0b8ea52946d81212375062487a7123c1859c",
+  "approval_contract_sha256": "32045984e6187e8d58b9879a1dd6f95ca91c128bc94e3268570f0869059f4416",
+  "first_event_cannot_update_second": true,
+  "not_historical_forward_prediction": true
+}

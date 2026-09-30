@@ -11,10 +11,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run the project analysis and figure workflow.")
     parser.add_argument("--kernel", default="hk-heatwave", help="Jupyter kernel name")
     parser.add_argument("--check-only", action="store_true", help="Validate inputs without drawing figures")
+    parser.add_argument("--full-local", action="store_true", help="Verify the complete local raw/runtime inventory")
+    parser.add_argument("--report", help="Optional JSON validation report path, relative to the project root")
     args = parser.parse_args()
 
     paths = project_paths()
-    subprocess.run([sys.executable, str(paths.root / "src" / "check_inputs.py")], check=True)
+    validation = [sys.executable, str(paths.root / "src" / "check_inputs.py")]
+    if args.full_local:
+        validation.append("--full-local")
+    if args.report:
+        validation.extend(["--report", args.report])
+    subprocess.run(validation, check=True)
     if args.check_only:
         return 0
 
@@ -49,6 +56,7 @@ def main() -> int:
         [sys.executable, str(paths.root / "src" / "data_preparation" / "build_checksums.py")],
         check=True,
     )
+    subprocess.run(validation, check=True)
     print(f"Generated {len(png_files)} PNG figures in {paths.figures}")
     return 0
 

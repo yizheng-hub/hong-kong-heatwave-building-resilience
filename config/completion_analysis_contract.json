@@ -1,0 +1,225 @@
+{
+  "contract_version": "e8-completion-analysis-v1",
+  "weather_reference": "Kings_Park_2016_2025_fixed_recent_reference_benchmark",
+  "prehistory_days": 14,
+  "scenarios": [
+    "CF_UNL",
+    "HW_UNL",
+    "HW_RATED",
+    "HW_C70",
+    "HW_O24_SYNC"
+  ],
+  "design_aggregation": {
+    "unit": "frozen base_case_id within prototype x floor x event",
+    "weights": "equal frozen design weights",
+    "continuous_summary": "median",
+    "order": "compute paired design estimands first, then aggregate designs, then map components and floors"
+  },
+  "building_composition": {
+    "energy_and_cooling": "sum component-floor intensity multiplied by component-floor GFA",
+    "thermal_degree_hours": "component-floor area-weighted mean with explicit K h units",
+    "first_threshold": "earliest supported component-zone interval with censoring bounds",
+    "recovery": "first time all required component-zone trajectories are simultaneously at or below 26 C; never max of independent first-recovery times",
+    "population": "fixed 2021 reference population on residential components only",
+    "mixed_use": "components sum once to physical building; no duplicate city totals"
+  },
+  "thermal": {
+    "monitoring": "structural_conditioning_present AND reference_occupancy_fraction_gt_0.15",
+    "temperature_thresholds_c": [
+      30,
+      32,
+      34
+    ],
+    "main_screening_threshold_c": 32,
+    "outage_hours": 24,
+    "recovery_threshold_c": 26,
+    "sustained_recovery_diagnostic": "26.2 C for one fully supported hour",
+    "timestep_semantics": "15-minute interval mean ending at timestamp"
+  },
+  "beri": {
+    "event_component_aggregation": "median",
+    "component_combination": "geometric_mean_equal_weight",
+    "components": [
+      "N",
+      "C",
+      "O",
+      "R"
+    ],
+    "score_bounds": "propagate monotone endpoints; no midpoint",
+    "mechanical_time_decay": false
+  },
+  "evaluation": {
+    "holdout": "complete parent event",
+    "selection_fractions": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "tie_policy": "exchangeable expected selection at exact cutoff ties",
+    "interval_policy": "endpoint scenarios are sensitivity analyses, not claimed mathematical bounds for rank statistics",
+    "random_baseline": "selected fraction",
+    "constant_or_zero_denominator": "NA with reason"
+  },
+  "city_peak": "sum building trajectories at each common timestamp, then take maximum",
+  "future_policy_default": "retain unchanged climate-hazard sources; exclude incompatible old future building thermal results unless explicitly approved for finite rerun",
+  "paper_only": true,
+  "animation_forbidden": true,
+  "decision_parameters": {
+    "absolute_performance_thresholds": {
+      "approval_status": "approved",
+      "version": "absolute-screening-v1",
+      "rules": [
+        {
+          "rule_id": "N_relative_demand_ge_5pct",
+          "stage": "N",
+          "metric": "relative_delta",
+          "operator": ">=",
+          "threshold": 0.05,
+          "unit": "fraction",
+          "eligibility": "positive_reference_demand",
+          "eligibility_field": "E_CF_kwh",
+          "time_window": "complete mother event",
+          "source": "engineering screening sensitivity; not an efficiency or health boundary"
+        },
+        {
+          "rule_id": "C_shortfall_ge_10pct",
+          "stage": "C",
+          "metric": "cooling_shortfall_fraction",
+          "operator": ">=",
+          "threshold": 0.1,
+          "unit": "fraction of unlimited reference requirement",
+          "eligibility": "positive_reference_demand",
+          "eligibility_field": "required_ref_kwh_thermal",
+          "time_window": "complete mother event",
+          "source": "engineering service-shortfall screening sensitivity"
+        },
+        {
+          "rule_id": "O_any_DH32",
+          "stage": "O",
+          "metric": "absolute_dh32",
+          "operator": ">",
+          "threshold": 0.0,
+          "unit": "K h",
+          "eligibility": "valid_monitoring_support",
+          "eligibility_field": "effective_monitoring_hours",
+          "time_window": "24 h synchronized outage",
+          "source": "32 C dry-bulb comparative screening boundary; not an individual medical threshold"
+        },
+        {
+          "rule_id": "R_not_recovered_24h",
+          "stage": "R",
+          "metric": "recovery_failed_within_24h",
+          "operator": "==",
+          "threshold": 1.0,
+          "unit": "binary",
+          "eligibility": "nonmissing_metric",
+          "time_window": "restore to restore plus 24 h",
+          "source": "frozen first return to 26 C rule with censoring retained"
+        }
+      ]
+    },
+    "multi_stage_threshold_set": {
+      "approval_status": "approved",
+      "version": "multi-stage-screening-v1",
+      "sets": [
+        {
+          "set_id": "any_stage",
+          "rule_ids": [
+            "N_relative_demand_ge_5pct",
+            "C_shortfall_ge_10pct",
+            "O_any_DH32",
+            "R_not_recovered_24h"
+          ],
+          "minimum_failed": 1,
+          "time_window": "stage-specific windows"
+        },
+        {
+          "set_id": "two_or_more_stages",
+          "rule_ids": [
+            "N_relative_demand_ge_5pct",
+            "C_shortfall_ge_10pct",
+            "O_any_DH32",
+            "R_not_recovered_24h"
+          ],
+          "minimum_failed": 2,
+          "time_window": "stage-specific windows"
+        },
+        {
+          "set_id": "thermal_service_two_of_COR",
+          "rule_ids": [
+            "C_shortfall_ge_10pct",
+            "O_any_DH32",
+            "R_not_recovered_24h"
+          ],
+          "minimum_failed": 2,
+          "time_window": "stage-specific windows"
+        }
+      ]
+    },
+    "day_night_windows": {
+      "approval_status": "approved",
+      "version": "day-night-humidity-v1",
+      "periods": [
+        {
+          "period_id": "day",
+          "start_hour_hkt": 8,
+          "end_hour_hkt": 19
+        },
+        {
+          "period_id": "night",
+          "start_hour_hkt": 20,
+          "end_hour_hkt": 7
+        }
+      ],
+      "humidity_metric": {
+        "name": "same_zone_heat_index_c",
+        "applicability": "T at least 26.7 C and RH at least 40%; otherwise NA",
+        "role": "continuous sensitivity only"
+      },
+      "sustained_recovery": {
+        "threshold_c": 26.2,
+        "support_hours": 1.0,
+        "role": "diagnostic_only"
+      }
+    },
+    "region_snapshot_times_hkt": {
+      "approval_status": "approved",
+      "version": "regional-static-snapshots-v1",
+      "regions": [
+        "Hong Kong total",
+        "Ho Man Tin",
+        "Mong Kok",
+        "Tsim Sha Tsui"
+      ],
+      "snapshot_roles": [
+        "event_start",
+        "hw_peak",
+        "outage_start",
+        "restore",
+        "restore_plus_6h",
+        "restore_plus_24h"
+      ],
+      "timestamp_matching": "exact stored HKT interval-end timestamp; event start uses +15 min and outage/restore roles use the first complete 15-min interval after the transition; missing support remains NA",
+      "static_only": true
+    },
+    "construction_year_provenance": {
+      "approval_status": "approved",
+      "version": "construction-provenance-v1",
+      "year_field": "construction_year_value",
+      "source_class_field": "construction_year_source_class",
+      "allowed_source_classes": [
+        "direct",
+        "inferred",
+        "unknown"
+      ],
+      "unknown_source_policy": "retain_unknown",
+      "same_year_policy": "unknown_with_start_end_sensitivity",
+      "source_description": "per-building source class only when explicitly present; never inferred from aggregate coverage"
+    }
+  },
+  "decision_approval": {
+    "identity": "explicit_local_cli_acceptance_of_reviewed_recommendations",
+    "proposal_path": "config/completion_analysis_decisions.proposed.json",
+    "accepted_at_utc": "2026-09-22T06:36:26.915537+08:00"
+  }
+}

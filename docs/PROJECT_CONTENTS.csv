@@ -1,0 +1,18 @@
+component,local_path,role,complete_local_root,github,reason_or_note
+source_inputs,data,Original/provider inputs including HK-BFETD HKO NASA POWER CMIP6 Census EMSD HKUST PolyU BCA CU-BEMS and NIST,yes,no,Large and/or provider-controlled; access identities are tracked in data/SOURCE_MANIFEST.csv
+source_derived,intermediate/source_derived,Prepared source-adjacent mappings and weather products,yes,no,Regenerable local intermediate
+prepared_analysis_inputs,intermediate/prepared_stock; intermediate/spatial; intermediate/city_trajectories,Compact prepared inputs used by the plotting workflow,yes,yes,Required for manuscript-aligned figure regeneration
+compiled_simulation_inputs,intermediate/compiled_simulation_inputs,Frozen lockbox and mechanism solver inputs,yes,no,4.5 GB local scientific record
+simulation_outputs,intermediate/simulation_outputs,Accepted upstream and completion solver records,yes,no,Approximately 88 GB local scientific record
+accepted_results,result/accepted,Unpacked accepted core mechanism stock validation evidence and source-contract outputs,yes,no,Approximately 3.5 GB; exact hashes checked against final production receipt
+accepted_results_archive,result/archive/accepted_eight_event_results.zip,Compact accepted review archive with original code and receipts,yes,yes,Tracked through Git LFS
+building_event_results,result/building_event_outcomes,Eight accepted building-event tables used by public analysis,yes,yes,Manuscript-aligned analysis input
+analysis_results,result/analysis; result/validation,Cross-event recovery screening and validation summaries,yes,yes,Manuscript-aligned derived results
+panel_data,result/figure_source_data,Per-panel source tables for all figures,yes,yes,Read directly by plot/plot.ipynb
+figures,output/figures,Six main and seventeen supplementary PNG figures,yes,yes,PNG only; accepted hashes recorded in docs/audit/accepted_figure_sha256.csv
+plotting_notebook,plot/plot.ipynb,One complete editable code cell per figure,yes,yes,Every cell performs its own reads transformations and styling
+analysis_code,src,Current preparation simulation analysis validation and workflow code,yes,yes,No dependency on the three retired historical roots
+configuration,config,Frozen event scenario mechanism contract and code-lock definitions,yes,yes,E8 denotes the eight-event experiment rather than a software version
+energyplus_runtime,software/energyplus,Pinned EnergyPlus 26.1.0 runtime and metadata,yes,no,Local software installation governed by upstream licence
+provenance,docs/audit,Original production receipts locks migration evidence and unified validation report,yes,yes,Historical absolute paths are retained only inside immutable audit evidence
+manuscripts,../Manuscript.docx; ../SI.docx,Author manuscript and Supplementary Information,no,no,Intentionally kept outside the code/data repository and not modified

@@ -23,6 +23,15 @@ EXACT_DESCRIPTIONS = {
 }
 
 
+# These trees contain hundreds of thousands of repeated solver artefacts.
+# Their file inventory and integrity are validated separately; the field-level
+# dictionary covers the compact inputs, derived data and accepted results.
+EXCLUDED_BULK_TREES = (
+    Path("intermediate/compiled_simulation_inputs"),
+    Path("intermediate/simulation_outputs"),
+)
+
+
 def infer_unit(column: str) -> str:
     lower = column.lower()
     units = (
@@ -61,7 +70,13 @@ def infer_description(column: str) -> str:
 
 def schema_for(path: Path) -> list[tuple[str, str]]:
     if path.suffix.lower() == ".csv":
-        frame = pd.read_csv(path, nrows=0)
+        try:
+            frame = pd.read_csv(path, nrows=0)
+        except UnicodeDecodeError:
+            # The 2021 Hong Kong census SSUG source is distributed in Big5/CP950.
+            # Preserve the provider file byte-for-byte and decode it only while
+            # extracting its schema for the project data dictionary.
+            frame = pd.read_csv(path, nrows=0, encoding="cp950")
         return [(column, str(dtype)) for column, dtype in frame.dtypes.items()]
     schema = pq.read_schema(path)
     return [(field.name, str(field.type)) for field in schema]
@@ -74,7 +89,10 @@ def main() -> None:
         for path in sorted(parent.rglob("*")):
             if not path.is_file() or path.suffix.lower() not in {".csv", ".parquet", ".geoparquet"}:
                 continue
-            relative = path.relative_to(paths.root).as_posix()
+            relative_path = path.relative_to(paths.root)
+            if any(relative_path.is_relative_to(tree) for tree in EXCLUDED_BULK_TREES):
+                continue
+            relative = relative_path.as_posix()
             for column, dtype in schema_for(path):
                 records.append(
                     {

@@ -1,0 +1,85 @@
+{
+  "generated_at_local": "2026-10-01T02:05:00+08:00",
+  "status": "PASS",
+  "project_root": "D:\\HKBFETD\\release\\hong-kong-heatwave-building-resilience",
+  "selection_rule": "Current production code and results were selected from accepted production locks, source contracts and file hashes; modification time alone was not used.",
+  "energyplus_calls_during_migration_and_validation": 0,
+  "source_copy_verification": {
+    "files_hash_compared_before_generated-weather_reclassification": 1032,
+    "missing": 0,
+    "size_mismatch": 0,
+    "sha256_mismatch": 0,
+    "generated_weather_files_reclassified_without_content_change": [
+      "polyu_hourly_weather_hko_anchored.parquet",
+      "hko_kp_daily_2016_2025.csv",
+      "hko_multistation_daily_2016_2025.csv",
+      "nasa_power_hourly_selected_events.csv"
+    ]
+  },
+  "bulk_tree_copy_verification": {
+    "compiled_simulation_inputs": {
+      "files": 22770,
+      "bytes": 4510045636,
+      "count_and_bytes_match_source": true
+    },
+    "completion_runtime": {
+      "files": 182391,
+      "bytes": 50108549463,
+      "count_and_bytes_match_source": true
+    },
+    "open_event_runtime": {
+      "files": 136827,
+      "bytes": 33319591959,
+      "count_and_bytes_match_source": true
+    },
+    "mechanism_runtime": {
+      "files": 14441,
+      "bytes": 3841358750,
+      "count_and_bytes_match_source": true
+    },
+    "upstream_analysis_trees": {
+      "files": 2925,
+      "bytes": 601042802,
+      "all_individual_tree_counts_and_bytes_match_source": true
+    }
+  },
+  "accepted_production_results": {
+    "files_hash_compared": 99,
+    "missing": 0,
+    "size_mismatch": 0,
+    "sha256_mismatch": 0
+  },
+  "complete_workflow": {
+    "notebook_figure_cells": 23,
+    "png_figures_generated": 23,
+    "pdf_figures_generated": 0,
+    "accepted_figure_hashes_matched": 23,
+    "field_dictionary_records": 6652,
+    "redistributable_checksum_records": 298,
+    "validation_report": "docs/audit/UNIFIED_PROJECT_VALIDATION.json",
+    "status": "PASS"
+  },
+  "post_isolation_validation": {
+    "standard_report": "docs/audit/POST_ISOLATION_STANDARD_VALIDATION.json",
+    "full_local_report": "docs/audit/POST_ISOLATION_FULL_LOCAL_VALIDATION.json",
+    "active_historical_root_references": 0,
+    "status": "PASS"
+  },
+  "post_deletion_validation": {
+    "full_local_report": "docs/audit/POST_DELETION_FULL_LOCAL_VALIDATION.json",
+    "status": "PASS"
+  },
+  "permanently_deleted_historical_paths": [
+    "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility",
+    "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace",
+    "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results",
+    "D:\\HKBFETD\\_quarantine\\HK_heatwave_revision_history_20260930",
+    "D:\\HKBFETD\\.review_current"
+  ],
+  "preserved_outside_project_root": [
+    "D:\\HKBFETD\\release\\Manuscript.docx",
+    "D:\\HKBFETD\\release\\SI.docx",
+    "D:\\HKBFETD\\release\\Cover letter.docx",
+    "D:\\HKBFETD (main HK-BFETD repository and non-heatwave project assets)"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "project_root": "D:\\HKBFETD\\release\\hong-kong-heatwave-building-resilience",
+  "purpose": "Complete local project root aligned with the manuscript; the private GitHub repository is the redistributable mirror.",
+  "local_only_content": {
+    "source_inputs": {
+      "path": "data",
+      "files": 1071,
+      "bytes": 11202386048
+    },
+    "compiled_simulation_inputs": {
+      "path": "intermediate/compiled_simulation_inputs",
+      "files": 22770,
+      "bytes": 4510045636
+    },
+    "simulation_outputs": {
+      "path": "intermediate/simulation_outputs",
+      "files": 336639,
+      "bytes": 87894743501
+    },
+    "accepted_results": {
+      "path": "result/accepted",
+      "files": 99,
+      "bytes": 3496912855
+    },
+    "energyplus_runtime": {
+      "path": "software/energyplus",
+      "files": 8162,
+      "bytes": 887375738
+    }
+  },
+  "redistributable_content": {
+    "code": "src",
+    "configuration": "config",
+    "editable_notebook": "plot/plot.ipynb",
+    "figure_source_data": "result/figure_source_data",
+    "compact_accepted_archive": "result/archive/accepted_eight_event_results.zip",
+    "final_png_figures": "output/figures",
+    "documentation": "docs",
+    "checksum_manifest": "SHA256SUMS.txt"
+  },
+  "manuscripts_in_repository": false,
+  "tests_in_repository": false,
+  "figure_pdf_files": 0,
+  "default_analysis_energyplus_calls": 0
+}

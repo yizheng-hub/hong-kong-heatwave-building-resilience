@@ -1,0 +1,51 @@
+{
+  "status": "READY_FOR_MANUAL_RESUME",
+  "verified_at_local": "2026-09-23",
+  "completion_batch_id": "E8_completion_v1",
+  "lockbox_batch_id": "E8_completion_v1_lockbox",
+  "completion_code_lock_sha256": "8f0e4f084ea4d227180d0058b4a64556b29605efe08e895d6afc0a381717056f",
+  "prediction_receipt_original_code_lock_sha256": "32045984e6187e8d58b9879a1dd6f95ca91c128bc94e3268570f0869059f4416",
+  "analysis_contract_sha256": "fa96d4035c9d1fabf8041c60980d0b8ea52946d81212375062487a7123c1859c",
+  "lockbox_manifest_sha256": "cb89f62dc7e3713cdd35195b2649a95967b7592891913740a7d941b8c82ac4b0",
+  "lockbox_prediction_receipt_sha256": "e6f91131bce00ca182753089c61802a2e73ab46cc53cb6eced7ac10fec19c055",
+  "lockbox_version_lock_sha256": "ea83768dee40e15031d3e9388cf5135a28e1e28c37254929f9312a2b8b61b793",
+  "test_xml_sha256": "a2146d430e1ea63fcc1ecbdf460360783920cfb4addbaf861dcbef1076c8b867",
+  "tests": {
+    "passed": 40,
+    "failed": 0,
+    "energyplus_calls": 0
+  },
+  "existing_lockbox_ledger": {
+    "total": 2970,
+    "metrics_complete": 2225,
+    "qc_passed": 1,
+    "pending": 744,
+    "actual_calls": 2226,
+    "retry_calls": 0,
+    "active_seconds": 108723.77999999991,
+    "active_session": null
+  },
+  "compile_preflight": {
+    "status": "LOCKBOX_COMPILE_PREFLIGHT_OK",
+    "rows": 2970,
+    "groups": 594,
+    "manifest_receipt_and_state_hashes_unchanged": true
+  },
+  "approved_limits": {
+    "completion_wall_seconds": 306000,
+    "lockbox_wall_seconds": 234000,
+    "max_calls": 3830,
+    "max_retries": 200,
+    "completion_max_bytes": 42949672960,
+    "lockbox_max_bytes": 32212254720,
+    "min_free_bytes": 10737418240
+  },
+  "unchanged": [
+    "scientific definitions",
+    "physical manifest",
+    "lockbox prediction receipt",
+    "call and retry ceilings",
+    "storage ceilings and free-space safety line"
+  ],
+  "manual_command_required": true
+}

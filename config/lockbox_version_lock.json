@@ -1,0 +1,12 @@
+{
+  "name": "lockbox",
+  "files": {
+    "src/utils/g4a_local_execution.py": "93a74ef417a4b0bd783d873748a066d724cfd0f43c5e53cf465dfc2e6c5a16a8",
+    "src/utils/e8_g3_runner.py": "4945a8c8e3d8e39890c25777b845690d80733e7b6676f80569703fb042d4361e",
+    "src/utils/e8_g3_postprocess.py": "1142022a00f38e0aa3976dac83250afd45a93cd4edba6054c02428951cc07fa2",
+    "src/utils/simulation_metrics.py": "3fac58aac7258da77a63faf03c9c273d881a31ff4b363243d33c8816b47564a1",
+    "config/contracts/estimand_and_field_contract.csv": "73e2d162a03ba6ea67b0fd3ffb1e1c50fb54aba5813870f6e895743f3f27075e",
+    "config/contracts/thermal_monitoring_contract.csv": "cdf45f863e50add1e5c6f5a5d840363a4fab0c1615a4ae88365ff988b9cf5693"
+  },
+  "prototype_parameter_table_sha256": "a887abb2cfc0bb2ecd2905eefb3fc552e2510c0d00d6e0a453dfe75eb8c8ffa8"
+}

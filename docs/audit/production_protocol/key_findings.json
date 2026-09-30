@@ -1,0 +1,25 @@
+{
+  "status": "READY_FOR_FIGURES_AND_MANUSCRIPT",
+  "events": [
+    "HKO_LI_0049",
+    "HKO_LI_0052",
+    "HKO_LI_0054",
+    "HKO_LI_0058",
+    "HKO_LI_0066",
+    "HKO_LI_0068",
+    "HKO_LI_0085",
+    "HKO_LI_0090"
+  ],
+  "generated_from": "frozen numerical tables",
+  "design_event_groups": 2376,
+  "building_ratings": 330761,
+  "beri_evaluable": 330761,
+  "largest_simultaneous_HW_peak_event": "HKO_LI_0090",
+  "largest_simultaneous_HW_peak_kw": 16511594.469750164,
+  "source_hashes": {
+    "energy": "81036940c3b17901e4820a4d7e4b7c3f5eee1e1549cd838511b442c8e6a035b1",
+    "city": "bc668e5ce277a238519948ab6d501238ea07fffe28c72a8f43819d761150060b",
+    "rating": "f3e5c1a98165fd7c1e1a406cd08b3e554e549c7152c78aae23006cb5e548a352"
+  },
+  "claims_require_manuscript_interpretation": true
+}

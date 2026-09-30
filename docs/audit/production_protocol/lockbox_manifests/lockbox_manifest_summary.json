@@ -1,0 +1,14 @@
+{
+  "status": "COMPILED_NOT_EXECUTED",
+  "events": [
+    "HKO_LI_0054",
+    "HKO_LI_0066"
+  ],
+  "runs": 2970,
+  "groups": 594,
+  "new": 2970,
+  "reuse": 0,
+  "manifest_sha256": "cb89f62dc7e3713cdd35195b2649a95967b7592891913740a7d941b8c82ac4b0",
+  "prediction_receipt_sha256": "e6f91131bce00ca182753089c61802a2e73ab46cc53cb6eced7ac10fec19c055",
+  "energyplus_calls": 0
+}

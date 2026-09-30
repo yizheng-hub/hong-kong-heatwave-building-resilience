@@ -1,0 +1,30 @@
+{
+  "estate_count": 540,
+  "normalized_absolute_error_percent": 4.133588022764776,
+  "normalized_root_square_error_percent": 6.382391022161812,
+  "spearman_rho": 0.9862333175309553,
+  "event_count": 8,
+  "pyarrow": "23.0.1",
+  "python": "3.11.16",
+  "annual_energy_groups": 5,
+  "hkt_display_check": "19 Jul 00:15",
+  "figure_cells": 23,
+  "unified_project": {
+    "status": "PASS",
+    "project_root": "D:\\HKBFETD\\release\\hong-kong-heatwave-building-resilience",
+    "energyplus_calls": 0,
+    "active_dependencies": {
+      "files_scanned": 136,
+      "historical_root_references": 0
+    },
+    "accepted_figures": {
+      "figures": 23,
+      "manifest": "docs/audit/accepted_figure_sha256.csv"
+    },
+    "accepted_archive": {
+      "path": "result/archive/accepted_eight_event_results.zip",
+      "sha256": "7beb7b7cdaa01d14387750506fbe0de612101ef2e9974569876df11ac68fdff5",
+      "bytes": 294414961
+    }
+  }
+}

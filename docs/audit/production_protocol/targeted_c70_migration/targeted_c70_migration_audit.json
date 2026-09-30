@@ -1,0 +1,66 @@
+{
+  "migration": "reviewed_targeted_C70_total_capacity_supersessions",
+  "evidence_complete": true,
+  "scientific_acceptance": "pending_user_confirmation",
+  "candidate_version_lock_sha256": "2bd819a72bb73dec7515627abd1659a3e4957e6f5b78d4218880614cd2062f41",
+  "replacement_count": 4,
+  "replacements": [
+    {
+      "run_id": "e8open6_61614cc9859314651cdf",
+      "event_id": "HKO_LI_0068",
+      "base_case_id": "B0206",
+      "prototype_id": "com_education",
+      "floor_position": "bottom",
+      "scenario_id": "HW_C70",
+      "supersedes_physics_hash": "7e972bccdf8d7f833fc7ff811c82efe90ca0fd7ac0b6cb0af5f4006081154806",
+      "replacement_physics_hash": "6680b46d0f25184e65bdc8eecea9076bb7c361cff6777a0124dc4159f81ce959",
+      "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_61614cc9859314651cdf\\7e972bccdf8d7f833fc7ff811c82efe90ca0fd7ac0b6cb0af5f4006081154806",
+      "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_61614cc9859314651cdf",
+      "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+    },
+    {
+      "run_id": "e8open6_6c9df7f683dda75daf9c",
+      "event_id": "HKO_LI_0068",
+      "base_case_id": "B0213",
+      "prototype_id": "com_education",
+      "floor_position": "bottom",
+      "scenario_id": "HW_C70",
+      "supersedes_physics_hash": "ec8fcd4302f85b4bef96a0c7f6f284f04722c7bede1b12798f4d36a2ccb2121e",
+      "replacement_physics_hash": "2dd57fb432b2ba369ce6f6aea15ffb0901670f0f9a22db8b125a0294a4ee8588",
+      "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_6c9df7f683dda75daf9c\\ec8fcd4302f85b4bef96a0c7f6f284f04722c7bede1b12798f4d36a2ccb2121e",
+      "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_6c9df7f683dda75daf9c",
+      "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+    },
+    {
+      "run_id": "e8open6_bcd514a4a737dbc413d7",
+      "event_id": "HKO_LI_0068",
+      "base_case_id": "B0260",
+      "prototype_id": "com_mixed_use_component",
+      "floor_position": "single",
+      "scenario_id": "HW_C70",
+      "supersedes_physics_hash": "ed15e1e6b0ace96db34cdfd1bb68f021ada35ef5d5eb616be30d8b3ec51bc521",
+      "replacement_physics_hash": "6185456966c4737e4fafaf853288e03efa7b7b86c9e0c64f6e02a173e4b6dd49",
+      "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_bcd514a4a737dbc413d7\\ed15e1e6b0ace96db34cdfd1bb68f021ada35ef5d5eb616be30d8b3ec51bc521",
+      "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0068\\02_runs\\g3_results\\e8open6_bcd514a4a737dbc413d7",
+      "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+    },
+    {
+      "run_id": "e8open6_df5207eb7cbdd80bfae8",
+      "event_id": "HKO_LI_0049",
+      "base_case_id": "B0127",
+      "prototype_id": "com_office",
+      "floor_position": "top",
+      "scenario_id": "HW_C70",
+      "supersedes_physics_hash": "256fb9b5c305b7b95b28c2edb944b430994e0223db10a893fc9f195a91d73591",
+      "replacement_physics_hash": "f1a4358aa2579c0bb4f4fc2f7a7591de9552786b40c474f50cb960dd7204b930",
+      "superseded_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\c70_capacity_resolution\\superseded_results\\e8open6_df5207eb7cbdd80bfae8\\256fb9b5c305b7b95b28c2edb944b430994e0223db10a893fc9f195a91d73591",
+      "source_result_dir": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0049\\02_runs\\g3_results\\e8open6_df5207eb7cbdd80bfae8",
+      "capacity_control_implementation": "native_Maximum_Total_Cooling_Capacity_plus_targeted_EMS_supply_mass_flow_feedback_for_observed_overrun_zones"
+    }
+  ],
+  "crosswalk_sha256": "15cda944936bf3c2b4235a5a7420539b43052b6a08db5a97162fae20da207c68",
+  "replacement_registry_sha256": "b5fe45df3c219cdd52f9127fc2f97428f1fa85fe01bde5f616c9a65df706c700",
+  "issues": [],
+  "rows": 88,
+  "does_not_modify_upstream": true
+}

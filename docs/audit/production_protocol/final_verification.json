@@ -1,0 +1,64 @@
+{
+  "checked_at": 1790425874.571553,
+  "complete": true,
+  "status": "READY_FOR_FIGURES_AND_MANUSCRIPT",
+  "profile": "production",
+  "production_ready": true,
+  "issues": [],
+  "checks": {
+    "core_group_rows": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\e8_design_event_energy_service.csv",
+      "exists": true,
+      "rows": 2376,
+      "sha256": "81036940c3b17901e4820a4d7e4b7c3f5eee1e1549cd838511b442c8e6a035b1"
+    },
+    "stage_scores": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\e8_stage_score_bounds.csv",
+      "exists": true,
+      "rows": 9504,
+      "sha256": "3ecf597b8b951f92c7608c939789af4c846882a39d490a297d438af5c3a6ce62"
+    },
+    "logical_source_index": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\01_core_e8\\e8_logical_physical_source_index.csv",
+      "exists": true,
+      "rows": 11880,
+      "sha256": "e85b42bcc91e633c1f4477a35b121495dd451560ce9860b6b73693542108aed3"
+    },
+    "mechanism_effects": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\02_mechanisms\\controlled_pair_results.csv",
+      "exists": true,
+      "rows": 105,
+      "sha256": "ef4642d3de8bc79271a8f8c6ad41f0d95f48a93674dfa4ba1f1ccbd99bc9a69e"
+    },
+    "stock_coverage": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\stock_event_coverage.csv",
+      "exists": true,
+      "rows": 8,
+      "sha256": "1d8be85b479328a4022bddd2daa102af03d5de61578a6253aa5ebe6e1a814ef7"
+    },
+    "reference_rating": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\03_stock\\building_reference_beri.parquet",
+      "exists": true,
+      "rows": 330761,
+      "sha256": "f3e5c1a98165fd7c1e1a406cd08b3e554e549c7152c78aae23006cb5e548a352"
+    },
+    "lockbox_first_look": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\lockbox_first_look_rank.csv",
+      "exists": true,
+      "rows": 80,
+      "sha256": "162631e2ebf3071ec19a2197e1c30ac51b23128b82a051bdc952fb9e88ed7d8f"
+    },
+    "rank_folds": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\04_validation\\event_holdout_rank_metrics.csv",
+      "exists": true,
+      "rows": 880,
+      "sha256": "8235e5040cbedd1a43480f91500dcfc72deedd59c172e2c72bcf43d84ec0d5d5"
+    },
+    "source_contract": {
+      "path": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\06_source_data\\figure_source_data_contract.csv",
+      "exists": true,
+      "rows": 29,
+      "sha256": "2ecbc4c9968fc92c662eb579411cb4241782e2b7fa7cc71f5538dd99ee1294b2"
+    }
+  }
+}

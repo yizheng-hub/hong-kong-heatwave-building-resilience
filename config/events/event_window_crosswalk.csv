@@ -1,0 +1,9 @@
+﻿parent_event_id,event_start,event_end,legacy_window_start,legacy_window_end,main_analysis_window
+HKO_LI_0049,2005-07-18,2005-07-20,,,complete_parent_event
+HKO_LI_0052,2009-08-30,2009-09-08,,,complete_parent_event
+HKO_LI_0054,2012-05-02,2012-05-04,,,complete_parent_event
+HKO_LI_0058,2014-09-28,2014-09-30,,,complete_parent_event
+HKO_LI_0066,2017-08-18,2017-08-22,,,complete_parent_event
+HKO_LI_0068,2018-05-14 00:00:00,2018-06-02 00:00:00,2018-05-26,2018-06-01,complete_parent_event
+HKO_LI_0085,2022-07-19 00:00:00,2022-08-02 00:00:00,2022-07-22,2022-07-29,complete_parent_event
+HKO_LI_0090,2023-07-22 00:00:00,2023-07-28 00:00:00,2023-07-24,2023-07-28,complete_parent_event

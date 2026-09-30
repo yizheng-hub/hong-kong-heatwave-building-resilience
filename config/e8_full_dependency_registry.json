@@ -1,0 +1,34 @@
+{
+  "registry_version": "e8-dependencies-v1",
+  "core_nonlockbox": {
+    "enabled": true,
+    "event_ids": ["HKO_LI_0049", "HKO_LI_0052", "HKO_LI_0058", "HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"],
+    "logical_runs": 8910,
+    "groups": 1782,
+    "config": "config/e8_core_nonlockbox.json"
+  },
+  "lockbox": {
+    "enabled": false,
+    "event_ids": ["HKO_LI_0054", "HKO_LI_0066"],
+    "logical_runs_if_released": 2970,
+    "groups_if_released": 594,
+    "release_record_required": true,
+    "current_status": "LOCKED_NOT_COMPILED_NOT_SIMULATED"
+  },
+  "complete_e8_analyses": {
+    "enabled": false,
+    "requires_event_ids": ["HKO_LI_0049", "HKO_LI_0052", "HKO_LI_0054", "HKO_LI_0058", "HKO_LI_0066", "HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"],
+    "products": ["eight-fold whole-event holdout", "three retrospective forward tests", "complete-E8 BERI bounds", "physical burden capture against simple baselines"],
+    "current_status": "WAITING_FOR_REQUIRED_EVENTS"
+  },
+  "residential_mechanisms": {
+    "enabled": false,
+    "candidate_rows": 660,
+    "factors": ["roof_top_exposure", "thermal_mass", "nominal_cooling_capacity", "AC_operating_time"],
+    "current_status": "PENDING_SCIENTIFIC_LEVEL_AND_BUDGET_APPROVAL"
+  },
+  "citywide_propagation": {
+    "enabled": false,
+    "current_status": "WAITING_FOR_FROZEN_DESIGN_EVENT_SOURCE_DATA_AND_SEPARATE_MAPPING_AUDIT"
+  }
+}

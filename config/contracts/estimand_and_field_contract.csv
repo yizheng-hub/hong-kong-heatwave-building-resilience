@@ -1,0 +1,12 @@
+﻿estimand,formula,unit,window,mask,aggregation_order,missing_zero_censoring,implementation
+event_net_increment_kwh,E_HW_UNL-E_CF_UNL,kWh,complete parent event,none,sum energy before differencing,near-zero baseline: NA,pending E8 implementation
+event_positive_increment_kwh,"sum(max(P_HW_UNL-P_CF_UNL,0)*dt)",kWh,complete parent event,none,hour then building then event,missing hour: invalid,pending E8 implementation
+relative_demand_increment,(E_HW_UNL-E_CF_UNL)/E_CF_UNL,1,complete parent event,none,aggregate numerator and denominator before ratio,near-zero denominator: NA,pending E8 implementation
+coincident_peak_delta_kw,max(sum_i P_HW_i)-max(sum_i P_CF_i),kW,complete parent event,none,building power summed at every timestamp,missing building-hour: invalid,pending E8 implementation
+Q_delivered_raw,native HW_C70 cooling delivery,kWh_th,complete parent event,qualified zones,zone-timestep then sum,required native field missing: error,pending E8 implementation
+Q_shortfall_ref,"sum(max(Q_required_ref-Q_delivered_raw,0))",kWh_th,complete parent event,qualified zones,zone-timestep matching before sum,zero demand: 0 plus no_demand flag,pending approval; differs from legacy aggregate clipping
+DH32_outage,"sum(max(T_outage-32,0)*dt)",K h,24h synchronous outage,occupied monitored zones,declared worst-zone rule,no monitoring: NA,pending E8 implementation
+H_extra26,"sum(max(0,max(T_out-26,0)-max(T_rated-26,0))*dt)",K h,matched 24h outage,same zone/time mask,zone-time match before integration,missing pair: error,pending E8 implementation
+t_first32,first T>=32 from outage start,h,24h outage,occupied monitored zones,linear interpolation within fixed-zone samples,not crossed: right censored,first_threshold_crossing_hours
+t_recovery,first return to <=26 after power restoration,h,24h recovery observation,required service zones,all required objects meet rule,not recovered: right censored,legacy primary rule; exact E8 implementation pending
+BERI,100*(median_e S_N*median_e S_C*median_e S_O*median_e S_R)^(1/4),0-100,reference-event set,eligible buildings,component synthesis before event median,missing component: NA; true zero retained,pending E8 implementation

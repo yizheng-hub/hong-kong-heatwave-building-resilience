@@ -1,0 +1,17 @@
+{
+  "required": 2970,
+  "unique_physics": 2970,
+  "units": 56,
+  "dispositions": {
+    "new": 2970
+  },
+  "energyplus_calls": 0,
+  "effective_actions": {
+    "new": 1685,
+    "skip_complete": 1280,
+    "reextract_existing_raw": 3,
+    "pair_metrics_only": 2
+  },
+  "manual_start_confirmed": false,
+  "version_lock_sha256": "ea83768dee40e15031d3e9388cf5135a28e1e28c37254929f9312a2b8b61b793"
+}

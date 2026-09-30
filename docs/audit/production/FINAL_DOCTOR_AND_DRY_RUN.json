@@ -1,0 +1,156 @@
+{
+  "status": "CODE_CANDIDATE_COMPLETE_WAITING_FOR_UPSTREAM_AND_USER_APPROVAL",
+  "energyplus_calls": 0,
+  "upstream": {
+    "status": "WAITING_FOR_UPSTREAM",
+    "numerical_complete": false,
+    "issues": [
+      "active upstream workorder lock",
+      "active upstream writer: HKO_LI_0058"
+    ],
+    "actual_version_lock_sha256": "15f446e3e05c7c4dc74df686278fd5f4f316c2ae75bb984eece1ad3ed8a00757",
+    "candidate_version_lock_sha256": "15f446e3e05c7c4dc74df686278fd5f4f316c2ae75bb984eece1ad3ed8a00757",
+    "workorder_lock_held": true,
+    "workorder_lock_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\workorder.lock",
+    "active_events": [
+      "HKO_LI_0058"
+    ],
+    "source_tables": {
+      "energy": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 1782,
+        "valid": false
+      },
+      "thermal": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 1782,
+        "valid": false
+      },
+      "scores": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 7128,
+        "valid": false
+      },
+      "source_index": {
+        "exists": true,
+        "rows": null,
+        "expected_rows": 8910,
+        "valid": false
+      }
+    }
+  },
+  "accepted_version_and_supersession": {
+    "migration": "v1.2_to_v1.3_targeted_C70_total_capacity",
+    "evidence_complete": true,
+    "scientific_acceptance": "pending_user_confirmation",
+    "candidate_version_lock_sha256": "15f446e3e05c7c4dc74df686278fd5f4f316c2ae75bb984eece1ad3ed8a00757",
+    "replacement_plan_sha256": "fd8bfc2033567c06496a9c3997c6b24e0481b48442733539821d19f7c3d236aa",
+    "repair_report_sha256": "439f8e4485ae33ec5e117f67c79588fb0896b1837bc6b9e99c33e8b3d4e8a52a",
+    "issues": [],
+    "rows": 23,
+    "does_not_modify_upstream": true
+  },
+  "code_functionality": {
+    "five_required_analysis_functions": "IMPLEMENTED",
+    "paper_only": true,
+    "animation": false,
+    "production_test_record": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace\\test-results"
+  },
+  "analysis_contracts_and_sources": {
+    "status": "PENDING_USER_CONFIRMATION",
+    "decision_hash": null,
+    "issues": [
+      "required analysis decisions are not frozen: absolute_performance_thresholds, multi_stage_threshold_set, day_night_windows, region_snapshot_times_hkt, construction_year_provenance"
+    ],
+    "proposal": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace\\config\\completion_analysis_decisions.proposed.json",
+    "schema": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace\\config\\completion_analysis_decision_schema.json"
+  },
+  "paper_panels": {
+    "registered_rows": 29,
+    "unique_source_tables": 19,
+    "missing_until_production": [
+      "05_evidence/climate_catalog_and_event_roles.csv",
+      "05_evidence/validation_evidence_compatibility.csv",
+      "03_stock/building_reference_beri.parquet",
+      "03_stock/events/HKO_LI_0085.parquet",
+      "03_stock/region_hourly_snapshots.csv",
+      "01_core_e8/prototype_floor_event_response.csv",
+      "03_stock/city_event_energy_peak.csv",
+      "02_mechanisms/controlled_pair_results.csv",
+      "04_validation/multi_stage_threshold_sets.csv",
+      "04_validation/day_night_humid_recovery.csv",
+      "04_validation/event_holdout_screening_capture.csv",
+      "04_validation/event_holdout_rank_metrics.csv",
+      "03_stock/stock_event_coverage.csv",
+      "04_validation/absolute_performance_thresholds.csv",
+      "03_stock/construction_year_provenance.csv",
+      "03_stock/historical_existence_sensitivity_summary.csv",
+      "04_validation/sensitivity_beri_weights.csv",
+      "04_validation/screening_queue_overlap.csv"
+    ],
+    "registry_sha256": "0863ad8f8687020ac01f5fca17bf8174195e7b29f94ebca829a55ab2db5639c4"
+  },
+  "approvals": {
+    "mechanism_levels": "recommended_not_approved",
+    "lockbox_release": "pending_prediction_freeze",
+    "v1_3_migration": "pending_user_confirmation"
+  },
+  "physical_manifest_and_resources": {
+    "lockbox_logical_runs": 2970,
+    "mechanism_logical_runs_before_physical_dedup": 825,
+    "mechanism_pair_comparison_rows": 660,
+    "mechanism_unique_physics_upper_before_core_cache_reuse": 600,
+    "conservative_unique_new_upper_bound_before_physical_dedup": 3570,
+    "approved_retry_allowance": 200,
+    "conservative_call_budget_needed": 3770,
+    "configured_max_calls": 3830,
+    "budget_shortfall_before_actual_dedup": 0,
+    "final_unique_manifest_status": "WAITING_FOR_APPROVAL_AND_COMPILE",
+    "measured_open6_basis": {
+      "completed_event_summaries": [
+        {
+          "event_id": "HKO_LI_0049",
+          "actual_calls": 1206,
+          "active_seconds": 10880.954000000143,
+          "bytes_on_disk": 2628841006,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0049\\resource_usage.json",
+          "source_sha256": "be676f63435d1c2d21eb34df8a4b71b1cf5209c31e6437fd4526d264b1bf27fa"
+        },
+        {
+          "event_id": "HKO_LI_0052",
+          "actual_calls": 1485,
+          "active_seconds": 8793.734999999986,
+          "bytes_on_disk": 4231513636,
+          "source_path": "D:\\HKBFETD\\release\\HK_heatwave_public_reproducibility\\e8_work\\E8_open6\\events\\HKO_LI_0052\\resource_usage.json",
+          "source_sha256": "4cddb0ac744bab4ad85e8f980533822c306a714dc8ddaf484136e874e7fb398b"
+        }
+      ],
+      "measured_calls": 2691,
+      "weighted_active_seconds_per_call": 7.31129282794505,
+      "maximum_event_bytes_per_call": 2849504.131986532,
+      "identity": "provisional planning basis from completed Open6 summaries; final free space is rechecked at execution"
+    },
+    "estimated_solver_bytes_before_dedup": 10172729751,
+    "analysis_and_source_data_margin_bytes": 4294967296,
+    "estimated_total_bytes_before_dedup": 14467697047,
+    "configured_max_bytes": 17179869184,
+    "execution_free_space_gate_bytes": 27917287424
+  },
+  "unresolved_items": [
+    "active upstream workorder lock",
+    "active upstream writer: HKO_LI_0058",
+    "required analysis decisions are not frozen: absolute_performance_thresholds, multi_stage_threshold_set, day_night_windows, region_snapshot_times_hkt, construction_year_provenance",
+    "v1.3 scientific migration acceptance pending",
+    "lockbox release pending",
+    "residential mechanism levels pending"
+  ],
+  "workspace": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_workspace",
+  "results_root": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results",
+  "free_disk_bytes": 44560199680,
+  "estimated_required_bytes": 17179869184,
+  "module_imports_isolated": true,
+  "approval_proposal": "D:\\HKBFETD\\release\\HK_heatwave_E8_completion_results\\00_protocol\\completion_approval.proposed.json"
+}
