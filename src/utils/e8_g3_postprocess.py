@@ -1402,7 +1402,7 @@ def write_completion_reports(root: Path, work: Path, manifest: pd.DataFrame) -> 
     ).total_seconds() + float(pd.read_csv(work / "02_runs" / "g3_call_ledger.csv")["elapsed_seconds"].iloc[-1])
     report = f"""# E8 G2修正与条件性G3真实求解报告
 
-日期：2026-09-19
+日期：2026-09-19  
 范围：只覆盖用户批准的G2修正与G3；未启动G4、G5、锁箱、PolyU、住宅机制批量或全建筑传播。
 
 ## 1. 实际生产调用链
