@@ -1,0 +1,109 @@
+{
+  "estate_count": 540,
+  "normalized_absolute_error_percent": 4.215343935615496,
+  "normalized_root_square_error_percent": 6.451347934959991,
+  "spearman_rho": 0.9858945722043978,
+  "event_count": 8,
+  "pyarrow": "23.0.1",
+  "python": "3.11.16",
+  "annual_energy_groups": 5,
+  "hkt_display_check": "19 Jul 00:15",
+  "figure_cells": 23,
+  "unified_project": {
+    "status": "PASS",
+    "project_root": "D:\\hong-kong-heatwave-building-resilience",
+    "energyplus_calls": 0,
+    "active_dependencies": {
+      "files_scanned": 170,
+      "historical_root_references": 0
+    },
+    "accepted_figures": {
+      "figures": 23,
+      "manifest": "docs/audit/accepted_figure_sha256.csv"
+    },
+    "accepted_archive": {
+      "path": "result/archive/accepted_eight_event_results.zip",
+      "sha256": "7beb7b7cdaa01d14387750506fbe0de612101ef2e9974569876df11ac68fdff5",
+      "bytes": 294414961
+    },
+    "current_code_locks": {
+      "open_event_version_lock.json": {
+        "sha256": "395ca147a5a69077131b371608fa166753fe7004abff7786a2c15df1747d3af1",
+        "files": 15
+      },
+      "g4a_version_lock.json": {
+        "sha256": "c9a51cd63dd9902e0d369a990db8313a792d02eb365275496501f36ec5812adb",
+        "files": 9
+      }
+    },
+    "accepted_results": {
+      "core_group_rows": {
+        "path": "result/accepted/01_core_e8/e8_design_event_energy_service.csv",
+        "rows": 2376,
+        "sha256": "81036940c3b17901e4820a4d7e4b7c3f5eee1e1549cd838511b442c8e6a035b1"
+      },
+      "stage_scores": {
+        "path": "result/accepted/01_core_e8/e8_stage_score_bounds.csv",
+        "rows": 9504,
+        "sha256": "3ecf597b8b951f92c7608c939789af4c846882a39d490a297d438af5c3a6ce62"
+      },
+      "logical_source_index": {
+        "path": "result/accepted/01_core_e8/e8_logical_physical_source_index.csv",
+        "rows": 11880,
+        "sha256": "e85b42bcc91e633c1f4477a35b121495dd451560ce9860b6b73693542108aed3"
+      },
+      "mechanism_effects": {
+        "path": "result/accepted/02_mechanisms/controlled_pair_results.csv",
+        "rows": 105,
+        "sha256": "ef4642d3de8bc79271a8f8c6ad41f0d95f48a93674dfa4ba1f1ccbd99bc9a69e"
+      },
+      "stock_coverage": {
+        "path": "result/accepted/03_stock/stock_event_coverage.csv",
+        "rows": 8,
+        "sha256": "1d8be85b479328a4022bddd2daa102af03d5de61578a6253aa5ebe6e1a814ef7"
+      },
+      "reference_rating": {
+        "path": "result/accepted/03_stock/building_reference_beri.parquet",
+        "rows": 330761,
+        "sha256": "f3e5c1a98165fd7c1e1a406cd08b3e554e549c7152c78aae23006cb5e548a352"
+      },
+      "lockbox_first_look": {
+        "path": "result/accepted/04_validation/lockbox_first_look_rank.csv",
+        "rows": 80,
+        "sha256": "162631e2ebf3071ec19a2197e1c30ac51b23128b82a051bdc952fb9e88ed7d8f"
+      },
+      "rank_folds": {
+        "path": "result/accepted/04_validation/event_holdout_rank_metrics.csv",
+        "rows": 880,
+        "sha256": "8235e5040cbedd1a43480f91500dcfc72deedd59c172e2c72bcf43d84ec0d5d5"
+      },
+      "source_contract": {
+        "path": "result/accepted/06_source_data/figure_source_data_contract.csv",
+        "rows": 29,
+        "sha256": "2ecbc4c9968fc92c662eb579411cb4241782e2b7fa7cc71f5538dd99ee1294b2"
+      }
+    },
+    "local_inventory": {
+      "source_inputs": {
+        "files": 1071,
+        "bytes": 11202386072
+      },
+      "compiled_simulation_inputs": {
+        "files": 22770,
+        "bytes": 4510045636
+      },
+      "simulation_outputs": {
+        "files": 336639,
+        "bytes": 87894743501
+      },
+      "accepted_results_tree": {
+        "files": 99,
+        "bytes": 3496912855
+      },
+      "energyplus_runtime": {
+        "files": 8162,
+        "bytes": 887375738
+      }
+    }
+  }
+}

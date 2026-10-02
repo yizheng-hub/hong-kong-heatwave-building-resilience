@@ -155,7 +155,11 @@ def validate_unified_project(root: Path, *, full_local: bool = False) -> dict[st
     ]
     if full_local:
         required.extend([
-            root / "data" / "HK_UBEM_Buildings_Public_v1_1.csv",
+            root
+            / "data"
+            / "building_stock"
+            / "hk_bfetd"
+            / "HK_UBEM_Buildings_Public_v1_1.csv",
             root / "software" / "energyplus" / "EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64" / "energyplus.exe",
             root / "intermediate" / "simulation_outputs" / "upstream" / "01_inputs" / "E8_event_assignment.csv",
             root / "intermediate" / "simulation_outputs" / "upstream" / "E8_open6" / "combined" / "open6_aggregate_status.json",

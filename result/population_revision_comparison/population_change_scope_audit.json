@@ -1,0 +1,135 @@
+{
+  "status": "PASS",
+  "purpose": "prove revised outputs differ from the frozen accepted tree only through population fields and their downstream metrics",
+  "energyplus_calls": 0,
+  "checks": [
+    {
+      "table": "03_stock/events/HKO_LI_0049.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0052.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0054.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0058.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0066.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0068.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0085.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/events/HKO_LI_0090.parquet",
+      "pass": true,
+      "columns_checked": 41,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "population_degree_hours"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/fixed_stock_buildings.parquet",
+      "pass": true,
+      "columns_checked": 19,
+      "excluded_population_fields": [
+        "population_reference_2021",
+        "allocated_population__ssug_landuse_residential_gfa",
+        "allocated_population__ssug_stpug_tenure_household_capacity"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "03_stock/building_component_map.parquet",
+      "pass": true,
+      "columns_checked": 6,
+      "excluded_population_fields": [
+        "population_reference_2021"
+      ],
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "04_validation/event_holdout_rank_metrics.csv",
+      "scope": "non-population outcomes",
+      "pass": true,
+      "columns_checked": 10,
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "04_validation/event_holdout_screening_capture.csv",
+      "scope": "non-population outcomes",
+      "pass": true,
+      "columns_checked": 9,
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "04_validation/lockbox_first_look_rank.csv",
+      "scope": "non-population outcomes",
+      "pass": true,
+      "columns_checked": 10,
+      "detail": "equal within absolute tolerance 1e-12"
+    },
+    {
+      "table": "04_validation/lockbox_first_look_capture.csv",
+      "scope": "non-population outcomes",
+      "pass": true,
+      "columns_checked": 9,
+      "detail": "equal within absolute tolerance 1e-12"
+    }
+  ]
+}

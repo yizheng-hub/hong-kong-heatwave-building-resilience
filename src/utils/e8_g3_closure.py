@@ -213,7 +213,7 @@ def physical_content_hash(row):
 
 
 def compile_g4a(root, work, out, manifest, production):
-    design = pd.read_csv(root / "output/paper_pipeline_v0_3/02_building_response/thermal_experiment_design.csv")
+    design = pd.read_csv(root / "intermediate/foundation_pipeline/02_building_response/thermal_experiment_design.csv")
     selected = design.sort_values("base_case_id").drop_duplicates(["prototype_id", "floor_position"])
     if len(selected) != 56:
         raise ValueError(f"frozen response units differ: {len(selected)}")

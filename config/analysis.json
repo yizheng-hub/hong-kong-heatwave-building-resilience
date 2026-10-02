@@ -1,0 +1,51 @@
+{
+  "project_root": ".",
+  "batch_id": "E8_analysis",
+  "upstream_project_root": ".",
+  "results_root": "result/verification_run",
+  "prepared_stock_root": "intermediate/prepared_stock",
+  "simulation_outputs_root": "intermediate/simulation_outputs",
+  "lockbox_runtime_root": "intermediate/simulation_outputs/completion/lockbox",
+  "mechanism_runtime_root": "intermediate/simulation_outputs/completion/mechanisms",
+  "protocol_input_root": "intermediate/protocol",
+  "accepted_results_root": "result/accepted",
+  "approval_template": "config/completion_approval.json",
+  "task_matrix": "config/completion_task_matrix.csv",
+  "analysis_decision_schema": "config/completion_analysis_decision_schema.json",
+  "analysis_decision_proposal": "config/completion_analysis_contract.json",
+  "paper_panel_registry": "config/paper_panel_registry.csv",
+  "external_evidence_registry": "config/external_evidence_registry.csv",
+  "energyplus": "software/energyplus/EnergyPlus-26.1.0-6f2e40d102-Windows-x86_64/energyplus.exe",
+  "all_events": [
+    "HKO_LI_0049", "HKO_LI_0052", "HKO_LI_0054", "HKO_LI_0058",
+    "HKO_LI_0066", "HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"
+  ],
+  "lockbox_events": ["HKO_LI_0054", "HKO_LI_0066"],
+  "upstream_open_events": [
+    "HKO_LI_0049", "HKO_LI_0052", "HKO_LI_0058",
+    "HKO_LI_0068", "HKO_LI_0085", "HKO_LI_0090"
+  ],
+  "scenarios": ["CF_UNL", "HW_UNL", "HW_RATED", "HW_C70", "HW_O24_SYNC"],
+  "upstream": {
+    "manifest_sha256": "7b3262723358cdb4debef01b933b5a55d51cae316e79dbad9e99b7eaa0f33c81",
+    "version_lock_sha256": "1928f0954b92e2063dc301e2184331b7add7c9e7d238eb2d1ea3490d784f2d06",
+    "candidate_version_lock_sha256": "830d4ea379c04fa23bd58fd85a9bb413fa7839cdcdd001f48b0d926c86e7291c",
+    "required_label": "NUMERICAL_COMPLETE_OPEN6",
+    "logical_runs": 8910,
+    "groups": 1782
+  },
+  "expected_environment": "hk-heatwave-repro",
+  "expected_python": "3.11",
+  "paper_only": true,
+  "allow_animation": false,
+  "resources": {
+    "concurrency": 4,
+    "max_calls": 0,
+    "max_retries": 0,
+    "wall_seconds": 306000,
+    "max_bytes": 42949672960,
+    "min_free_bytes": 10737418240,
+    "run_timeout_seconds": 900,
+    "grace_seconds": 60
+  }
+}

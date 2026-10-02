@@ -29,6 +29,10 @@ EXACT_DESCRIPTIONS = {
 EXCLUDED_BULK_TREES = (
     Path("intermediate/compiled_simulation_inputs"),
     Path("intermediate/simulation_outputs"),
+    Path("intermediate/verification"),
+    Path("intermediate/verification_temp"),
+    Path("result/verification_run"),
+    Path("result/smoke_test"),
 )
 
 
@@ -77,6 +81,8 @@ def schema_for(path: Path) -> list[tuple[str, str]]:
             # Preserve the provider file byte-for-byte and decode it only while
             # extracting its schema for the project data dictionary.
             frame = pd.read_csv(path, nrows=0, encoding="cp950")
+        except pd.errors.EmptyDataError:
+            return []
         return [(column, str(dtype)) for column, dtype in frame.dtypes.items()]
     schema = pq.read_schema(path)
     return [(field.name, str(field.type)) for field in schema]

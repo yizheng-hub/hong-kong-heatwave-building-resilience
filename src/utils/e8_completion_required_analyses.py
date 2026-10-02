@@ -188,26 +188,49 @@ def compute_multi_stage_threshold_sets(absolute: pd.DataFrame, decision: dict[st
     key = ["BUILDINGSTRUCTUREID", "event_id", "rule_id"]
     if any(c not in absolute for c in key) or absolute.duplicated(key).any():
         raise Blocked("absolute threshold table has invalid primary key")
-    rows = []
+    outputs = []
     for item in decision["sets"]:
         ids = [str(x) for x in item["rule_ids"]]
-        subset = absolute[absolute.rule_id.astype(str).isin(ids)]
-        for keys, group in subset.groupby(["BUILDINGSTRUCTUREID", "event_id"], sort=False):
-            present = set(group.rule_id.astype(str))
-            if present != set(ids): raise Blocked(f"multi-stage support differs for {keys}: {sorted(set(ids)-present)}")
-            known = group.failed.notna(); failed_known = int(group.loc[known, "failed"].astype(bool).sum())
-            unknown = int((~known).sum()); minimum = int(item["minimum_failed"])
-            if failed_known >= minimum: state, reason = True, ""
-            elif failed_known + unknown < minimum: state, reason = False, ""
-            else: state, reason = pd.NA, "one_or_more_required_thresholds_unknown"
-            rows.append({"BUILDINGSTRUCTUREID": keys[0], "event_id": keys[1], "set_id": str(item["set_id"]),
-                         "rule_ids": "|".join(ids), "minimum_failed": minimum, "failed_known": failed_known,
-                         "evaluable_rules": int(known.sum()), "required_rules": len(ids), "unknown_rules": unknown,
-                         "set_failed": state, "unit": "binary screening state",
-                         "eligibility_denominator": "all listed rules",
-                         "time_window": str(item.get("time_window", "stage-specific windows")),
-                         "NA_reason": reason, "source": "absolute_performance_thresholds.csv"})
-    return pd.DataFrame(rows)
+        subset = absolute.loc[
+            absolute.rule_id.astype(str).isin(ids),
+            ["BUILDINGSTRUCTUREID", "event_id", "rule_id", "failed"],
+        ].copy()
+        subset["known"] = subset.failed.notna().astype("int8")
+        subset["failed_known"] = subset.failed.fillna(False).astype(bool).astype("int8")
+        grouped = subset.groupby(["BUILDINGSTRUCTUREID", "event_id"], sort=False, as_index=False).agg(
+            present_rules=("rule_id", "nunique"),
+            rows=("rule_id", "size"),
+            failed_known=("failed_known", "sum"),
+            evaluable_rules=("known", "sum"),
+        )
+        invalid = grouped.present_rules.ne(len(ids)) | grouped.rows.ne(len(ids))
+        if invalid.any():
+            example = grouped.loc[invalid, ["BUILDINGSTRUCTUREID", "event_id"]].iloc[0].tolist()
+            raise Blocked(f"multi-stage support differs for {tuple(example)}")
+        minimum = int(item["minimum_failed"])
+        grouped["required_rules"] = len(ids)
+        grouped["unknown_rules"] = grouped.required_rules - grouped.evaluable_rules
+        state = pd.Series(pd.NA, index=grouped.index, dtype="boolean")
+        state.loc[grouped.failed_known.ge(minimum)] = True
+        state.loc[(grouped.failed_known + grouped.unknown_rules).lt(minimum)] = False
+        grouped["set_failed"] = state
+        grouped["set_id"] = str(item["set_id"])
+        grouped["rule_ids"] = "|".join(ids)
+        grouped["minimum_failed"] = minimum
+        grouped["unit"] = "binary screening state"
+        grouped["eligibility_denominator"] = "all listed rules"
+        grouped["time_window"] = str(item.get("time_window", "stage-specific windows"))
+        grouped["NA_reason"] = np.where(
+            grouped.set_failed.isna(), "one_or_more_required_thresholds_unknown", ""
+        )
+        grouped["source"] = "absolute_performance_thresholds.csv"
+        outputs.append(grouped.drop(columns=["present_rules", "rows"]))
+    result = pd.concat(outputs, ignore_index=True)
+    return result[[
+        "BUILDINGSTRUCTUREID", "event_id", "set_id", "rule_ids", "minimum_failed",
+        "failed_known", "evaluable_rules", "required_rules", "unknown_rules", "set_failed",
+        "unit", "eligibility_denominator", "time_window", "NA_reason", "source",
+    ]]
 
 
 def _period(hour: int, periods: list[dict[str, Any]]) -> str:

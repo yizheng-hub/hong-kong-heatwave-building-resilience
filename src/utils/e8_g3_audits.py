@@ -32,7 +32,7 @@ def counterfactual_audit(root: Path, work: Path) -> None:
     manuscript = root / "MANUSCRIPT_DRAFT.md"
     source = root / "src" / "00_PREPARE_AND_AUDIT_INPUTS.py"
     legacy_cache = (
-        root / "output" / "paper_pipeline_v0_3" / "02_building_response"
+        root / "intermediate" / "foundation_pipeline" / "02_building_response"
         / "energyplus_run_cache" / "energyplus_multizone_counterfactual_resilience_v0_23"
     )
     rows = [
@@ -154,7 +154,7 @@ def weather_audit(root: Path, work: Path) -> None:
 
 def hkust_audit(root: Path, work: Path) -> None:
     observed_path = (
-        root / "output" / "paper_pipeline_v0_3" / "02_building_response"
+        root / "intermediate" / "foundation_pipeline" / "02_building_response"
         / "hkust_whole_building_hourly_calibration.parquet"
     )
     observed = pd.read_parquet(observed_path)
@@ -234,7 +234,7 @@ def mechanism_and_vintage_audit(root: Path, work: Path) -> None:
     production = load_production(root)
     params = production.prototype_parameter_table()
     design = pd.read_csv(
-        root / "output" / "paper_pipeline_v0_3" / "02_building_response"
+        root / "intermediate" / "foundation_pipeline" / "02_building_response"
         / "thermal_experiment_design.csv"
     )
     residential = params.loc[params["sector"].eq("residential")].copy()
@@ -266,12 +266,12 @@ def mechanism_and_vintage_audit(root: Path, work: Path) -> None:
     write_csv(pd.DataFrame(reference_rows), work / "04_mechanisms" / "mechanism_reference_design_audit.csv")
 
     final = pd.read_parquet(
-        root / "output" / "paper_pipeline_v0_3" / "02_building_response"
+        root / "intermediate" / "foundation_pipeline" / "02_building_response"
         / "all_sector_building_model_inputs.parquet",
         columns=["BUILDINGSTRUCTUREID", "main_class", "gfa_value_m2"],
     )
     final_ids = pd.read_parquet(
-        root / "output" / "paper_pipeline_v0_3" / "03_energy_resilience"
+        root / "result" / "accepted" / "03_stock"
         / "building_reference_beri.parquet",
         columns=["BUILDINGSTRUCTUREID"],
     )

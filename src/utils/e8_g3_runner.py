@@ -561,7 +561,7 @@ def _compile_validation_cases(
 def compile_g3(project_root: Path, work_root: Path) -> pd.DataFrame:
     production = load_production(project_root)
     design = pd.read_csv(
-        project_root / "output" / "paper_pipeline_v0_3" / "02_building_response"
+        project_root / "intermediate" / "foundation_pipeline" / "02_building_response"
         / "thermal_experiment_design.csv"
     ).set_index("base_case_id")
     rows = []

@@ -1,0 +1,16 @@
+{
+  "generated_root": "result/population_revision_run",
+  "accepted_root": "result/accepted",
+  "tables": 101,
+  "accepted_tables": 98,
+  "additional_generated_tables": 3,
+  "status_counts": {
+    "byte_identical": 67,
+    "content_differs": 30,
+    "additional_generated": 3,
+    "content_equal_hash_differs": 1
+  },
+  "all_rows_and_columns_equal": false,
+  "all_content_equal": false,
+  "all_scientific_content_equal": false
+}

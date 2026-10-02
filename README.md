@@ -30,6 +30,43 @@ python src/run_pipeline.py --check-only --full-local --report docs/audit/UNIFIED
 
 The default workflow writes 23 PNG files to `output/figures/`, refreshes `docs/DATA_DICTIONARY.csv`, updates the redistributable-file manifest `SHA256SUMS.txt`, and reruns validation. Large local-only inputs and solver trees are checked through the full-local inventory and accepted-result hashes rather than rehashed on every figure run. The editable notebook is `plot/plot.ipynb`; every figure has one complete executable cell containing data reads, transformations and styling. This analysis/figure workflow invokes EnergyPlus zero times.
 
+## Verified scientific rebuild
+
+The source-to-analysis chain can be checked without running a new physical
+simulation. Use separate verification directories so the accepted production
+record remains immutable:
+
+```bash
+python src/workflows/stages/prepare_building_stock.py --output-dir intermediate/verification/clean_chain/stock
+python src/workflows/stages/prepare_population_context.py --foundation-dir intermediate/verification/clean_chain/stock --output-dir intermediate/verification/clean_chain/population
+python src/workflows/stages/prepare_stock_archetypes.py --foundation-dir intermediate/verification/clean_chain/stock --output-dir intermediate/verification/clean_chain/archetypes
+python src/workflows/stages/build_building_response_and_exposure.py --prepare-inputs-only --building-stock intermediate/verification/clean_chain/stock/building_stock_repaired.geoparquet --census-context intermediate/verification/clean_chain/population/residential_building_census_context.geoparquet --archetype-assignments intermediate/verification/clean_chain/archetypes/building_archetype_assignments.csv --archetype-catalog intermediate/verification/clean_chain/archetypes/archetype_catalog_simulation.csv --output-dir intermediate/verification/clean_chain/model_inputs
+python src/data_preparation/restore_prepared_stock.py
+python src/run_analysis.py --config config/analysis.json --output-dir result/population_revision_run
+python src/validation/compare_results.py --generated result/population_revision_run --accepted result/accepted --report-dir result/population_revision_comparison
+python src/data_preparation/promote_population_revision.py --source-root result/population_revision_run
+```
+
+The fourth command exits before engine validation or simulation. The analysis
+command has a zero-call EnergyPlus budget and consumes only preserved physical
+outputs. `result/population_revision_comparison/comparison_summary.json` reports the
+table-level comparison with the frozen accepted results.
+
+The provider-derived rebuild reproduces the accepted 330,761 building IDs and
+top-level class counts. The manuscript-aligned population is now rebuilt from
+the primary `ssug_landuse_residential_gfa` allocation and activated by
+`src/data_preparation/restore_prepared_stock.py`. It assigns 7,405,391.46
+reference residents; across 540 estates, the normalized absolute and root-square
+errors are 4.22% and 6.45% (Spearman's rho = 0.986). The previously retained
+tenure-capacity allocation remains only in the frozen accepted archive for audit
+comparison and is not used by the current compact manuscript results.
+
+All active code and configuration use project-relative paths. Original
+production receipts and preserved solver/compiled-input manifests retain their
+historical absolute path strings as immutable provenance; those strings are not
+resolved by the current workflow and are not rewritten because doing so would
+invalidate the original evidence hashes.
+
 ## Repository layout
 
 ```text

@@ -29,6 +29,41 @@ python src/run_pipeline.py --check-only --full-local --report docs/audit/UNIFIED
 
 This also invokes EnergyPlus zero times. It verifies the full local scientific record, including exact hashes from the final production receipt and minimum inventories for original inputs, compiled physical inputs, solver outputs, unpacked accepted results and the pinned runtime.
 
+### Source-to-analysis verification in clean directories
+
+The stock, population context, archetype assignment and final pre-weather model
+inputs can be rebuilt as an isolated chain:
+
+```bash
+python src/workflows/stages/prepare_building_stock.py --output-dir intermediate/verification/clean_chain/stock
+python src/workflows/stages/prepare_population_context.py --foundation-dir intermediate/verification/clean_chain/stock --output-dir intermediate/verification/clean_chain/population
+python src/workflows/stages/prepare_stock_archetypes.py --foundation-dir intermediate/verification/clean_chain/stock --output-dir intermediate/verification/clean_chain/archetypes
+python src/workflows/stages/build_building_response_and_exposure.py --prepare-inputs-only --building-stock intermediate/verification/clean_chain/stock/building_stock_repaired.geoparquet --census-context intermediate/verification/clean_chain/population/residential_building_census_context.geoparquet --archetype-assignments intermediate/verification/clean_chain/archetypes/building_archetype_assignments.csv --archetype-catalog intermediate/verification/clean_chain/archetypes/archetype_catalog_simulation.csv --output-dir intermediate/verification/clean_chain/model_inputs
+```
+
+This chain is solver-free. It reproduces 341,153 source footprints, 283,296
+residential/mixed-use contextual records and the accepted 330,761-building
+candidate membership (251,838 residential, 49,110 commercial and 29,813
+mixed-use buildings). The unresolved floor-model holdout gate remains reported
+as failed and is not hidden by the successful cohort reproduction.
+
+The complete post-processing run uses preserved physical outputs and a blank
+result directory. First activate the current official-source population rebuild,
+then run and promote the verified population-dependent outputs:
+
+```bash
+python src/data_preparation/restore_prepared_stock.py
+python src/run_analysis.py --config config/analysis.json --output-dir result/population_revision_run
+python src/validation/compare_results.py --generated result/population_revision_run --accepted result/accepted --report-dir result/population_revision_comparison
+python src/data_preparation/promote_population_revision.py --source-root result/population_revision_run
+```
+
+The post-processing audit records zero EnergyPlus calls. The strict field-level
+audit confirms that all non-population physical outcomes are unchanged; expected
+differences are confined to population weights and their derived exposure and
+screening quantities. Project-path and source-provenance fields may also differ
+after consolidation.
+
 ### Physical rebuild
 
 The physical workflow is retained for auditability and future reruns. Source preparation is implemented by the five scripts in `src/workflows/stages/`; eight-event compilation/execution is implemented by `src/utils/e8_open6_prepare.py`, `src/workflows/run_g4a_local.py`, `src/workflows/run_e8_local.py` and `src/workflows/run_e8_completion.py`. These entry points have explicit resource and approval gates. Consult each command's `--help` before use. A physical rebuild is not part of the default figure workflow and was not invoked during repository consolidation.

@@ -206,6 +206,60 @@ def evaluate_fold(event_scores: pd.DataFrame, target: pd.DataFrame, train_events
     return pd.DataFrame(summary), pd.DataFrame(selection)
 
 
+def write_cross_event_failure_summary(target: pd.DataFrame, output_path: Path) -> None:
+    """Write building-level cross-event frequency and severity without per-building Python loops."""
+    failure_summaries = []
+    outcomes = ("cooling_shortfall_kwh", "absolute_dh32", "extra_dh26", "recovery_hours")
+    for outcome in outcomes:
+        if outcome not in target:
+            continue
+        values = pd.to_numeric(target[outcome], errors="coerce")
+        if outcome == "recovery_hours" and "recovery_status" in target:
+            censored = target.recovery_status.astype(str).eq("right_censored")
+            lower = pd.to_numeric(target.get("recovery_lower_h", np.nan), errors="coerce")
+            failure = values.gt(0) | censored
+            severity = values.where(~censored, lower)
+            evaluable = values.notna() | censored
+            semantics = "observed_or_censoring_lower_bound_hours"
+        else:
+            censored = pd.Series(False, index=target.index)
+            failure = values.gt(0)
+            severity = values
+            evaluable = values.notna()
+            semantics = "observed_point_value"
+        working = pd.DataFrame({
+            "BUILDINGSTRUCTUREID": target["BUILDINGSTRUCTUREID"],
+            "evaluable_events": evaluable.astype("int8"),
+            "failure_events_positive": failure.astype("int8"),
+            "right_censored_events": censored.astype("int8"),
+            "severity": severity,
+        })
+        summary_outcome = working.groupby("BUILDINGSTRUCTUREID", sort=False, as_index=False).agg(
+            evaluable_events=("evaluable_events", "sum"),
+            failure_events_positive=("failure_events_positive", "sum"),
+            right_censored_events=("right_censored_events", "sum"),
+            median_severity=("severity", "median"),
+            maximum_severity=("severity", "max"),
+        )
+        summary_outcome["outcome"] = outcome
+        summary_outcome["severity_semantics"] = semantics
+        failure_summaries.append(summary_outcome)
+    failure_summary = pd.concat(failure_summaries, ignore_index=True)
+    building_order = pd.Series(pd.unique(target["BUILDINGSTRUCTUREID"]), name="BUILDINGSTRUCTUREID")
+    order_lookup = pd.Series(np.arange(len(building_order)), index=building_order)
+    failure_summary["_building_order"] = failure_summary["BUILDINGSTRUCTUREID"].map(order_lookup)
+    outcome_order = {name: index for index, name in enumerate(outcomes)}
+    failure_summary["_outcome_order"] = failure_summary["outcome"].map(outcome_order)
+    failure_summary = failure_summary.sort_values(
+        ["_building_order", "_outcome_order"], kind="stable"
+    ).drop(columns=["_building_order", "_outcome_order"])
+    atomic_csv(output_path, failure_summary[[
+        "BUILDINGSTRUCTUREID", "outcome", "evaluable_events",
+        "failure_events_positive", "right_censored_events", "median_severity",
+        "maximum_severity", "severity_semantics",
+    ]])
+
+
 def run_event_evaluation(event_scores: pd.DataFrame, target: pd.DataFrame, output_dir: Path) -> dict:
     summaries, selections = [], []
     for endpoint in ("lower", "upper"):
@@ -272,33 +326,9 @@ def run_event_evaluation(event_scores: pd.DataFrame, target: pd.DataFrame, outpu
                             "buildings": len(full), "evaluable": int(beri.notna().sum()),
                             "median_BERI_lower": beri.median() if beri.notna().any() else np.nan})
     atomic_csv(output_dir / "sensitivity_beri_weights.csv", pd.DataFrame(weight_rows))
-    failure_rows = []
-    for building, group in target.groupby("BUILDINGSTRUCTUREID", sort=False):
-        for outcome in ("cooling_shortfall_kwh", "absolute_dh32", "extra_dh26", "recovery_hours"):
-            if outcome not in group:
-                continue
-            values = pd.to_numeric(group[outcome], errors="coerce")
-            if outcome == "recovery_hours" and "recovery_status" in group:
-                status = group.recovery_status.astype(str)
-                censored = status.eq("right_censored")
-                lower = pd.to_numeric(group.get("recovery_lower_h", np.nan), errors="coerce")
-                failure = values.gt(0) | censored
-                severity = values.where(~censored, lower)
-                evaluable = values.notna() | censored
-            else:
-                censored = pd.Series(False, index=group.index)
-                failure = values.gt(0)
-                severity = values
-                evaluable = values.notna()
-            failure_rows.append({"BUILDINGSTRUCTUREID": building, "outcome": outcome,
-                                 "evaluable_events": int(evaluable.sum()),
-                                 "failure_events_positive": int(failure.sum()),
-                                 "right_censored_events": int(censored.sum()),
-                                 "median_severity": severity.median() if severity.notna().any() else np.nan,
-                                 "maximum_severity": severity.max() if severity.notna().any() else np.nan,
-                                 "severity_semantics": ("observed_or_censoring_lower_bound_hours"
-                                                        if outcome == "recovery_hours" else "observed_point_value")})
-    atomic_csv(output_dir / "cross_event_failure_frequency_severity.csv", pd.DataFrame(failure_rows))
+    write_cross_event_failure_summary(
+        target, output_dir / "cross_event_failure_frequency_severity.csv"
+    )
     return {"folds": 11, "endpoint_scenarios": 2, "full_ratings": len(full),
             "rank_rows": len(summary), "capture_rows": len(selection)}
 

@@ -34,7 +34,56 @@ SOURCE_INPUTS = ("model.idf", "weather.epw", "schedules.csv", "event_schedules.p
 SOURCE_PARSED = ("native_timestep_building.parquet", "native_timestep_zones.parquet", "parser_audit.json")
 
 
-def hydrate_source_index(frame: pd.DataFrame, *, result_root: Path | None = None) -> pd.DataFrame:
+def _portable_path(path: Path, project_root: Path) -> str:
+    try:
+        return path.resolve().relative_to(project_root.resolve()).as_posix()
+    except ValueError:
+        return str(path.resolve())
+
+
+def _resolve_source_directory(upstream: Path, source: dict[str, Any]) -> Path | None:
+    declared = str(source.get("source_result_dir", ""))
+    if declared:
+        candidate = Path(declared)
+        if not candidate.is_absolute():
+            candidate = upstream / candidate
+        if candidate.is_dir():
+            return candidate
+    event_id = str(source.get("event_id", ""))
+    run_ids = []
+    for key in ("resolved_run_id", "source_run_id", "run_id"):
+        value = str(source.get(key, ""))
+        if value and value not in run_ids:
+            run_ids.append(value)
+    roots = [
+        upstream / "intermediate/simulation_outputs/upstream/E8_open6/events" / event_id / "02_runs/g3_results",
+        upstream / "intermediate/simulation_outputs/upstream/G4a_local/02_runs/g3_results",
+        upstream / "intermediate/simulation_outputs/upstream/02_runs/g3_results",
+        upstream / "intermediate/simulation_outputs/completion/lockbox/02_runs/g3_results",
+        upstream / "intermediate/simulation_outputs/completion/mechanisms/02_runs/g3_results",
+    ]
+    # Identifiers are ordered from the current resolved run to historical cache
+    # identities.  Resolve one identifier at a time so a valid current run is not
+    # made ambiguous merely because the same physical input also exists in G3.
+    for run_id in run_ids:
+        unique = []
+        for root in roots:
+            match = root / run_id
+            if match.is_dir() and match.resolve() not in unique:
+                unique.append(match.resolve())
+        if len(unique) > 1:
+            raise Blocked(f"multiple current source directories match {run_id}: {unique}")
+        if unique:
+            return unique[0]
+    return None
+
+
+def hydrate_source_index(
+    frame: pd.DataFrame,
+    *,
+    result_root: Path | None = None,
+    project_root: Path | None = None,
+) -> pd.DataFrame:
     """Resolve a lightweight logical index to complete, byte-verified read-only evidence."""
     required = {"run_id", "event_id", "base_case_id", "prototype_id", "floor_position", "scenario_id", "physics_hash"}
     if missing := sorted(required - set(frame.columns)):
@@ -42,9 +91,13 @@ def hydrate_source_index(frame: pd.DataFrame, *, result_root: Path | None = None
     rows = []
     for source in frame.fillna("").to_dict("records"):
         directory = Path(str(source.get("source_result_dir", ""))) if source.get("source_result_dir") else None
+        if directory is not None and not directory.is_absolute() and project_root is not None:
+            directory = Path(project_root) / directory
         if (directory is None or not directory.exists()) and result_root is not None:
             resolved = str(source.get("resolved_run_id") or source.get("source_run_id") or source["run_id"])
             directory = Path(result_root) / "02_runs/g3_results" / resolved
+        if (directory is None or not directory.exists()) and project_root is not None:
+            directory = _resolve_source_directory(Path(project_root), source)
         if directory is None or not directory.exists():
             raise Blocked(f"source result directory missing for {source['run_id']}")
         missing_files = [str(directory / part / name) for part, names in
@@ -92,12 +145,11 @@ def effective_open6_source_index(upstream: Path) -> pd.DataFrame:
     frame = pd.read_csv(path).fillna("")
     if "source_result_dir" not in frame:
         frame["source_result_dir"] = ""
-    for index, row in frame.loc[frame.source_result_dir.astype(str).eq("")].iterrows():
-        directory = (
-            upstream / "intermediate/simulation_outputs/upstream/E8_open6/events" / str(row.event_id)
-            / "02_runs/g3_results" / str(row.run_id)
-        )
-        frame.at[index, "source_result_dir"] = str(directory)
+    for index, row in frame.iterrows():
+        directory = _resolve_source_directory(upstream, row.to_dict())
+        if directory is None:
+            raise Blocked(f"Open6 source result directory missing for {row.run_id}")
+        frame.at[index, "source_result_dir"] = _portable_path(directory, upstream)
     for replacement in _discover_c70_supersessions(upstream, frame):
         mask = frame.run_id.astype(str).eq(replacement["run_id"])
         if int(mask.sum()) != 1:
@@ -111,7 +163,7 @@ def effective_open6_source_index(upstream: Path) -> pd.DataFrame:
 
 
 def _upstream_source_map(upstream: Path) -> dict[str, dict[str, Any]]:
-    frame = hydrate_source_index(effective_open6_source_index(upstream))
+    frame = hydrate_source_index(effective_open6_source_index(upstream), project_root=upstream)
     result: dict[str, dict[str, Any]] = {}
     for row in frame.to_dict("records"):
         result.setdefault(str(row["physics_hash"]), row)
@@ -128,7 +180,7 @@ def _discover_c70_supersessions(
         if not index_path.is_file():
             raise Blocked("Open6 source index is not available")
         source_index = pd.read_csv(index_path).fillna("")
-    archive = upstream / "intermediate/simulation_outputs/upstream/E8_open6/c70_capacity_resolution/superseded_results"
+    archive = upstream / "intermediate/simulation_outputs/archive/c70_superseded"
     if not archive.is_dir():
         return []
     replacements: list[dict[str, str]] = []
@@ -143,12 +195,9 @@ def _discover_c70_supersessions(
         old_hash = old_versions[0].name
         if str(row.physics_hash) != old_hash:
             raise Blocked(f"C70 archived hash does not match frozen source index: {run_dir.name}")
-        current = (
-            Path(str(row.source_result_dir))
-            if str(row.source_result_dir)
-            else upstream / "intermediate/simulation_outputs/upstream/E8_open6/events" / str(row.event_id)
-                 / "02_runs/g3_results" / run_dir.name
-        )
+        current = _resolve_source_directory(upstream, row.to_dict())
+        if current is None:
+            raise Blocked(f"C70 current result directory is missing: {run_dir.name}")
         manifest_path = current / "inputs/input_manifest.json"
         if not manifest_path.is_file():
             raise Blocked(f"C70 current input manifest is missing: {run_dir.name}")
@@ -173,8 +222,8 @@ def _discover_c70_supersessions(
             "scenario_id": "HW_C70",
             "supersedes_physics_hash": old_hash,
             "replacement_physics_hash": new_hash,
-            "superseded_result_dir": str(old_versions[0]),
-            "source_result_dir": str(current),
+            "superseded_result_dir": _portable_path(old_versions[0], upstream),
+            "source_result_dir": _portable_path(current, upstream),
             "capacity_control_implementation": implementation,
         })
     return replacements
@@ -196,7 +245,7 @@ def audit_v13_migration(upstream: Path, output_dir: Path, candidate_lock_sha256:
     if plan:
         run_id = str(plan["run_id"]); old_hash = str(plan["supersedes_physics_hash"]); new_hash = str(plan["replacement_physics_hash"])
         current = upstream / "intermediate/simulation_outputs/upstream/E8_open6/events/HKO_LI_0049/02_runs/g3_results" / run_id
-        old = repair / "superseded_results" / run_id / old_hash
+        old = upstream / "intermediate/simulation_outputs/archive/c70_superseded" / run_id / old_hash
         for version_id, source_root, expected in (("v1.2_superseded", old, old_hash), ("v1.3_effective", current, new_hash)):
             manifest = source_root / "inputs/input_manifest.json"
             manifest_data = json.loads(manifest.read_text(encoding="utf-8")) if manifest.is_file() else {}
@@ -475,7 +524,7 @@ def compile_lockboxes(c: dict[str, Any], approval: dict[str, Any], prediction_re
     out = Path(c["results_root"]) / "00_protocol/compiled_inputs/lockbox"
     delivery = Path(c["results_root"]) / "00_protocol/lockbox_manifests"
     production = _frozen_production(workspace, upstream)
-    design = pd.read_csv(upstream / "output/paper_pipeline_v0_3/02_building_response/thermal_experiment_design.csv")
+    design = pd.read_csv(upstream / "intermediate/foundation_pipeline/02_building_response/thermal_experiment_design.csv")
     source_map = _upstream_source_map(upstream)
     rows = []
     for event_id in LOCKBOX_EVENTS:
@@ -584,7 +633,7 @@ def compile_mechanisms(c: dict[str, Any], approval: dict[str, Any]) -> tuple[pd.
         raise Blocked("Approved mechanism level hash differs")
     production = _frozen_production(workspace, upstream)
     prototypes = production.prototype_parameter_table()
-    design = pd.read_csv(upstream / "output/paper_pipeline_v0_3/02_building_response/thermal_experiment_design.csv")
+    design = pd.read_csv(upstream / "intermediate/foundation_pipeline/02_building_response/thermal_experiment_design.csv")
     source_map = _upstream_source_map(upstream)
     out = Path(c["results_root"]) / "00_protocol/compiled_inputs/mechanisms"
     delivery = Path(c["results_root"]) / "02_mechanisms/manifests"

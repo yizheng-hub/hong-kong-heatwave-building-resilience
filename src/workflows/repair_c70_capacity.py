@@ -32,6 +32,7 @@ from utils.e8_g3_runner import _c70_total_capacity_ems, load_production
 
 DEFAULT_CONFIG = ROOT / "intermediate/simulation_outputs/upstream/E8_open6/event_configs/HKO_LI_0049.json"
 RESOLUTION = ROOT / "intermediate/simulation_outputs/upstream/E8_open6/c70_capacity_resolution"
+SUPERSEDED_ARCHIVE = ROOT / "intermediate/simulation_outputs/archive/c70_superseded"
 RATE_TOLERANCE_W = 1e-6
 
 
@@ -252,7 +253,7 @@ def install_replacement(c: dict, state: dict, run_id: str, receipt: dict,
                         replacement_result: Path, parsed_item: dict, launch: dict) -> None:
     item = state["rows"][run_id]
     canonical = science.result_dir(Path(c["output_dir"]), run_id)
-    archive = RESOLUTION / "superseded_results" / run_id / item["row"]["physics_hash"]
+    archive = SUPERSEDED_ARCHIVE / run_id / item["row"]["physics_hash"]
     if archive.exists():
         raise core.Blocked(f"Superseded archive already exists; inspect before replacing: {archive}")
     archive.parent.mkdir(parents=True, exist_ok=True)

@@ -4,10 +4,10 @@
   "prototype_parameter_table_sha256": "a887abb2cfc0bb2ecd2905eefb3fc552e2510c0d00d6e0a453dfe75eb8c8ffa8",
   "files": {
     "src/utils/g4a_local_execution.py": "2afe5c828949b6b758410bc0f08434d46570d55d32b6369605c525a9e0130f9b",
-    "src/utils/e8_g3_runner.py": "74e208d41482f402d03b3cb7284a7be636244caf2540742a5d69bae471913261",
+    "src/utils/e8_g3_runner.py": "9b6e4d3db6bf91cffc159871461cd3a44d4df5fdbf4946385cd6007cc67e36bb",
     "src/utils/e8_g3_postprocess.py": "94f1f55a74fb76cb8ae0b2258467ab05b587dd836ba16eba2ef99d15b3dec836",
     "src/utils/simulation_metrics.py": "7522cabf5212700ea2c880dcaa4de796e9b7a00569e00554f471c550fbbdbb40",
-    "src/workflows/stages/build_building_response_and_exposure.py": "e1476208b8772c82386bcb1b986252c07cce7c766f8c54b173ad7bc336a4edb5",
+    "src/workflows/stages/build_building_response_and_exposure.py": "0d1ffc0044d6724b52e5b59dd3034b3dd67bf8e3cded08df1ecf7dde68519038",
     "config/foundation_analysis.json": "a6aa8ec626a5d4a8a92e30c9612454ada59fbc528c3b650ecbe578c6e0c23cca",
     "config/contracts/thermal_monitoring_contract.csv": "cdf45f863e50add1e5c6f5a5d840363a4fab0c1615a4ae88365ff988b9cf5693",
     "intermediate/simulation_outputs/upstream/G3_metrics_v2_closure/G4a_run_manifest.csv": "7d74083df70130b0f4f86d447259b3b56c5520cfc24f9be2f608f99eba6be1a8",

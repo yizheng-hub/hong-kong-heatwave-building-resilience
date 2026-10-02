@@ -11,11 +11,28 @@ from paths import project_paths
 # inputs and large solver artefacts whose inventory is validated separately.
 LOCAL_ONLY_TREES = (
     Path("data"),
+    Path("intermediate/foundation_pipeline"),
     Path("intermediate/compiled_simulation_inputs"),
+    Path("intermediate/prepared_stock/all_sector_building_model_inputs.parquet"),
+    Path("intermediate/prepared_stock/building_hourly_component_map.parquet"),
+    Path("intermediate/prepared_stock/population_reference.parquet"),
+    Path("intermediate/prepared_stock/population_reference_provenance.json"),
+    Path("intermediate/prepared_stock/archetypes"),
+    Path("intermediate/prepared_stock/population"),
+    Path("intermediate/prepared_stock/source"),
+    Path("intermediate/prepared_weather"),
+    Path("intermediate/protocol"),
+    Path("intermediate/plot.population_revision.executed.ipynb"),
     Path("intermediate/simulation_outputs"),
     Path("intermediate/source_derived"),
+    Path("intermediate/verification"),
+    Path("intermediate/verification_temp"),
     Path("result/accepted"),
+    Path("result/population_revision_run"),
     Path("result/production_run"),
+    Path("result/verification"),
+    Path("result/verification_run"),
+    Path("result/smoke_test"),
     Path("software/energyplus"),
 )
 

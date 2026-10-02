@@ -28,7 +28,7 @@ def audit_external_evidence(workspace: Path, upstream: Path, output_dir: Path, f
                      "source_status": "available" if exists else "missing_or_not_applicable",
                      "evidence_identity": "source-specific; legacy pass labels are not compatibility decisions"})
     audit = pd.DataFrame(rows)
-    old = pd.read_csv(workspace / "frozen_upstream/docs/validation_evidence_matrix.csv").fillna("")
+    old = pd.read_csv(workspace / "intermediate/protocol/evidence/validation_evidence_matrix.csv").fillna("")
     compatibility = old.merge(audit[["dataset_match", "compatibility_decision", "resolved_path", "source_exists",
                                      "source_sha256", "method_identity"]],
                               left_on="dataset", right_on="dataset_match", how="left", validate="many_to_one")

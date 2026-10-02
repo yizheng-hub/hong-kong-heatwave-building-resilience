@@ -34,8 +34,9 @@ from PIL import Image
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+SOURCE_ROOT = ROOT / "src"
+if str(SOURCE_ROOT) not in sys.path:
+    sys.path.insert(0, str(SOURCE_ROOT))
 
 from utils.building_composition import FLOOR_ROLES, floor_role_weight_table
 
@@ -44,11 +45,11 @@ THERMAL_CONFIG = CONFIG["thermal"]
 POPULATION_CONFIG = CONFIG["population"]
 RANDOM_SEED = int(CONFIG["random_seed"])
 OUT = ROOT / CONFIG["output_root"] / "02_building_response"
-BUILDING_STOCK = ROOT / "output" / "heatwave_stock_foundation_v0_3" / "building_stock_repaired.geoparquet"
-CENSUS_CONTEXT = ROOT / "output" / "observational_evidence" / "residential_building_census_context.geoparquet"
-OLD_ASSIGNMENTS = ROOT / "output" / "heatwave_day3" / "building_archetype_assignments.csv"
-OLD_CATALOG = ROOT / "output" / "heatwave_day3" / "archetype_catalog_simulation.csv"
-WEATHER = ROOT / "output" / "heatwave_day3" / "heatwave_hourly_bias_corrected.csv"
+BUILDING_STOCK = ROOT / "intermediate" / "prepared_stock" / "source" / "building_stock_repaired.geoparquet"
+CENSUS_CONTEXT = ROOT / "intermediate" / "prepared_stock" / "population" / "residential_building_census_context.geoparquet"
+OLD_ASSIGNMENTS = ROOT / "intermediate" / "prepared_stock" / "archetypes" / "building_archetype_assignments.csv"
+OLD_CATALOG = ROOT / "intermediate" / "prepared_stock" / "archetypes" / "archetype_catalog_simulation.csv"
+WEATHER = ROOT / "intermediate" / "prepared_weather" / "heatwave_hourly_bias_corrected.csv"
 BG_CENSUS = ROOT / "data" / "official" / "census2021_HMA_BG_21C" / "HMA_BG_21C" / "BuildingGroup.CSV"
 BG_MEMBERSHIP = ROOT / "intermediate" / "source_derived" / "census2021_building_group_members.parquet"
 ALS_BUILDINGS = ROOT / "intermediate" / "source_derived" / "als_building_addresses_2026_08_13.parquet"
@@ -64,7 +65,7 @@ HKUST_WEATHER = ROOT / "data" / "external_validation_raw" / "hkust" / "nasa_powe
 HKUST_HIERARCHY = ROOT / CONFIG["output_root"] / "00_audit" / "hkust_meter_hierarchy_audit.csv"
 OFFICIAL_ENERGY_TARGETS = ROOT / "config" / "official_energy_calibration_2023.csv"
 OFFICIAL_SYSTEM_PEAK = ROOT / "config" / "official_system_peak_upper_bound_2023.csv"
-OFFICIAL_MONTHLY_ENERGY = ROOT / "output" / "heatwave_official_benchmarks" / "censtat_monthly_domestic_electricity.csv"
+OFFICIAL_MONTHLY_ENERGY = ROOT / "intermediate" / "source_derived" / "censtat_monthly_domestic_electricity.csv"
 HKO_DAILY_CACHE = ROOT / "data" / "weather" / "hko_open_data_daily"
 WRF_BUILDING_MAPPING = ROOT / CONFIG["output_root"] / "01_hazard" / "building_wrf_land_grid_mapping.parquet"
 WRF_BUILDING_HAZARD = ROOT / CONFIG["output_root"] / "01_hazard" / "building_heat_hazard_wrf1km.parquet"
@@ -188,7 +189,12 @@ def build_all_sector_model_inputs(
     height_valid = numeric(frame["height_value_m"]).between(2, 500)
     gfa_valid = numeric(frame["gfa_value_m2"]).gt(0)
     mixed = frame["main_class"].eq("Mixed-use")
-    component_valid = ~mixed | (frame["residential_gfa_m2"].gt(0) & frame["commercial_gfa_m2"].gt(0))
+    mixed_share_supported = ~mixed | numeric(frame["hkbfetd_residential_value"]).gt(0)
+    component_valid = ~mixed | (
+        frame["residential_gfa_m2"].gt(0)
+        & frame["commercial_gfa_m2"].gt(0)
+        & mixed_share_supported
+    )
     frame["qc_geometry_valid"] = geometry_valid
     frame["qc_floor_count_valid"] = floors_valid
     frame["qc_height_valid"] = height_valid
@@ -6038,6 +6044,10 @@ def write_validation_evidence_matrix(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=OUT)
+    parser.add_argument("--building-stock", type=Path, default=BUILDING_STOCK)
+    parser.add_argument("--census-context", type=Path, default=CENSUS_CONTEXT)
+    parser.add_argument("--archetype-assignments", type=Path, default=OLD_ASSIGNMENTS)
+    parser.add_argument("--archetype-catalog", type=Path, default=OLD_CATALOG)
     parser.add_argument("--energyplus-exe", type=Path, default=Path(os.environ.get("ENERGYPLUS_EXE", ENGINE)))
     parser.add_argument("--max-base-cases", type=int, default=int(THERMAL_CONFIG["max_base_cases"]))
     parser.add_argument("--max-events", type=int, default=int(THERMAL_CONFIG["max_events"]))
@@ -6087,11 +6097,12 @@ def main() -> None:
         print(f"02 external dynamic structure validation complete: {output}")
         return
 
-    context = gpd.read_parquet(CENSUS_CONTEXT)
+    context = gpd.read_parquet(args.census_context.resolve())
     stock_columns = [
         "BUILDINGSTRUCTUREID",
         "hkbfetd_main_class",
         "hkbfetd_sub_class",
+        "hkbfetd_residential_value",
         "ZONE_LABEL",
         "floors_value",
         "height_value_m",
@@ -6103,9 +6114,9 @@ def main() -> None:
         "perimeter_m",
         "geometry",
     ]
-    stock = gpd.read_parquet(BUILDING_STOCK, columns=stock_columns)
-    assignments = pd.read_csv(OLD_ASSIGNMENTS)
-    old_catalog = pd.read_csv(OLD_CATALOG)
+    stock = gpd.read_parquet(args.building_stock.resolve(), columns=stock_columns)
+    assignments = pd.read_csv(args.archetype_assignments.resolve())
+    old_catalog = pd.read_csv(args.archetype_catalog.resolve())
     groups = pd.read_parquet(BG_MEMBERSHIP)
     als = pd.read_parquet(ALS_BUILDINGS)
     hma_boundaries = gpd.read_parquet(HMA_BOUNDARIES)

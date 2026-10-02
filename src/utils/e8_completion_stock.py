@@ -17,7 +17,7 @@ from utils.e8_completion_common import ALL_EVENTS, Blocked, atomic_csv, atomic_p
 from utils import e8_g3_postprocess as science
 
 
-POPULATION_FIELD = "allocated_population__ssug_stpug_tenure_household_capacity"
+POPULATION_FIELD = "allocated_population__ssug_landuse_residential_gfa"
 REGION_BOUNDS = {
     "Ho Man Tin": (836126.18034143, 818910.80931283, 837345.03745461, 820422.94111362),
     "Mong Kok": (835132.28, 819514.11, 836016.10, 820302.95),
@@ -196,8 +196,13 @@ def propagate_event(buildings: pd.DataFrame, components: pd.DataFrame, response:
                           result, on="BUILDINGSTRUCTUREID", how="left", validate="one_to_one")
 
 
-def propagate_stock(upstream: Path, response: pd.DataFrame, output_dir: Path) -> dict:
-    source = upstream / "output/paper_pipeline_v0_3/02_building_response"
+def propagate_stock(
+    upstream: Path,
+    response: pd.DataFrame,
+    output_dir: Path,
+    prepared_stock_root: Path | None = None,
+) -> dict:
+    source = Path(prepared_stock_root) if prepared_stock_root else upstream / "intermediate/prepared_stock"
     component_map = pd.read_parquet(source / "building_hourly_component_map.parquet")
     attributes = pd.read_parquet(source / "all_sector_building_model_inputs.parquet")
     buildings, components = stock_components(component_map, attributes)

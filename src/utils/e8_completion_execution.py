@@ -26,7 +26,8 @@ from utils.e8_completion_manifests import (SOURCE_INPUTS, SOURCE_PARSED, audit_t
                                            effective_open6_source_index, hydrate_source_index)
 from utils.e8_completion_analysis import (build_rating, evaluate_fold, exchangeable_selection_probability,
                                            mechanism_effects, run_event_evaluation,
-                                           threshold_sensitivity_from_runs)
+                                           threshold_sensitivity_from_runs,
+                                           write_cross_event_failure_summary)
 from utils.e8_completion_required_analyses import (
     analysis_decision_hash, compute_absolute_performance_thresholds,
     compute_construction_year_tables, compute_day_night_humid_recovery,
@@ -343,7 +344,7 @@ def _freeze_open6_stock(c):
                                         pd.read_csv(root / "01_core_e8/open6_thermal.csv"),
                                         pd.read_csv(root / "01_core_e8/open6_scores.csv"),
                                         production.prototype_parameter_table())
-    source = upstream / "output/paper_pipeline_v0_3/02_building_response"
+    source = Path(c.get("prepared_stock_root", upstream / "intermediate/prepared_stock"))
     buildings, components = stock_components(pd.read_parquet(source / "building_hourly_component_map.parquet"),
                                               pd.read_parquet(source / "all_sector_building_model_inputs.parquet"))
     folder = root / "03_stock/open6_prediction_events"; folder.mkdir(parents=True, exist_ok=True)
@@ -351,7 +352,10 @@ def _freeze_open6_stock(c):
     for event in open_events:
         frame = propagate_event(buildings, components, response, event)
         frame.to_parquet(folder / f"{event}.parquet", index=False)
-    open_index = hydrate_source_index(pd.read_csv(root / "01_core_e8/open6_source_index.csv").fillna(""))
+    open_index = hydrate_source_index(
+        pd.read_csv(root / "01_core_e8/open6_source_index.csv").fillna(""),
+        project_root=upstream,
+    )
     apply_simultaneous_recovery(open_index, components, folder,
                                 root / "03_stock/open6_recovery_trajectories", event_ids=open_events)
     event_frames = [pd.read_parquet(folder / f"{event}.parquet") for event in open_events]
@@ -653,15 +657,25 @@ def _complete_analysis(c, approval):
         response = aggregate_design_metrics(energy, thermal, scores, production.prototype_parameter_table())
         atomic_csv(root / "01_core_e8/prototype_floor_event_response.csv", response)
         _task(c, "T10_stock_e8", "running")
-        stock = propagate_stock(upstream, response, root / "03_stock")
+        stock = propagate_stock(
+            upstream,
+            response,
+            root / "03_stock",
+            Path(c.get("prepared_stock_root", upstream / "intermediate/prepared_stock")),
+        )
         open_index = pd.read_csv(root / "01_core_e8/open6_source_index.csv").fillna("")
         lock_manifest = pd.read_csv(root / "00_protocol/lockbox_manifests/lockbox_run_manifest.csv").fillna("")
+        lock_runtime = Path(c.get("lockbox_runtime_root", root / "runtime/lockbox"))
         lock_manifest["source_result_dir"] = lock_manifest.run_id.map(
-            lambda run_id: str(root / "runtime/lockbox/02_runs/g3_results" / str(run_id)))
-        open_index = hydrate_source_index(open_index)
-        lock_index = hydrate_source_index(lock_manifest, result_root=root / "runtime/lockbox")
+            lambda run_id: str(lock_runtime / "02_runs/g3_results" / str(run_id)))
+        open_index = hydrate_source_index(open_index, project_root=upstream)
+        lock_index = hydrate_source_index(
+            lock_manifest,
+            result_root=lock_runtime,
+            project_root=upstream,
+        )
         run_index = pd.concat([open_index, lock_index], ignore_index=True, sort=False)
-        event_dates = pd.read_csv(Path(c["workspace_root"]) / "frozen_upstream/inputs/E8_event_assignment.csv")
+        event_dates = pd.read_csv(Path(c["workspace_root"]) / "config/events/E8_event_assignment.csv")
         components = pd.read_parquet(root / "03_stock/building_component_map.parquet")
         city_event_energy_trajectories(run_index, components, production.prototype_parameter_table(), event_dates,
                                        root / "03_stock/city_trajectories")
@@ -718,7 +732,22 @@ def _complete_analysis(c, approval):
         evaluation = load_task_state(c)["tasks"]["T11_evaluation"].get("outputs", {})
     else:
         _task(c, "T11_evaluation", "running")
-        evaluation = run_event_evaluation(event_scores, events, root / "04_validation")
+        evaluation_core_artifacts = evaluation_artifacts[:5]
+        if all(path.is_file() for path in evaluation_core_artifacts):
+            summary = pd.read_csv(evaluation_core_artifacts[0])
+            selection = pd.read_csv(evaluation_core_artifacts[1])
+            full_existing = pd.read_csv(evaluation_core_artifacts[2])
+            evaluation = {
+                "folds": 11,
+                "endpoint_scenarios": 2,
+                "full_ratings": len(full_existing),
+                "rank_rows": len(summary),
+                "capture_rows": len(selection),
+            }
+            if not evaluation_artifacts[5].is_file():
+                write_cross_event_failure_summary(events, evaluation_artifacts[5])
+        else:
+            evaluation = run_event_evaluation(event_scores, events, root / "04_validation")
         rating = pd.read_csv(root / "04_validation/full_e8_reference_rating.csv")
         attributes = events.sort_values("event_id").drop_duplicates("BUILDINGSTRUCTUREID")
         attribute_columns = [c for c in ("BUILDINGSTRUCTUREID", "main_class", "sub_class",
@@ -754,69 +783,91 @@ def _complete_analysis(c, approval):
     ]
     if not _task_current(c, "T12_sensitivity", required_analysis_artifacts, dependency_hash=decision_hash):
         _task(c, "T12_sensitivity", "running")
-        absolute_detail = compute_absolute_performance_thresholds(events, analysis_decisions["absolute_performance_thresholds"])
-        absolute_summary = absolute_detail.groupby(["event_id", "rule_id", "stage", "metric", "unit", "operator", "threshold",
-                                                    "eligibility_denominator", "time_window", "source", "decision_version"],
-                                                   dropna=False, as_index=False).agg(
-            buildings=("BUILDINGSTRUCTUREID", "nunique"), eligible_buildings=("eligible", "sum"),
-            failed_buildings=("failed", lambda x: int(x.dropna().astype(bool).sum())),
-            unknown_buildings=("failed", lambda x: int(x.isna().sum())))
-        atomic_parquet(required_analysis_artifacts[1], absolute_detail)
-        atomic_csv(required_analysis_artifacts[0], absolute_summary)
-        multi_detail = compute_multi_stage_threshold_sets(absolute_detail, analysis_decisions["multi_stage_threshold_set"])
-        multi_summary = multi_detail.groupby(["event_id", "set_id", "rule_ids", "minimum_failed", "unit", "time_window", "source"],
-                                             dropna=False, as_index=False).agg(
-            buildings=("BUILDINGSTRUCTUREID", "nunique"),
-            failed_buildings=("set_failed", lambda x: int(x.dropna().astype(bool).sum())),
-            evaluable_buildings=("set_failed", lambda x: int(x.notna().sum())),
-            unknown_buildings=("set_failed", lambda x: int(x.isna().sum())))
-        atomic_parquet(required_analysis_artifacts[3], multi_detail); atomic_csv(required_analysis_artifacts[2], multi_summary)
+        if all(path.is_file() for path in required_analysis_artifacts[:2]):
+            absolute_detail = pd.read_parquet(required_analysis_artifacts[1])
+        else:
+            absolute_detail = compute_absolute_performance_thresholds(events, analysis_decisions["absolute_performance_thresholds"])
+            absolute_summary = absolute_detail.groupby(["event_id", "rule_id", "stage", "metric", "unit", "operator", "threshold",
+                                                        "eligibility_denominator", "time_window", "source", "decision_version"],
+                                                       dropna=False, as_index=False).agg(
+                buildings=("BUILDINGSTRUCTUREID", "nunique"), eligible_buildings=("eligible", "sum"),
+                failed_buildings=("failed", lambda x: int(x.dropna().astype(bool).sum())),
+                unknown_buildings=("failed", lambda x: int(x.isna().sum())))
+            atomic_parquet(required_analysis_artifacts[1], absolute_detail)
+            atomic_csv(required_analysis_artifacts[0], absolute_summary)
+        if not all(path.is_file() for path in required_analysis_artifacts[2:4]):
+            multi_detail = compute_multi_stage_threshold_sets(absolute_detail, analysis_decisions["multi_stage_threshold_set"])
+            multi_summary = multi_detail.groupby(["event_id", "set_id", "rule_ids", "minimum_failed", "unit", "time_window", "source"],
+                                                 dropna=False, as_index=False).agg(
+                buildings=("BUILDINGSTRUCTUREID", "nunique"),
+                failed_buildings=("set_failed", lambda x: int(x.dropna().astype(bool).sum())),
+                evaluable_buildings=("set_failed", lambda x: int(x.notna().sum())),
+                unknown_buildings=("set_failed", lambda x: int(x.isna().sum())))
+            atomic_parquet(required_analysis_artifacts[3], multi_detail)
+            atomic_csv(required_analysis_artifacts[2], multi_summary)
 
+        need_day_night = not required_analysis_artifacts[4].is_file()
+        need_regional = not required_analysis_artifacts[5].is_file()
         if c.get("execution_profile") == "acceptance_fixture":
             zone_intervals = pd.read_parquet(root / "00_protocol/fixture_zone_intervals.parquet")
             snapshot_input = pd.read_parquet(root / "00_protocol/fixture_region_snapshot_input.parquet")
-        else:
-            open_index = hydrate_source_index(pd.read_csv(root / "01_core_e8/open6_source_index.csv").fillna(""))
+        elif need_day_night or need_regional:
+            open_index = hydrate_source_index(
+                pd.read_csv(root / "01_core_e8/open6_source_index.csv").fillna(""),
+                project_root=upstream,
+            )
             lock_manifest = pd.read_csv(root / "00_protocol/lockbox_manifests/lockbox_run_manifest.csv").fillna("")
+            lock_runtime = Path(c.get("lockbox_runtime_root", root / "runtime/lockbox"))
             lock_manifest["source_result_dir"] = lock_manifest.run_id.map(
-                lambda run_id: str(root / "runtime/lockbox/02_runs/g3_results" / str(run_id)))
-            lock_index = hydrate_source_index(lock_manifest, result_root=root / "runtime/lockbox")
+                lambda run_id: str(lock_runtime / "02_runs/g3_results" / str(run_id)))
+            lock_index = hydrate_source_index(
+                lock_manifest,
+                result_root=lock_runtime,
+                project_root=upstream,
+            )
             run_index = pd.concat([open_index, lock_index], ignore_index=True, sort=False)
             zone_intervals = None
             production = runner.load_production(upstream, code_root=Path(c["workspace_root"]))
-            snapshot_input = region_snapshot_input_from_runs(
+            snapshot_input = (region_snapshot_input_from_runs(
                 run_index, pd.read_parquet(root / "03_stock/building_component_map.parquet"),
                 pd.read_parquet(root / "03_stock/building_spatial_links.parquet"),
                 production.prototype_parameter_table(),
-                pd.read_csv(Path(c["workspace_root"]) / "frozen_upstream/inputs/E8_event_assignment.csv"),
+                pd.read_csv(Path(c["workspace_root"]) / "config/events/E8_event_assignment.csv"),
                 pd.read_csv(root / "03_stock/city_event_energy_peak.csv"),
                 analysis_decisions["region_snapshot_times_hkt"])
-        if zone_intervals is None:
-            day_night_parts = [
-                compute_day_night_humid_recovery(part, analysis_decisions["day_night_windows"])
-                for part in iter_zone_intervals_from_run_index(run_index)
-            ]
-            if not day_night_parts:
-                raise Blocked("no O24 trajectories were available for day/night analysis")
-            day_night = pd.concat(day_night_parts, ignore_index=True)
+                if need_regional else None)
         else:
-            day_night = compute_day_night_humid_recovery(zone_intervals, analysis_decisions["day_night_windows"])
-        atomic_csv(required_analysis_artifacts[4], day_night)
-        regional = compute_region_hourly_snapshots(snapshot_input, analysis_decisions["region_snapshot_times_hkt"])
-        atomic_csv(required_analysis_artifacts[5], regional)
-        provenance, existence = compute_construction_year_tables(
-            pd.read_parquet(root / "03_stock/fixed_stock_buildings.parquet") if c.get("execution_profile") != "acceptance_fixture"
-            else events.sort_values("event_id").drop_duplicates("BUILDINGSTRUCTUREID"),
-            pd.read_csv(Path(c["workspace_root"]) / "frozen_upstream/inputs/E8_event_assignment.csv"),
-            analysis_decisions["construction_year_provenance"])
-        atomic_csv(required_analysis_artifacts[6], provenance); atomic_parquet(required_analysis_artifacts[7], existence)
-        existence_summary = existence.groupby(["event_id", "existence_primary_status", "construction_year_source_class"],
-                                               dropna=False, as_index=False).agg(
-            buildings=("BUILDINGSTRUCTUREID", "nunique"),
-            year_start_exists=("exists_year_start_assumption", lambda x: int(x.fillna(False).sum())),
-            year_end_exists=("exists_year_end_assumption", lambda x: int(x.fillna(False).sum())))
-        existence_summary["unit"] = "buildings"; existence_summary["scope"] = existence.historical_scope.iloc[0]
-        atomic_csv(required_analysis_artifacts[8], existence_summary)
+            zone_intervals = None
+            snapshot_input = None
+        if need_day_night:
+            if zone_intervals is None:
+                day_night_parts = [
+                    compute_day_night_humid_recovery(part, analysis_decisions["day_night_windows"])
+                    for part in iter_zone_intervals_from_run_index(run_index)
+                ]
+                if not day_night_parts:
+                    raise Blocked("no O24 trajectories were available for day/night analysis")
+                day_night = pd.concat(day_night_parts, ignore_index=True)
+            else:
+                day_night = compute_day_night_humid_recovery(zone_intervals, analysis_decisions["day_night_windows"])
+            atomic_csv(required_analysis_artifacts[4], day_night)
+        if need_regional:
+            regional = compute_region_hourly_snapshots(snapshot_input, analysis_decisions["region_snapshot_times_hkt"])
+            atomic_csv(required_analysis_artifacts[5], regional)
+        if not all(path.is_file() for path in required_analysis_artifacts[6:9]):
+            provenance, existence = compute_construction_year_tables(
+                pd.read_parquet(root / "03_stock/fixed_stock_buildings.parquet") if c.get("execution_profile") != "acceptance_fixture"
+                else events.sort_values("event_id").drop_duplicates("BUILDINGSTRUCTUREID"),
+                pd.read_csv(Path(c["workspace_root"]) / "config/events/E8_event_assignment.csv"),
+                analysis_decisions["construction_year_provenance"])
+            atomic_csv(required_analysis_artifacts[6], provenance); atomic_parquet(required_analysis_artifacts[7], existence)
+            existence_summary = existence.groupby(["event_id", "existence_primary_status", "construction_year_source_class"],
+                                                   dropna=False, as_index=False).agg(
+                buildings=("BUILDINGSTRUCTUREID", "nunique"),
+                year_start_exists=("exists_year_start_assumption", lambda x: int(x.fillna(False).sum())),
+                year_end_exists=("exists_year_end_assumption", lambda x: int(x.fillna(False).sum())))
+            existence_summary["unit"] = "buildings"; existence_summary["scope"] = existence.historical_scope.iloc[0]
+            atomic_csv(required_analysis_artifacts[8], existence_summary)
         decisions = pd.DataFrame([
             {"item": name, "required": True, "status": "approved_and_computed",
              "contract_field": f"decision_parameters.{name}", "decision_hash": decision_hash,
@@ -833,8 +884,8 @@ def _complete_analysis(c, approval):
               "artifact_hashes": _artifact_hashes(required_analysis_artifacts),
               "screening_fractions": "0.05|0.10|0.20", "threshold_rows": len(threshold),
               "thresholds_c": "30|32|34", "endpoint_identity": "sensitivity_not_mathematical_bounds"})
-    assignment = pd.read_csv(Path(c["workspace_root"]) / "frozen_upstream/inputs/E8_event_assignment.csv")
-    catalog = pd.read_csv(Path(c["workspace_root"]) / "frozen_upstream/inputs/event_catalog_65.csv")
+    assignment = pd.read_csv(Path(c["workspace_root"]) / "config/events/E8_event_assignment.csv")
+    catalog = pd.read_csv(Path(c["workspace_root"]) / "config/events/event_catalog_65.csv")
     climate = catalog.merge(assignment[["parent_event_id", "E8_role"]], left_on="event_id", right_on="parent_event_id", how="left")
     atomic_csv(root / "05_evidence/climate_catalog_and_event_roles.csv", climate)
     future_path = root / "05_evidence/future_compatibility.csv"
@@ -936,7 +987,7 @@ def summarize(c):
     root = Path(c["results_root"]); _protocol(c)
     # Core E8 group outputs: imported Open6 + newly completed lockboxes.
     open6 = root / "01_core_e8"
-    lock_groups = root / "runtime/lockbox/groups"
+    lock_groups = Path(c.get("lockbox_runtime_root", root / "runtime/lockbox")) / "groups"
     if lock_groups.exists():
         imported = {n: pd.read_csv(open6 / f"open6_{n}.csv") for n in ("energy", "thermal", "scores")}
         new = _collect_group_tables([lock_groups], root / "01_core_e8/lockbox_group_tables")
@@ -951,7 +1002,13 @@ def summarize(c):
         lock_index = pd.read_csv(root / "00_protocol/lockbox_manifests/lockbox_run_manifest.csv")
         lock_index["source_batch"] = c["batch_id"] + "_lockbox"
         lock_index["source_run_id"] = lock_index.run_id
-        lock_index["source_result_dir"] = lock_index.run_id.map(lambda x: str(root / "runtime/lockbox/02_runs/g3_results" / str(x)))
+        lock_runtime = Path(c.get("lockbox_runtime_root", root / "runtime/lockbox"))
+        project_root = Path(c["workspace_root"])
+        lock_index["source_result_dir"] = lock_index.run_id.map(
+            lambda x: os.path.relpath(
+                lock_runtime / "02_runs/g3_results" / str(x), project_root
+            ).replace("\\", "/")
+        )
         index_columns = list(open_index.columns)
         source_index = pd.concat([open_index, lock_index[index_columns]], ignore_index=True)
         if len(source_index) != 11880: raise Blocked("E8 logical source index is not 11,880 rows")

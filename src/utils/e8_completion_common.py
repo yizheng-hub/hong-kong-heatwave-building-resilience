@@ -103,6 +103,17 @@ def load_config(path: str | Path) -> dict[str, Any]:
                 "external_evidence_registry", "energyplus"):
         value = Path(c[key])
         c[key] = str(value if value.is_absolute() else (workspace / value).resolve())
+    for key in (
+        "prepared_stock_root",
+        "simulation_outputs_root",
+        "accepted_results_root",
+        "lockbox_runtime_root",
+        "mechanism_runtime_root",
+        "protocol_input_root",
+    ):
+        if key in c:
+            value = Path(c[key])
+            c[key] = str(value if value.is_absolute() else (workspace / value).resolve())
     if tuple(c["all_events"]) != ALL_EVENTS or tuple(c["lockbox_events"]) != LOCKBOX_EVENTS:
         raise Blocked("E8 event identity differs from the frozen protocol")
     if tuple(c["scenarios"]) != SCENARIOS:

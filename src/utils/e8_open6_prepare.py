@@ -69,7 +69,7 @@ def _date(value) -> str:
 
 
 def validate_scope(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    assignment = pd.read_csv(root / "intermediate/simulation_outputs/upstream/01_inputs/E8_event_assignment.csv")
+    assignment = pd.read_csv(root / "config/events/E8_event_assignment.csv")
     indexed = assignment.set_index("parent_event_id")
     if not set(OPEN_EVENTS) <= set(indexed.index) or not LOCKBOX_EVENTS <= set(indexed.index):
         raise ValueError("Frozen E8 assignment lacks an approved open or lockbox identity")
@@ -79,7 +79,7 @@ def validate_scope(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
             raise ValueError(f"Frozen event date conflict for {event_id}: {row.event_start}--{row.event_end}")
         if not bool(row.hourly_qualified):
             raise ValueError(f"Hourly weather is not qualified: {event_id}")
-    design = pd.read_csv(root / "output/paper_pipeline_v0_3/02_building_response/thermal_experiment_design.csv")
+    design = pd.read_csv(root / "intermediate/foundation_pipeline/02_building_response/thermal_experiment_design.csv")
     if len(design) != 297 or design.base_case_id.nunique() != 297:
         raise ValueError("Frozen design is not 297 unique base cases")
     if design.groupby(["prototype_id", "floor_position"]).ngroups != 56:
@@ -189,7 +189,7 @@ def compile_open6(root: Path, delivery: Path, *, progress_every: int = 50,
     objects = delivery / "compiled_objects"
     rows = []
     started = time.perf_counter()
-    design = pd.read_csv(root / "output/paper_pipeline_v0_3/02_building_response/thermal_experiment_design.csv")
+    design = pd.read_csv(root / "intermediate/foundation_pipeline/02_building_response/thermal_experiment_design.csv")
     total_runs = len(events) * 1485
     for event_id in events:
         for _, design_row in design.iterrows():

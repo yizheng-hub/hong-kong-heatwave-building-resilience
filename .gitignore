@@ -30,6 +30,26 @@ intermediate/source_derived/
 # governed by the upstream software licence.
 software/energyplus/
 
+# Regenerable local preparation and post-processing trees. The compact panel
+# data, figures, audit summaries and source code remain tracked.
+intermediate/foundation_pipeline/
+intermediate/prepared_stock/all_sector_building_model_inputs.parquet
+intermediate/prepared_stock/building_hourly_component_map.parquet
+intermediate/prepared_stock/population_reference.parquet
+intermediate/prepared_stock/population_reference_provenance.json
+intermediate/prepared_stock/archetypes/
+intermediate/prepared_stock/population/
+intermediate/prepared_stock/source/
+intermediate/prepared_weather/
+intermediate/protocol/
+intermediate/plot.*.executed.ipynb
+result/population_revision_run/
+result/verification/
+
 # Local extraction/check workspaces.
 intermediate/extracted_acceptance_archive/
+intermediate/verification/
+intermediate/verification_temp/
 output/logs/
+result/verification_run/
+result/smoke_test/
