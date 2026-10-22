@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import subprocess
 from pathlib import Path
 
 import pandas as pd
@@ -90,12 +91,17 @@ def schema_for(path: Path) -> list[tuple[str, str]]:
 
 def main() -> None:
     paths = project_paths()
+    tracked = set(subprocess.check_output(
+        ["git", "-C", str(paths.root), "ls-files", "-z"]
+    ).decode("utf-8").split("\0"))
     records = []
     for parent in (paths.data, paths.intermediate, paths.result):
         for path in sorted(parent.rglob("*")):
             if not path.is_file() or path.suffix.lower() not in {".csv", ".parquet", ".geoparquet"}:
                 continue
             relative_path = path.relative_to(paths.root)
+            if relative_path.as_posix() not in tracked:
+                continue
             if any(relative_path.is_relative_to(tree) for tree in EXCLUDED_BULK_TREES):
                 continue
             relative = relative_path.as_posix()
